@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package hr.edunova.jp22;
+import hr.edunova.jp22.utility.HibernateUtil;
 
 /**
  *
@@ -11,6 +12,6 @@ package hr.edunova.jp22;
  */
 public class Start {
     public static void main(String[] args) {
-        System.out.println("hello world");
+        HibernateUtil.getSessionFactory().openSession();
     }
 }
