@@ -44,8 +44,10 @@
         
         
         <!-- Ovdje navodimo naše mapirane klase -->
-         <mapping class="hr.edunova.jp22.model.Osoba" />
-        
+         <mapping class="hr.edunova.jp22.model.Smjer" />
+         <mapping class="hr.edunova.jp22.model.Polaznik" />
+         <mapping class="hr.edunova.jp22.model.Predavac" />
+         <mapping class="hr.edunova.jp22.model.Grupa" />
         
     </session-factory>
 </hibernate-configuration>

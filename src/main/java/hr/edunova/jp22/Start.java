@@ -5,7 +5,7 @@
  */
 package hr.edunova.jp22;
 
-//import hr.edunova.jp22.utility.PocetniInsert;
+import hr.edunova.jp22.utility.PocetniInsert;
 
 /**
  *
@@ -13,6 +13,6 @@ package hr.edunova.jp22;
  */
 public class Start {
     public static void main(String[] args) {
-       // PocetniInsert.izvedi();
+        PocetniInsert.izvedi();
     }
 }

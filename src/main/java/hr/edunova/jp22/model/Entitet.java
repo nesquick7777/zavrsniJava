@@ -12,7 +12,7 @@ import javax.persistence.MappedSuperclass;
 
 /**
  *
- * @author Korisnik
+ * @author Bole
  */
 @MappedSuperclass
 public abstract class Entitet {

@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 /**
  *
- * @author Bole
+ * @author Korisnik
  */
 @Entity
 public class Smjer extends Entitet{
