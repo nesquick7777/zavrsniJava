@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package hr.edunova.jp22;
-import hr.edunova.jp22.utility.HibernateUtil;
+
+//import hr.edunova.jp22.utility.PocetniInsert;
 
 /**
  *
@@ -12,6 +13,6 @@ import hr.edunova.jp22.utility.HibernateUtil;
  */
 public class Start {
     public static void main(String[] args) {
-        HibernateUtil.getSessionFactory().openSession();
+       // PocetniInsert.izvedi();
     }
 }
