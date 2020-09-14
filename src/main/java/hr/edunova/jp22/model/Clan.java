@@ -6,29 +6,26 @@
 package hr.edunova.jp22.model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Bole
  */
-public class Clan extends Umjetnik {
-private int sifra;
+@Entity
+public class Clan extends Entitet {
 private String ime;
 private String prezime;
 private Date datumr;
 private String mjestor;
 private Date datump;
 private String mjestop;
-private Umjetnik umjetnik;
 private String biljeske;
 
-    public int getSifra() {
-        return sifra;
-    }
+@OneToMany
+    private Umjetnik umjetnik;
 
-    public void setSifra(int sifra) {
-        this.sifra = sifra;
-    }
 
     public String getIme() {
         return ime;
@@ -97,8 +94,7 @@ private String biljeske;
     public Clan() {
     }
 
-    public Clan(int sifra, String ime, String prezime, Date datumr, String mjestor, Date datump, String mjestop, Umjetnik umjetnik, String biljeske) {
-        this.sifra = sifra;
+    public Clan(String ime, String prezime, Date datumr, String mjestor, Date datump, String mjestop, Umjetnik umjetnik, String biljeske) {
         this.ime = ime;
         this.prezime = prezime;
         this.datumr = datumr;

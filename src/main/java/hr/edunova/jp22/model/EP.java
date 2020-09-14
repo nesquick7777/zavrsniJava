@@ -7,29 +7,25 @@ package hr.edunova.jp22.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Bole
  */
-public class EP extends Umjetnik {
+@Entity
+public class EP extends Entitet {
 
-private int sifra;
 private String ime;
 private BigDecimal ocjena;
 private Date datumEP;
 private String zanr;
 private String podzanr;
-private Umjetnik umjetnik;
 private String izdavackakuca;
 
-    public int getSifra() {
-        return sifra;
-    }
-
-    public void setSifra(int sifra) {
-        this.sifra = sifra;
-    }
+@ManyToOne
+private Umjetnik umjetnik;
 
     public String getIme() {
         return ime;
@@ -90,8 +86,7 @@ private String izdavackakuca;
     public EP() {
     }
 
-    public EP(int sifra, String ime, BigDecimal ocjena, Date datumEP, String zanr, String podzanr, Umjetnik umjetnik, String izdavackakuca) {
-        this.sifra = sifra;
+    public EP(String ime, BigDecimal ocjena, Date datumEP, String zanr, String podzanr, Umjetnik umjetnik, String izdavackakuca) {
         this.ime = ime;
         this.ocjena = ocjena;
         this.datumEP = datumEP;

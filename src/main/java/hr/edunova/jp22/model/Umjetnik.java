@@ -6,13 +6,15 @@
 package hr.edunova.jp22.model;
 
 import java.util.Date;
+import javax.persistence.Entity;
 
 /**
  *
  * @author Bole
  */
+@Entity
 public class Umjetnik extends Entitet {
-        private int sifra;
+
 	private String ime;
 	private String zanr;
 	private String podzanr;
@@ -20,13 +22,6 @@ public class Umjetnik extends Entitet {
 	private Date datumpocetka;
 	private Date datumkraja;
 
-    public int getSifra() {
-        return sifra;
-    }
-
-    public void setSifra(int sifra) {
-        this.sifra = sifra;
-    }
 
     public String getIme() {
         return ime;
@@ -79,8 +74,7 @@ public class Umjetnik extends Entitet {
     public Umjetnik() {
     }
 
-    public Umjetnik(int sifra, String ime, String zanr, String podzanr, String mjesto, Date datumpocetka, Date datumkraja) {
-        this.sifra = sifra;
+    public Umjetnik(String ime, String zanr, String podzanr, String mjesto, Date datumpocetka, Date datumkraja) {
         this.ime = ime;
         this.zanr = zanr;
         this.podzanr = podzanr;
