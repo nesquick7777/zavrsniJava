@@ -5,7 +5,7 @@
  */
 package hr.edunova.jp22.controller;
 
-import hr.edunova.jp22.model.EP;
+import hr.edunova.jp22.model.Clan;
 import hr.edunova.jp22.utility.EdunovaException;
 import java.util.List;
 
@@ -13,18 +13,19 @@ import java.util.List;
  *
  * @author Bole
  */
-public class ObradaEP extends Obrada<EP> {
-    public ObradaEP(EP ep){
-        super(ep);
+public class ObradaClan extends Obrada<Clan>{
+
+    public ObradaClan(Clan clan) {
+        super(clan);
     }
     
-    public ObradaEP() {
+    public ObradaClan() {
         super();
     }
     
     @Override
-    public List<EP> getPodaci() {
-     return sesion.createQuery("from EP").list();
+    public List<Clan> getPodaci() {
+     return sesion.createQuery("from Clan").list();
     }
     
     
@@ -32,7 +33,7 @@ public class ObradaEP extends Obrada<EP> {
     @Override
     protected void kontrolaCreate() throws EdunovaException {
         kontrolaIme();
-        kotrolaOcjena();
+        kontrolaPrezime();
     }
 
     @Override
@@ -46,9 +47,6 @@ public class ObradaEP extends Obrada<EP> {
     }
     
     
-    
-    
-    
     private void kontrolaIme() throws EdunovaException{
         if(entitet.getIme()==null){
             throw new EdunovaException(" Ime nije definirano! ");
@@ -60,14 +58,16 @@ public class ObradaEP extends Obrada<EP> {
             throw new EdunovaException(" Ime ne smije sadržavati više od 50 znakova. ");
         }
     }
-
-    private void kotrolaOcjena() throws EdunovaException{
-        if(entitet.getOcjena() == 0){
-            throw new EdunovaException(" Morate unijeti ocjenu! ");
-    }
-        
-        if(entitet.getOcjena() > 10 && entitet.getOcjena() <= 0){
-            throw new EdunovaException(" Ocjena mora biti u rasponu od 1 do 10! ");
+    
+    private void kontrolaPrezime() throws EdunovaException{
+        if(entitet.getPrezime()==null){
+            throw new EdunovaException(" Prezime nije definirano! ");
         }
-}
+        if(entitet.getPrezime().isEmpty()){
+            throw new EdunovaException(" Morate unijeti prezime! ");
+        }
+        if(entitet.getPrezime().length()>50){
+            throw new EdunovaException(" Prezime ne smije sadržavati više od 50 znakova. ");
+        }
+    }
 }

@@ -5,7 +5,7 @@
  */
 package hr.edunova.jp22.controller;
 
-import hr.edunova.jp22.model.EP;
+import hr.edunova.jp22.model.Album;
 import hr.edunova.jp22.utility.EdunovaException;
 import java.util.List;
 
@@ -13,18 +13,18 @@ import java.util.List;
  *
  * @author Bole
  */
-public class ObradaEP extends Obrada<EP> {
-    public ObradaEP(EP ep){
-        super(ep);
+public class ObradaAlbum extends Obrada<Album> {
+    public ObradaAlbum(Album album) {
+        super(album);
     }
     
-    public ObradaEP() {
+    public ObradaAlbum() {
         super();
     }
     
     @Override
-    public List<EP> getPodaci() {
-     return sesion.createQuery("from EP").list();
+    public List<Album> getPodaci() {
+     return sesion.createQuery("from Album").list();
     }
     
     
@@ -69,5 +69,5 @@ public class ObradaEP extends Obrada<EP> {
         if(entitet.getOcjena() > 10 && entitet.getOcjena() <= 0){
             throw new EdunovaException(" Ocjena mora biti u rasponu od 1 do 10! ");
         }
-}
+    }
 }

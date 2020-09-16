@@ -5,7 +5,7 @@
  */
 package hr.edunova.jp22.controller;
 
-import hr.edunova.jp22.model.EP;
+import hr.edunova.jp22.model.Umjetnik;
 import hr.edunova.jp22.utility.EdunovaException;
 import java.util.List;
 
@@ -13,18 +13,18 @@ import java.util.List;
  *
  * @author Bole
  */
-public class ObradaEP extends Obrada<EP> {
-    public ObradaEP(EP ep){
-        super(ep);
+public class ObradaUmjetnik extends Obrada<Umjetnik> {
+    public ObradaUmjetnik(Umjetnik umjetnik) {
+        super(umjetnik);
     }
     
-    public ObradaEP() {
+    public ObradaUmjetnik() {
         super();
     }
     
     @Override
-    public List<EP> getPodaci() {
-     return sesion.createQuery("from EP").list();
+    public List<Umjetnik> getPodaci() {
+     return sesion.createQuery("from Umjetnik").list();
     }
     
     
@@ -32,7 +32,6 @@ public class ObradaEP extends Obrada<EP> {
     @Override
     protected void kontrolaCreate() throws EdunovaException {
         kontrolaIme();
-        kotrolaOcjena();
     }
 
     @Override
@@ -45,10 +44,6 @@ public class ObradaEP extends Obrada<EP> {
     
     }
     
-    
-    
-    
-    
     private void kontrolaIme() throws EdunovaException{
         if(entitet.getIme()==null){
             throw new EdunovaException(" Ime nije definirano! ");
@@ -60,14 +55,4 @@ public class ObradaEP extends Obrada<EP> {
             throw new EdunovaException(" Ime ne smije sadržavati više od 50 znakova. ");
         }
     }
-
-    private void kotrolaOcjena() throws EdunovaException{
-        if(entitet.getOcjena() == 0){
-            throw new EdunovaException(" Morate unijeti ocjenu! ");
-    }
-        
-        if(entitet.getOcjena() > 10 && entitet.getOcjena() <= 0){
-            throw new EdunovaException(" Ocjena mora biti u rasponu od 1 do 10! ");
-        }
-}
 }
