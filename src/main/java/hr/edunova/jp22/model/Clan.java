@@ -7,6 +7,7 @@ package hr.edunova.jp22.model;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -23,7 +24,7 @@ private Date datump;
 private String mjestop;
 private String biljeske;
 
-@OneToMany
+@ManyToOne
     private Umjetnik umjetnik;
 
 
