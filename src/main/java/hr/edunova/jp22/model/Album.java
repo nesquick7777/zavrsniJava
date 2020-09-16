@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 public class Album extends Entitet {
     
 private String ime;
-private BigDecimal ocjena;
+private int ocjena;
 private Date datumalbuma;
 private String zanr;
 private String podzanr;
@@ -35,11 +35,11 @@ private Umjetnik umjetnik;
         this.ime = ime;
     }
 
-    public BigDecimal getOcjena() {
+    public int getOcjena() {
         return ocjena;
     }
 
-    public void setOcjena(BigDecimal ocjena) {
+    public void setOcjena(int ocjena) {
         this.ocjena = ocjena;
     }
 
@@ -86,7 +86,7 @@ private Umjetnik umjetnik;
     public Album() {
     }
 
-    public Album(String ime, BigDecimal ocjena, Date datumalbuma, String zanr, String podzanr, Umjetnik umjetnik, String izdavackakuca) {
+    public Album(String ime, int ocjena, Date datumalbuma, String zanr, String podzanr, Umjetnik umjetnik, String izdavackakuca) {
 
         this.ime = ime;
         this.ocjena = ocjena;

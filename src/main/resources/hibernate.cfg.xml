@@ -4,8 +4,8 @@
         
        <!-- 
         Potrebno je ručno kreirati bazu
-            drop database edunovajp22_hib;
-            create database edunovajp22_hib default character set utf8mb4;
+            drop database musci_hib;
+            create database music_hib default character set utf8mb4;
 
 
         -->
@@ -14,7 +14,7 @@
     <session-factory>
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mariadb://localhost:3306/edunovajp22_hib?useSSL=false</property>
+        <property name="connection.url">jdbc:mariadb://localhost:3306/music_hib?useSSL=false</property>
         <property name="connection.username">edunova</property>
         <property name="connection.password">edunova</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
@@ -34,7 +34,7 @@
             create-drop: drop the schema at the end of the session. 
             1. puta create-drop, poslije update
             -->
-        <property name="hbm2ddl.auto">create-drop</property>
+        <property name="hbm2ddl.auto">update</property>
         <!-- dbcp connection pool configuration -->
         <property name="hibernate.dbcp.initialSize">5</property>
         <property name="hibernate.dbcp.maxTotal">20</property>
