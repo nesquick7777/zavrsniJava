@@ -46,7 +46,6 @@
         <!-- Ovdje navodimo naše mapirane klase -->
          <mapping class="hr.edunova.jp22.model.Album" />
          <mapping class="hr.edunova.jp22.model.Clan" />
-         <mapping class="hr.edunova.jp22.model.EP" />
          <mapping class="hr.edunova.jp22.model.Entitet" />
          <mapping class="hr.edunova.jp22.model.Singl" />
          <mapping class="hr.edunova.jp22.model.Umjetnik" />

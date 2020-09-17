@@ -7,7 +7,6 @@ package hr.edunova.jp22.model;
 
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,9 +21,6 @@ private String mjestor;
 private Date datump;
 private String mjestop;
 private String biljeske;
-
-@ManyToOne
-    private Umjetnik umjetnik;
 
 
     public String getIme() {
@@ -75,14 +71,6 @@ private String biljeske;
         this.mjestop = mjestop;
     }
 
-    public Umjetnik getUmjetnik() {
-        return umjetnik;
-    }
-
-    public void setUmjetnik(Umjetnik umjetnik) {
-        this.umjetnik = umjetnik;
-    }
-
     public String getBiljeske() {
         return biljeske;
     }
@@ -94,14 +82,13 @@ private String biljeske;
     public Clan() {
     }
 
-    public Clan(String ime, String prezime, Date datumr, String mjestor, Date datump, String mjestop, Umjetnik umjetnik, String biljeske) {
+    public Clan(String ime, String prezime, Date datumr, String mjestor, Date datump, String mjestop, String biljeske) {
         this.ime = ime;
         this.prezime = prezime;
         this.datumr = datumr;
         this.mjestor = mjestor;
         this.datump = datump;
         this.mjestop = mjestop;
-        this.umjetnik = umjetnik;
         this.biljeske = biljeske;
     }
 

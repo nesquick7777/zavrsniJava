@@ -9,7 +9,6 @@ import com.github.javafaker.Faker;
 import hr.edunova.jp22.model.Clan;
 import hr.edunova.jp22.model.Umjetnik;
 import hr.edunova.jp22.model.Album;
-import hr.edunova.jp22.model.EP;
 import hr.edunova.jp22.model.Singl;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,22 +33,11 @@ public class PocetniInsert {
         
         session.beginTransaction();   //START
         
-        Umjetnik umjetnik = new Umjetnik();
-        umjetnik.setIme(faker.rockBand().name());
-        umjetnik.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
-        umjetnik.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
-        umjetnik.setMjesto(faker.country().capital());
-        umjetnik.setDatumpocetka(faker.date().birthday(18, 45));
-        umjetnik.setDatumkraja(faker.date().birthday(2, 5));
-        session.save(umjetnik);
-        
-        session.getTransaction().commit();    //END
-        
-        
-        session.beginTransaction();   //START
-        
-        for(int i = 0;i<4;i++){
+        List<Clan> clanovi1 = new ArrayList<>();
+         List<Clan> clanovi2 = new ArrayList<>();
+        for(int i = 0;i<10;i++){
         Clan clan = new Clan();
+        
         clan.setIme(faker.artist().name());
         clan.setPrezime(faker.name().lastName());
         clan.setDatumr(faker.date().birthday(18, 45));
@@ -57,14 +45,43 @@ public class PocetniInsert {
         clan.setMjestor(faker.country().name());
         clan.setMjestop(faker.country().capital());
         clan.setBiljeske(faker.music().instrument());
-        clan.setUmjetnik(umjetnik);
         session.save(clan);
+        
+        if(i<5){
+            clanovi1.add(clan);
+        }
+        if(i>5 && i<10){
+            clanovi2.add(clan);
         }
         
+        
+        }
         session.getTransaction().commit(); //END
+       
+        session.beginTransaction();   //START
         
+         Umjetnik umjetnik1 = new Umjetnik();
+        umjetnik1.setIme(faker.rockBand().name());
+        umjetnik1.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
+        umjetnik1.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
+        umjetnik1.setMjesto(faker.country().capital());
+        umjetnik1.setDatumpocetka(faker.date().birthday(18, 45));
+        umjetnik1.setDatumkraja(faker.date().birthday(2, 5));
+        umjetnik1.setClanovi(clanovi1);
+        session.save(umjetnik1);
         
+        Umjetnik umjetnik2 = new Umjetnik();
+        umjetnik2.setIme(faker.rockBand().name());
+        umjetnik2.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
+        umjetnik2.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
+        umjetnik2.setMjesto(faker.country().capital());
+        umjetnik2.setDatumpocetka(faker.date().birthday(18, 45));
+        umjetnik2.setDatumkraja(faker.date().birthday(2, 5));
+        umjetnik2.setClanovi(clanovi2);
+        session.save(umjetnik2);
         
+        session.getTransaction().commit();    //END
+                
         
         session.beginTransaction();   //START
         
@@ -75,24 +92,11 @@ public class PocetniInsert {
         album.setDatumalbuma(faker.date().birthday(18, 45));
         album.setIzdavackakuca(faker.company().name());
         album.setOcjena(faker.number().numberBetween(1, 10));
-        album.setUmjetnik(umjetnik);
+        album.setUmjetnik(umjetnik1);
         session.save(album);
         
         session.getTransaction().commit();    //END
         
-        session.beginTransaction();   //START
-        for(int i = 0;i<2;i++){
-        EP ep = new EP();
-        ep.setIme(faker.witcher().monster());
-        ep.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
-        ep.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
-        ep.setDatumEP(faker.date().birthday(18, 45));
-        ep.setIzdavackakuca(faker.company().name());
-        ep.setOcjena(faker.number().numberBetween(1, 10));
-        ep.setUmjetnik(umjetnik);
-        session.save(ep);
-        }
-        session.getTransaction().commit();    //END
         
         session.beginTransaction();   //START
         
@@ -104,7 +108,7 @@ public class PocetniInsert {
         singl.setDatumsingla(faker.date().birthday(18, 45));
         singl.setIzdavackakuca(faker.company().name());
         singl.setOcjena(faker.number().numberBetween(1, 10));
-        singl.setUmjetnik(umjetnik);
+        singl.setUmjetnik(umjetnik1);
         session.save(singl);
         }
         session.getTransaction().commit();    //END
