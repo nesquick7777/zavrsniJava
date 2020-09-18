@@ -28,12 +28,22 @@ public class Umjetnik extends Entitet {
 @ManyToMany
     private List<Clan> clanovi = new ArrayList<>();
 
-    public List<Clan> getClanovi() {
-        return clanovi;
+@ManyToMany
+    private List<Album> albumi = new ArrayList<>();
+
+
+    public Umjetnik(String ime, String zanr, String podzanr, String mjesto, Date datumpocetka, Date datumkraja) {
+        this.ime = ime;
+        this.zanr = zanr;
+        this.podzanr = podzanr;
+        this.mjesto = mjesto;
+        this.datumpocetka = datumpocetka;
+        this.datumkraja = datumkraja;
     }
 
-    public void setClanovi(List<Clan> clanovi) {
-        this.clanovi = clanovi;
+
+
+    public Umjetnik() {
     }
 
 
@@ -85,17 +95,22 @@ public class Umjetnik extends Entitet {
         this.datumkraja = datumkraja;
     }
 
-    public Umjetnik() {
+    public List<Clan> getClanovi() {
+        return clanovi;
     }
 
-    public Umjetnik(String ime, String zanr, String podzanr, String mjesto, Date datumpocetka, Date datumkraja) {
-        this.ime = ime;
-        this.zanr = zanr;
-        this.podzanr = podzanr;
-        this.mjesto = mjesto;
-        this.datumpocetka = datumpocetka;
-        this.datumkraja = datumkraja;
+    public void setClanovi(List<Clan> clanovi) {
+        this.clanovi = clanovi;
     }
-        
+
+    public List<Album> getAlbumi() {
+        return albumi;
+    }
+
+    public void setAlbumi(List<Album> albumi) {
+        this.albumi = albumi;
+    }
+
+
         
 }

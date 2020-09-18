@@ -5,9 +5,11 @@
  */
 package hr.edunova.jp22.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -22,9 +24,23 @@ private Date datumalbuma;
 private String zanr;
 private String podzanr;
 private String izdavackakuca;
+private String vrsta;
 
-@ManyToOne
-private Umjetnik umjetnik;
+@ManyToMany
+private List<Pjesma> pjesme = new ArrayList<>();
+
+    public Album() {
+    }
+
+    public Album(String ime, int ocjena, Date datumalbuma, String zanr, String podzanr, String izdavackakuca, String vrsta) {
+        this.ime = ime;
+        this.ocjena = ocjena;
+        this.datumalbuma = datumalbuma;
+        this.zanr = zanr;
+        this.podzanr = podzanr;
+        this.izdavackakuca = izdavackakuca;
+        this.vrsta = vrsta;
+    }
 
     public String getIme() {
         return ime;
@@ -66,14 +82,6 @@ private Umjetnik umjetnik;
         this.podzanr = podzanr;
     }
 
-    public Umjetnik getUmjetnik() {
-        return umjetnik;
-    }
-
-    public void setUmjetnik(Umjetnik umjetnik) {
-        this.umjetnik = umjetnik;
-    }
-
     public String getIzdavackakuca() {
         return izdavackakuca;
     }
@@ -82,20 +90,23 @@ private Umjetnik umjetnik;
         this.izdavackakuca = izdavackakuca;
     }
 
-    public Album() {
+    public String getVrsta() {
+        return vrsta;
     }
 
-    public Album(String ime, int ocjena, Date datumalbuma, String zanr, String podzanr, Umjetnik umjetnik, String izdavackakuca) {
-
-        this.ime = ime;
-        this.ocjena = ocjena;
-        this.datumalbuma = datumalbuma;
-        this.zanr = zanr;
-        this.podzanr = podzanr;
-        this.umjetnik = umjetnik;
-        this.izdavackakuca = izdavackakuca;
+    public void setVrsta(String vrsta) {
+        this.vrsta = vrsta;
     }
-    
+
+    public List<Pjesma> getPjesme() {
+        return pjesme;
+    }
+
+    public void setPjesme(List<Pjesma> pjesme) {
+        this.pjesme = pjesme;
+    }
+
+
 
 
 }

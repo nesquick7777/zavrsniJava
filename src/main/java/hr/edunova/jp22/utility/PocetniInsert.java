@@ -9,7 +9,7 @@ import com.github.javafaker.Faker;
 import hr.edunova.jp22.model.Clan;
 import hr.edunova.jp22.model.Umjetnik;
 import hr.edunova.jp22.model.Album;
-import hr.edunova.jp22.model.Singl;
+import hr.edunova.jp22.model.Pjesma;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -92,7 +92,6 @@ public class PocetniInsert {
         album.setDatumalbuma(faker.date().birthday(18, 45));
         album.setIzdavackakuca(faker.company().name());
         album.setOcjena(faker.number().numberBetween(1, 10));
-        album.setUmjetnik(umjetnik1);
         session.save(album);
         
         session.getTransaction().commit();    //END
@@ -101,15 +100,15 @@ public class PocetniInsert {
         session.beginTransaction();   //START
         
         for(int i = 0;i<3;i++){
-        Singl singl = new Singl();
-        singl.setIme(faker.ancient().god());
-        singl.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
-        singl.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
-        singl.setDatumsingla(faker.date().birthday(18, 45));
-        singl.setIzdavackakuca(faker.company().name());
-        singl.setOcjena(faker.number().numberBetween(1, 10));
-        singl.setUmjetnik(umjetnik1);
-        session.save(singl);
+        Pjesma pjesma = new Pjesma();
+        pjesma.setIme(faker.ancient().god());
+        pjesma.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
+        pjesma.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
+        pjesma.setDatumsingla(faker.date().birthday(18, 45));
+        pjesma.setIzdavackakuca(faker.company().name());
+        pjesma.setOcjena(faker.number().numberBetween(1, 10));
+        pjesma.setUmjetnik(umjetnik1);
+        session.save(pjesma);
         }
         session.getTransaction().commit();    //END
   

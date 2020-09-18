@@ -6,7 +6,7 @@
 package hr.edunova.jp22.controller;
 
 import hr.edunova.jp22.model.Album;
-import hr.edunova.jp22.model.Singl;
+import hr.edunova.jp22.model.Pjesma;
 import hr.edunova.jp22.utility.EdunovaException;
 import java.util.List;
 
@@ -14,8 +14,8 @@ import java.util.List;
  *
  * @author Bole
  */
-public class ObradaSingl extends Obrada<Singl> {
-    public ObradaSingl(Singl singl) {
+public class ObradaSingl extends Obrada<Pjesma> {
+    public ObradaSingl(Pjesma singl) {
         super(singl);
     }
     
@@ -24,7 +24,7 @@ public class ObradaSingl extends Obrada<Singl> {
     }
     
     @Override
-    public List<Singl> getPodaci() {
+    public List<Pjesma> getPodaci() {
      return sesion.createQuery("from Singl").list();
     }
     
