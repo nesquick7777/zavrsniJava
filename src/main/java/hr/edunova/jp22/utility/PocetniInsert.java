@@ -65,38 +65,47 @@ public class PocetniInsert {
         
         List<Pjesma> pjesme1 = new ArrayList<>();
         List<Pjesma> pjesme2 = new ArrayList<>();
-
-        
-
-
-
-
-        
+        int zbrojS1 = 0;
+        int zbrojS2 = 0;
         
         
         for(int i = 0;i<15;i++){
+        int br1 = faker.number().numberBetween(1, 9);
+        int br2 = faker.number().numberBetween(1, 6);
+        
+        
         Pjesma pjesma = new Pjesma();
         pjesma.setIme(faker.ancient().hero());
-        pjesma.setTrajanje(duzina());
+        pjesma.setTrajanje("0" + br1 + ":" + br2 + br1);
         session.save(pjesma);
         
         if(i<5){
             pjesme1.add(pjesma);
+            zbrojS1 += (br1 * 60) + (br2 * 10) + br1;
         }
         if(i>5 && i<15){
             pjesme2.add(pjesma);
+            zbrojS2 += (br1 * 60) + (br2 * 10) + br1;
         }
         
+
+        
         }
-
         
-
-
+        int p1 = zbrojS1 % 60;
+        int p2 = zbrojS1 / 60;
+        int p3 = p2 % 60;
+        p2 = p2 / 60;
+        String duzinaT = duzina( p2, p3, p1);
         
-        
-        
+        int p4 = zbrojS2 % 60;
+        int p5 = zbrojS2 / 60;
+        int p6 = p5 % 60;
+        p5 = p5 / 60;
+        String duzinaT2 = duzina( p5, p6, p4);
         
         session.getTransaction().commit();    //END
+        
         
         
                 session.beginTransaction();   //START
@@ -112,6 +121,8 @@ public class PocetniInsert {
         album.setIzdavackakuca(faker.company().name());
         album.setOcjena(faker.number().numberBetween(1, 10));
         album.setPjesme(pjesme1);
+        album.setTrajanje(duzinaT);
+        album.setVrsta(vrstaA(zbrojS1));
         session.save(album);
         albumi1.add(album);
         
@@ -123,6 +134,8 @@ public class PocetniInsert {
         album2.setIzdavackakuca(faker.company().name());
         album2.setOcjena(faker.number().numberBetween(1, 10));
         album2.setPjesme(pjesme2);
+        album2.setTrajanje(duzinaT2);
+        album2.setVrsta(vrstaA(zbrojS2));
         session.save(album2);
         albumi2.add(album2);
         
@@ -161,8 +174,8 @@ public class PocetniInsert {
     return x;
   }
         
-        public static String duzina(){
-        Faker faker = new Faker();
+        
+        public static String duzina(int br1, int br2, int br3){
         // Create a stream to hold the output
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
@@ -171,13 +184,21 @@ public class PocetniInsert {
         // Tell Java to use your special stream
         System.setOut(ps);
         // Print some output: goes to your special stream
-        System.out.printf("0%d:%d%d", faker.number().numberBetween(1, 9), faker.number().numberBetween(1, 6), faker.number().numberBetween(1, 9));
+        System.out.printf("%d:%d:%d", br1, br2, br3);
         // Put things back
         System.out.flush();
         System.setOut(old);
         // Show what happened
         //System.out.println("Here: " + baos.toString());
-        
         return baos.toString();
+        }
+        
+        public static String vrstaA(int sekunde){
+            if(sekunde <= 900){
+                return "Singl";
+            } else if(sekunde <= 1800){
+                return "EP";
+            }else{
+                return "LP";}
         }
 }
