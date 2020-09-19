@@ -77,24 +77,7 @@ public class PocetniInsert {
         for(int i = 0;i<15;i++){
         Pjesma pjesma = new Pjesma();
         pjesma.setIme(faker.ancient().hero());
-        
-        // Create a stream to hold the output
-ByteArrayOutputStream baos = new ByteArrayOutputStream();
-PrintStream ps = new PrintStream(baos);
-        
-        // IMPORTANT: Save the old System.out!
-        PrintStream old = System.out;
-        // Tell Java to use your special stream
-        System.setOut(ps);
-        // Print some output: goes to your special stream
-        System.out.printf("0%d:%d%d", faker.number().numberBetween(1, 9), faker.number().numberBetween(1, 6), faker.number().numberBetween(1, 9));
-        pjesma.setTrajanje(baos.toString());
-        // Put things back
-        System.out.flush();
-        System.setOut(old);
-        // Show what happened
-        //System.out.println("Here: " + baos.toString());
-        
+        pjesma.setTrajanje(duzina());
         session.save(pjesma);
         
         if(i<5){
@@ -177,4 +160,24 @@ PrintStream ps = new PrintStream(baos);
     int x = (int)(Math.random()*((max-min)+1))+min;
     return x;
   }
+        
+        public static String duzina(){
+        Faker faker = new Faker();
+        // Create a stream to hold the output
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(baos);
+        // IMPORTANT: Save the old System.out!
+        PrintStream old = System.out;
+        // Tell Java to use your special stream
+        System.setOut(ps);
+        // Print some output: goes to your special stream
+        System.out.printf("0%d:%d%d", faker.number().numberBetween(1, 9), faker.number().numberBetween(1, 6), faker.number().numberBetween(1, 9));
+        // Put things back
+        System.out.flush();
+        System.setOut(old);
+        // Show what happened
+        //System.out.println("Here: " + baos.toString());
+        
+        return baos.toString();
+        }
 }
