@@ -34,7 +34,7 @@ public class PocetniInsert {
         session.beginTransaction();   //START
         
         List<Clan> clanovi1 = new ArrayList<>();
-         List<Clan> clanovi2 = new ArrayList<>();
+        List<Clan> clanovi2 = new ArrayList<>();
         for(int i = 0;i<10;i++){
         Clan clan = new Clan();
         
@@ -57,6 +57,58 @@ public class PocetniInsert {
         
         }
         session.getTransaction().commit(); //END
+        
+        
+        session.beginTransaction();   //START
+        
+        List<Pjesma> pjesme1 = new ArrayList<>();
+        List<Pjesma> pjesme2 = new ArrayList<>();
+        
+        for(int i = 0;i<15;i++){
+        Pjesma pjesma = new Pjesma();
+        pjesma.setIme(faker.ancient().god());
+        pjesma.setTrajanje("2:13");
+        session.save(pjesma);
+        
+        if(i<5){
+            pjesme1.add(pjesma);
+        }
+        if(i>5 && i<15){
+            pjesme2.add(pjesma);
+        }
+        
+        }
+        session.getTransaction().commit();    //END
+        
+        
+                session.beginTransaction();   //START
+        
+        List<Album> albumi1 = new ArrayList<>();
+        List<Album> albumi2 = new ArrayList<>();
+         
+        Album album = new Album();
+        album.setIme(faker.superhero().power());
+        album.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
+        album.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
+        album.setDatumalbuma(faker.date().birthday(18, 45));
+        album.setIzdavackakuca(faker.company().name());
+        album.setOcjena(faker.number().numberBetween(1, 10));
+        album.setPjesme(pjesme1);
+        session.save(album);
+        albumi1.add(album);
+        
+        Album album2 = new Album();
+        album2.setIme(faker.superhero().power());
+        album2.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
+        album2.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
+        album2.setDatumalbuma(faker.date().birthday(18, 45));
+        album2.setIzdavackakuca(faker.company().name());
+        album2.setOcjena(faker.number().numberBetween(1, 10));
+        album2.setPjesme(pjesme2);
+        session.save(album2);
+        albumi2.add(album);
+        
+        session.getTransaction().commit();    //END
        
         session.beginTransaction();   //START
         
@@ -68,6 +120,7 @@ public class PocetniInsert {
         umjetnik1.setDatumpocetka(faker.date().birthday(18, 45));
         umjetnik1.setDatumkraja(faker.date().birthday(2, 5));
         umjetnik1.setClanovi(clanovi1);
+        umjetnik1.setAlbumi(albumi1);
         session.save(umjetnik1);
         
         Umjetnik umjetnik2 = new Umjetnik();
@@ -78,39 +131,14 @@ public class PocetniInsert {
         umjetnik2.setDatumpocetka(faker.date().birthday(18, 45));
         umjetnik2.setDatumkraja(faker.date().birthday(2, 5));
         umjetnik2.setClanovi(clanovi2);
+        umjetnik2.setAlbumi(albumi2);
         session.save(umjetnik2);
         
         session.getTransaction().commit();    //END
                 
+       
         
-        session.beginTransaction();   //START
-        
-        Album album = new Album();
-        album.setIme(faker.superhero().power());
-        album.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
-        album.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
-        album.setDatumalbuma(faker.date().birthday(18, 45));
-        album.setIzdavackakuca(faker.company().name());
-        album.setOcjena(faker.number().numberBetween(1, 10));
-        session.save(album);
-        
-        session.getTransaction().commit();    //END
-        
-        
-        session.beginTransaction();   //START
-        
-        for(int i = 0;i<3;i++){
-        Pjesma pjesma = new Pjesma();
-        pjesma.setIme(faker.ancient().god());
-        pjesma.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
-        pjesma.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
-        pjesma.setDatumsingla(faker.date().birthday(18, 45));
-        pjesma.setIzdavackakuca(faker.company().name());
-        pjesma.setOcjena(faker.number().numberBetween(1, 10));
-        pjesma.setUmjetnik(umjetnik1);
-        session.save(pjesma);
-        }
-        session.getTransaction().commit();    //END
+   
   
     
     }

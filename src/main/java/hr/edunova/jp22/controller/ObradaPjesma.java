@@ -14,12 +14,12 @@ import java.util.List;
  *
  * @author Bole
  */
-public class ObradaSingl extends Obrada<Pjesma> {
-    public ObradaSingl(Pjesma singl) {
+public class ObradaPjesma extends Obrada<Pjesma> {
+    public ObradaPjesma(Pjesma singl) {
         super(singl);
     }
     
-    public ObradaSingl() {
+    public ObradaPjesma() {
         super();
     }
     
@@ -33,7 +33,6 @@ public class ObradaSingl extends Obrada<Pjesma> {
     @Override
     protected void kontrolaCreate() throws EdunovaException {
         kontrolaIme();
-        kotrolaOcjena();
     }
 
     @Override
@@ -62,13 +61,4 @@ public class ObradaSingl extends Obrada<Pjesma> {
         }
     }
 
-    private void kotrolaOcjena() throws EdunovaException{
-        if(entitet.getOcjena() == 0){
-            throw new EdunovaException(" Morate unijeti ocjenu! ");
-    }
-        
-        if(entitet.getOcjena() > 10 && entitet.getOcjena() <= 0){
-            throw new EdunovaException(" Ocjena mora biti u rasponu od 1 do 10! ");
-        }
-    }
 }

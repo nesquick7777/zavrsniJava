@@ -25,6 +25,15 @@ private String zanr;
 private String podzanr;
 private String izdavackakuca;
 private String vrsta;
+private String trajanje;
+
+    public String getTrajanje() {
+        return trajanje;
+    }
+
+    public void setTrajanje(String trajanje) {
+        this.trajanje = trajanje;
+    }
 
 @ManyToMany
 private List<Pjesma> pjesme = new ArrayList<>();

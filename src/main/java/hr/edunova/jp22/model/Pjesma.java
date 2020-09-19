@@ -18,9 +18,30 @@ public class Pjesma extends Entitet{
  
 private String ime;
 private String trajanje;
-private Boolean singl;
 
+    public Pjesma() {
+    }
 
+    public Pjesma(String ime, String trajanje) {
+        this.ime = ime;
+        this.trajanje = trajanje;
+    }
+
+    public String getIme() {
+        return ime;
+    }
+
+    public void setIme(String ime) {
+        this.ime = ime;
+    }
+
+    public String getTrajanje() {
+        return trajanje;
+    }
+
+    public void setTrajanje(String trajanje) {
+        this.trajanje = trajanje;
+    }
 
 
 }
