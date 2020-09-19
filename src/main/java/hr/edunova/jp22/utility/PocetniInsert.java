@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package hr.edunova.jp22.utility;
-
+   
 import com.github.javafaker.Faker;
 import hr.edunova.jp22.model.Clan;
 import hr.edunova.jp22.model.Umjetnik;
 import hr.edunova.jp22.model.Album;
 import hr.edunova.jp22.model.Pjesma;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -63,11 +65,36 @@ public class PocetniInsert {
         
         List<Pjesma> pjesme1 = new ArrayList<>();
         List<Pjesma> pjesme2 = new ArrayList<>();
+
+        
+
+
+
+
+        
+        
         
         for(int i = 0;i<15;i++){
         Pjesma pjesma = new Pjesma();
-        pjesma.setIme(faker.ancient().god());
-        pjesma.setTrajanje("2:13");
+        pjesma.setIme(faker.ancient().hero());
+        
+        // Create a stream to hold the output
+ByteArrayOutputStream baos = new ByteArrayOutputStream();
+PrintStream ps = new PrintStream(baos);
+        
+        // IMPORTANT: Save the old System.out!
+        PrintStream old = System.out;
+        // Tell Java to use your special stream
+        System.setOut(ps);
+        // Print some output: goes to your special stream
+        System.out.printf("0%d:%d%d", faker.number().numberBetween(1, 9), faker.number().numberBetween(1, 6), faker.number().numberBetween(1, 9));
+        pjesma.setTrajanje(baos.toString());
+        // Put things back
+        System.out.flush();
+        System.setOut(old);
+        // Show what happened
+        //System.out.println("Here: " + baos.toString());
+        
         session.save(pjesma);
         
         if(i<5){
@@ -78,6 +105,14 @@ public class PocetniInsert {
         }
         
         }
+
+        
+
+
+        
+        
+        
+        
         session.getTransaction().commit();    //END
         
         
@@ -106,13 +141,13 @@ public class PocetniInsert {
         album2.setOcjena(faker.number().numberBetween(1, 10));
         album2.setPjesme(pjesme2);
         session.save(album2);
-        albumi2.add(album);
+        albumi2.add(album2);
         
         session.getTransaction().commit();    //END
        
         session.beginTransaction();   //START
         
-         Umjetnik umjetnik1 = new Umjetnik();
+        Umjetnik umjetnik1 = new Umjetnik();
         umjetnik1.setIme(faker.rockBand().name());
         umjetnik1.setZanr(zanr[getRandomIntegerBetweenRange(0,9)]);
         umjetnik1.setPodzanr(podZanr[getRandomIntegerBetweenRange(0,4)]);
@@ -137,10 +172,6 @@ public class PocetniInsert {
         session.getTransaction().commit();    //END
                 
        
-        
-   
-  
-    
     }
         public static int getRandomIntegerBetweenRange(int min, int max){
     int x = (int)(Math.random()*((max-min)+1))+min;
