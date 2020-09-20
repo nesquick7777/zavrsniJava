@@ -7,6 +7,7 @@ package hr.edunova.jp22;
 
 import hr.edunova.jp22.utility.HibernateUtil;
 import hr.edunova.jp22.utility.PocetniInsert;
+import hr.edunova.jp22.view.Izbornik;
 
 /**
  *
@@ -14,7 +15,8 @@ import hr.edunova.jp22.utility.PocetniInsert;
  */
 public class Start {
     public static void main(String[] args) {
-        PocetniInsert.izvedi();
+        //PocetniInsert.izvedi();
         // HibernateUtil.getSessionFactory().openSession();
+        new Izbornik().setVisible(true);
     }
 }
