@@ -43,8 +43,10 @@ public class Autorizacija extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Autorizacija");
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +141,12 @@ public class Autorizacija extends javax.swing.JFrame {
     private void jPasswordField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyReleased
      if (evt.getKeyCode() == KeyEvent.VK_ENTER && jPasswordField1.getPassword().length>0){
             prijaviSe();
+            
         }
+     else if(jPasswordField1.getPassword().length==0 && evt.getKeyCode() == KeyEvent.VK_ENTER)
+     {
+                    JOptionPane.showMessageDialog(rootPane, "Unesite lozinku!");
+                    }
     }//GEN-LAST:event_jPasswordField1KeyReleased
 
 
@@ -155,7 +162,7 @@ public class Autorizacija extends javax.swing.JFrame {
 private void prijaviSe() {
         if(jTextField1.getText().trim().isEmpty()){
             jTextField1.requestFocus();
-            JOptionPane.showMessageDialog(rootPane, "Email obavezno");
+            JOptionPane.showMessageDialog(rootPane, "Unesite mail!");
             return;
         }
         
@@ -165,13 +172,14 @@ private void prijaviSe() {
             emailAddr.validate();
          } catch (AddressException ex) {
              jTextField1.requestFocus();
-                JOptionPane.showMessageDialog(rootPane, "Email nije ispravan");
+                JOptionPane.showMessageDialog(rootPane, "Email je neispravan");
                   return;
          }
-        
+    
         if(jPasswordField1.getPassword().length==0){
+            
             jPasswordField1.requestFocus();
-            JOptionPane.showMessageDialog(rootPane, "Lozinka obavezno");
+            JOptionPane.showMessageDialog(rootPane, "Unesite lozinku!");
             return;
         }
         
@@ -186,7 +194,9 @@ private void prijaviSe() {
 //        
 //        Aplikacija.operater=operater;
         
-        new Izbornik().setVisible(true);
+        Izbornik izbornik = new Izbornik();
+        izbornik.setLocationRelativeTo(null);
+        izbornik.setVisible(true);
         dispose();
         
        // System.out.println(operater.getImePrezime());

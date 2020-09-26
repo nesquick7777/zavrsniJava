@@ -18,6 +18,9 @@ public class Start {
     public static void main(String[] args) {
         //PocetniInsert.izvedi();
         // HibernateUtil.getSessionFactory().openSession();
-        new Autorizacija().setVisible(true);
+        Autorizacija autorizacija = new Autorizacija();
+        autorizacija.setLocationRelativeTo(null);
+
+        autorizacija.setVisible(true);
     }
 }
