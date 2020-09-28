@@ -7,9 +7,15 @@ package hr.edunova.jp22.view;
 
 import hr.edunova.jp22.controller.ObradaClan;
 import hr.edunova.jp22.model.Clan;
+import hr.edunova.jp22.utility.EdunovaException;
 import javax.swing.DefaultListModel;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 /**
  *
@@ -42,7 +48,7 @@ public class Clanovi extends javax.swing.JFrame {
         btnNazad = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstClanovi = new javax.swing.JList<>();
-        btnDodaj = new javax.swing.JPanel();
+        jPanel = new javax.swing.JPanel();
         txtIme = new javax.swing.JTextField();
         txtPrezime = new javax.swing.JTextField();
         txtMjestoR = new javax.swing.JTextField();
@@ -58,9 +64,9 @@ public class Clanovi extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnDodaj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
-        btnObriši = new javax.swing.JButton();
+        btnObrisi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clanovi");
@@ -103,7 +109,7 @@ public class Clanovi extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
         );
 
-        btnDodaj.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel.setBackground(new java.awt.Color(51, 102, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,19 +143,34 @@ public class Clanovi extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Bilješke:");
 
-        jButton2.setText("Dodaj");
+        btnDodaj.setText("Dodaj");
+        btnDodaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajActionPerformed(evt);
+            }
+        });
 
         btnPromjeni.setText("Promjeni");
+        btnPromjeni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPromjeniActionPerformed(evt);
+            }
+        });
 
-        btnObriši.setText("Obriši");
+        btnObrisi.setText("Obriši");
+        btnObrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObrisiActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout btnDodajLayout = new javax.swing.GroupLayout(btnDodaj);
-        btnDodaj.setLayout(btnDodajLayout);
-        btnDodajLayout.setHorizontalGroup(
-            btnDodajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnDodajLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
+        jPanel.setLayout(jPanelLayout);
+        jPanelLayout.setHorizontalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(btnDodajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMjestoR, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,13 +179,13 @@ public class Clanovi extends javax.swing.JFrame {
                     .addComponent(txtDatumP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBiljeske, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(btnDodajLayout.createSequentialGroup()
-                        .addComponent(jButton2)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addComponent(btnDodaj)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPromjeni)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnObriši))
-                    .addGroup(btnDodajLayout.createSequentialGroup()
+                        .addComponent(btnObrisi))
+                    .addGroup(jPanelLayout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,9 +196,9 @@ public class Clanovi extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-        btnDodajLayout.setVerticalGroup(
-            btnDodajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnDodajLayout.createSequentialGroup()
+        jPanelLayout.setVerticalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -209,10 +230,10 @@ public class Clanovi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBiljeske, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(btnDodajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDodaj)
                     .addComponent(btnPromjeni)
-                    .addComponent(btnObriši))
+                    .addComponent(btnObrisi))
                 .addContainerGap())
         );
 
@@ -223,12 +244,12 @@ public class Clanovi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnDodaj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -261,6 +282,66 @@ public class Clanovi extends javax.swing.JFrame {
         txtBiljeske.setText(entitet.getBiljeske());
     }//GEN-LAST:event_lstClanoviValueChanged
 
+    private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
+        entitet = new Clan();
+        try {
+            postaviVrijednostiUEntitet();
+        } catch (ParseException ex) {
+            Logger.getLogger(Clanovi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+try {
+            obrada.create();
+            ucitajPodatke();
+            ocistiPolja();
+        } catch (EdunovaException ex) {
+           
+        }
+        
+    }//GEN-LAST:event_btnDodajActionPerformed
+
+    private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
+        entitet = lstClanovi.getSelectedValue();
+        if (entitet == null) {
+            return;
+        }
+
+        try {
+            postaviVrijednostiUEntitet();
+        } catch (ParseException ex) {
+            Logger.getLogger(Clanovi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            obrada.update();
+            ucitajPodatke();
+            ocistiPolja();
+
+        } catch (EdunovaException e) {
+        }
+    }//GEN-LAST:event_btnPromjeniActionPerformed
+
+    private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
+          entitet = lstClanovi.getSelectedValue();
+        if (entitet == null) {
+            return;
+        }
+
+        obrada.setEntitet(entitet);
+
+        try {
+            obrada.delete();
+            ucitajPodatke();
+            ocistiPolja();
+        } catch (EdunovaException e) {
+        }
+    }//GEN-LAST:event_btnObrisiActionPerformed
+
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -297,11 +378,10 @@ public class Clanovi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btnDodaj;
+    private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnNazad;
-    private javax.swing.JButton btnObriši;
+    private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -310,6 +390,7 @@ public class Clanovi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Clan> lstClanovi;
@@ -328,6 +409,40 @@ public class Clanovi extends javax.swing.JFrame {
         obrada.getPodaci().forEach(s -> m.addElement(s));
         lstClanovi.setModel(m);
 
+    }
+    
+    
+    
+     private void ocistiPolja() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+        txtIme.setText("");
+        txtPrezime.setText("");
+        txtMjestoR.setText("");
+        txtMjestoP.setText("");
+        txtDatumR.setText("0000-00-00 00:00:00");
+        txtDatumP.setText("0000-00-00 00:00:00");
+        txtBiljeske.setText(""); 
+    }
+    
+    private void postaviVrijednostiUEntitet() throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+        
+        Date dateR = dateFormat.parse(txtDatumR.getText());
+        Date dateP = dateFormat.parse(txtDatumP.getText());
+        
+        
+        entitet.setIme(txtIme.getText());
+        entitet.setPrezime(txtPrezime.getText());
+        entitet.setMjestor(txtMjestoR.getText());
+        entitet.setMjestop(txtMjestoP.getText());
+        entitet.setDatumr(dateR);
+        entitet.setDatump(dateP);
+        entitet.setBiljeske(txtBiljeske.getText());
+        
+        
+        
+        obrada.setEntitet(entitet);
+        
     }
 
 
