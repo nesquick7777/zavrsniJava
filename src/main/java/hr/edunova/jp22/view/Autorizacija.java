@@ -22,8 +22,8 @@ public class Autorizacija extends javax.swing.JFrame {
     public Autorizacija() {
         initComponents();
         
-        jTextField1.requestFocus();
-        jTextField1.setText("nesquick7777@gmail.com");
+        txtEmail.requestFocus();
+        txtEmail.setText("nesquick7777@gmail.com");
     }
 
     /**
@@ -36,11 +36,11 @@ public class Autorizacija extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnPrijava = new javax.swing.JButton();
+        txtEmail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtLozinka = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autorizacija");
@@ -48,21 +48,21 @@ public class Autorizacija extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPrijava.setText("Prijava");
+        btnPrijava.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPrijavaActionPerformed(evt);
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                txtEmailKeyReleased(evt);
             }
         });
 
@@ -74,9 +74,9 @@ public class Autorizacija extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Lozinka:");
 
-        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtLozinka.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jPasswordField1KeyReleased(evt);
+                txtLozinkaKeyReleased(evt);
             }
         });
 
@@ -89,9 +89,9 @@ public class Autorizacija extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1))
+                    .addComponent(txtEmail)
+                    .addComponent(btnPrijava, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(txtLozinka))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -100,13 +100,13 @@ public class Autorizacija extends javax.swing.JFrame {
                 .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
-                .addComponent(jButton1)
+                .addComponent(btnPrijava)
                 .addGap(30, 30, 30))
         );
 
@@ -124,61 +124,61 @@ public class Autorizacija extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijavaActionPerformed
         prijaviSe();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnPrijavaActionPerformed
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER && !jTextField1.getText().trim().isEmpty()){
-            jPasswordField1.requestFocus();
+    private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && !txtEmail.getText().trim().isEmpty()){
+            txtLozinka.requestFocus();
         }
-    }//GEN-LAST:event_jTextField1KeyReleased
+    }//GEN-LAST:event_txtEmailKeyReleased
 
-    private void jPasswordField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyReleased
-     if (evt.getKeyCode() == KeyEvent.VK_ENTER && jPasswordField1.getPassword().length>0){
+    private void txtLozinkaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLozinkaKeyReleased
+     if (evt.getKeyCode() == KeyEvent.VK_ENTER && txtLozinka.getPassword().length>0){
             prijaviSe();
             
         }
-     else if(jPasswordField1.getPassword().length==0 && evt.getKeyCode() == KeyEvent.VK_ENTER)
+     else if(txtLozinka.getPassword().length==0 && evt.getKeyCode() == KeyEvent.VK_ENTER)
      {
                     JOptionPane.showMessageDialog(rootPane, "Unesite lozinku!");
                     }
-    }//GEN-LAST:event_jPasswordField1KeyReleased
+    }//GEN-LAST:event_txtLozinkaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnPrijava;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtLozinka;
     // End of variables declaration//GEN-END:variables
 
 private void prijaviSe() {
-        if(jTextField1.getText().trim().isEmpty()){
-            jTextField1.requestFocus();
+        if(txtEmail.getText().trim().isEmpty()){
+            txtEmail.requestFocus();
             JOptionPane.showMessageDialog(rootPane, "Unesite mail!");
             return;
         }
         
         
         try {
-            InternetAddress emailAddr = new InternetAddress(jTextField1.getText());
+            InternetAddress emailAddr = new InternetAddress(txtEmail.getText());
             emailAddr.validate();
          } catch (AddressException ex) {
-             jTextField1.requestFocus();
+             txtEmail.requestFocus();
                 JOptionPane.showMessageDialog(rootPane, "Email je neispravan");
                   return;
          }
     
-        if(jPasswordField1.getPassword().length==0){
+        if(txtLozinka.getPassword().length==0){
             
-            jPasswordField1.requestFocus();
+            txtLozinka.requestFocus();
             JOptionPane.showMessageDialog(rootPane, "Unesite lozinku!");
             return;
         }
