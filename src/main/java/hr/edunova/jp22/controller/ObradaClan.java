@@ -38,7 +38,8 @@ public class ObradaClan extends Obrada<Clan>{
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-    
+     kontrolaIme();
+     kontrolaPrezime();
     }
 
     @Override
