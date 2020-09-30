@@ -33,6 +33,8 @@ public class Izbornik extends javax.swing.JFrame {
         btnOdjava = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnAlbumi = new javax.swing.JButton();
+        btnUmjetniciPjesme = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -93,6 +95,26 @@ public class Izbornik extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        btnAlbumi.setBackground(new java.awt.Color(0, 0, 102));
+        btnAlbumi.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAlbumi.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlbumi.setText("Albumi");
+        btnAlbumi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlbumiActionPerformed(evt);
+            }
+        });
+
+        btnUmjetniciPjesme.setBackground(new java.awt.Color(0, 0, 102));
+        btnUmjetniciPjesme.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnUmjetniciPjesme.setForeground(new java.awt.Color(255, 255, 255));
+        btnUmjetniciPjesme.setText("Pjesme");
+        btnUmjetniciPjesme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUmjetniciPjesmeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -101,6 +123,8 @@ public class Izbornik extends javax.swing.JFrame {
             .addComponent(btnClanovi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnUmjetnici, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnOdjava, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnAlbumi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnUmjetniciPjesme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +135,11 @@ public class Izbornik extends javax.swing.JFrame {
                 .addComponent(btnClanovi)
                 .addGap(18, 18, 18)
                 .addComponent(btnUmjetnici)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAlbumi)
+                .addGap(18, 18, 18)
+                .addComponent(btnUmjetniciPjesme)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addComponent(btnOdjava)
                 .addGap(38, 38, 38))
         );
@@ -186,11 +214,25 @@ public class Izbornik extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClanoviActionPerformed
 
     private void btnUmjetniciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmjetniciActionPerformed
-       Umjetnici clanovi = new Umjetnici();
-       clanovi.setLocationRelativeTo(null);
-       clanovi.setVisible(true);
+       Umjetnici umjetnici = new Umjetnici();
+       umjetnici.setLocationRelativeTo(null);
+       umjetnici.setVisible(true);
        dispose();
     }//GEN-LAST:event_btnUmjetniciActionPerformed
+
+    private void btnAlbumiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumiActionPerformed
+       Albumi albumi = new Albumi();
+       albumi.setLocationRelativeTo(null);
+       albumi.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_btnAlbumiActionPerformed
+
+    private void btnUmjetniciPjesmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmjetniciPjesmeActionPerformed
+       Pjesme pjesme = new Pjesme();
+       pjesme.setLocationRelativeTo(null);
+       pjesme.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_btnUmjetniciPjesmeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,9 +270,11 @@ public class Izbornik extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlbumi;
     private javax.swing.JButton btnClanovi;
     private javax.swing.JButton btnOdjava;
     private javax.swing.JButton btnUmjetnici;
+    private javax.swing.JButton btnUmjetniciPjesme;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

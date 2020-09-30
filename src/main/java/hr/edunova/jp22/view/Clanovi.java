@@ -398,21 +398,15 @@ try {
     
     private void postaviVrijednostiUEntitet() throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-        
-        Date dateR = dateFormat.parse(txtDatumR.getText());
-        Date dateP = dateFormat.parse(txtDatumP.getText());
-        
-        
+
         entitet.setIme(txtIme.getText());
         entitet.setPrezime(txtPrezime.getText());
         entitet.setMjestor(txtMjestoR.getText());
         entitet.setMjestop(txtMjestoP.getText());
-        entitet.setDatumr(dateR);
-        entitet.setDatump(dateP);
+        entitet.setDatumr(dateFormat.parse(txtDatumR.getText()));
+        entitet.setDatump(dateFormat.parse(txtDatumP.getText()));
         entitet.setBiljeske(txtBiljeske.getText());
-        
-        
-        
+
         obrada.setEntitet(entitet);
         
     }
