@@ -5,7 +5,7 @@
  */
 package hr.edunova.jp22.view;
 
-import hr.edunova.jp22.model.Clan;
+import hr.edunova.jp22.model.Umjetnik;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.BorderFactory;
@@ -18,11 +18,11 @@ import javax.swing.border.Border;
  *
  * @author Bole
  */
-public class ClanCellRenderer extends JLabel implements ListCellRenderer<Clan> {
+public class UmjetniciCellRenderer extends JLabel implements ListCellRenderer<Umjetnik> {
     
     @Override
-    public Component getListCellRendererComponent(JList<? extends Clan> list, Clan value, int index, boolean isSelected, boolean cellHasFocus) {
-        setText(value.getIme() + " " + value.getPrezime());
+    public Component getListCellRendererComponent(JList<? extends Umjetnik> list, Umjetnik value, int index, boolean isSelected, boolean cellHasFocus) {
+        setText(value.getIme());
         Color customColor = new Color(0,0,102);
         if (isSelected) {
             setBorder(BorderFactory.createLineBorder(customColor));

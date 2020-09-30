@@ -111,6 +111,9 @@ public class Umjetnik extends Entitet {
         this.albumi = albumi;
     }
 
-
+// @Override
+//    public String toString() {
+//        return getIme();
+//    }
         
 }

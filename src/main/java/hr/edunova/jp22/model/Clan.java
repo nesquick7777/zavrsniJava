@@ -91,6 +91,6 @@ private String biljeske;
         this.mjestop = mjestop;
         this.biljeske = biljeske;
     }
-
+    
 
 }
