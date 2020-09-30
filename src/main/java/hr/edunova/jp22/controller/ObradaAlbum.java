@@ -14,20 +14,19 @@ import java.util.List;
  * @author Bole
  */
 public class ObradaAlbum extends Obrada<Album> {
+
     public ObradaAlbum(Album album) {
         super(album);
     }
-    
+
     public ObradaAlbum() {
         super();
     }
-    
+
     @Override
     public List<Album> getPodaci() {
-     return sesion.createQuery("from Album").list();
+        return sesion.createQuery("from Album").list();
     }
-    
-    
 
     @Override
     protected void kontrolaCreate() throws EdunovaException {
@@ -37,36 +36,32 @@ public class ObradaAlbum extends Obrada<Album> {
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-       
+
     }
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-    
+
     }
-    
-    
-    
-    
-    
-    private void kontrolaIme() throws EdunovaException{
-        if(entitet.getIme()==null){
+
+    private void kontrolaIme() throws EdunovaException {
+        if (entitet.getIme() == null) {
             throw new EdunovaException(" Ime nije definirano! ");
         }
-        if(entitet.getIme().isEmpty()){
+        if (entitet.getIme().isEmpty()) {
             throw new EdunovaException(" Morate unijeti ime! ");
         }
-        if(entitet.getIme().length()>50){
+        if (entitet.getIme().length() > 50) {
             throw new EdunovaException(" Ime ne smije sadržavati više od 50 znakova. ");
         }
     }
 
-    private void kotrolaOcjena() throws EdunovaException{
-        if(entitet.getOcjena() == 0){
+    private void kotrolaOcjena() throws EdunovaException {
+        if (entitet.getOcjena() == 0) {
             throw new EdunovaException(" Morate unijeti ocjenu! ");
-    }
-        
-        if(entitet.getOcjena() > 10 && entitet.getOcjena() <= 0){
+        }
+
+        if (entitet.getOcjena() > 10 && entitet.getOcjena() <= 0) {
             throw new EdunovaException(" Ocjena mora biti u rasponu od 1 do 10! ");
         }
     }

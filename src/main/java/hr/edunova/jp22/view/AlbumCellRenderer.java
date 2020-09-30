@@ -19,11 +19,11 @@ import javax.swing.border.Border;
  * @author Bole
  */
 public class AlbumCellRenderer extends JLabel implements ListCellRenderer<Album> {
-    
+
     @Override
     public Component getListCellRendererComponent(JList<? extends Album> list, Album value, int index, boolean isSelected, boolean cellHasFocus) {
         setText(value.getIme());
-        Color customColor = new Color(0,0,102);
+        Color customColor = new Color(0, 0, 102);
         if (isSelected) {
             setBorder(BorderFactory.createLineBorder(customColor));
             list.setSelectionBackground(customColor);
@@ -34,6 +34,5 @@ public class AlbumCellRenderer extends JLabel implements ListCellRenderer<Album>
         }
         return this;
     }
-   
-    
+
 }

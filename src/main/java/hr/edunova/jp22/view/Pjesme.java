@@ -24,7 +24,7 @@ public class Pjesme extends javax.swing.JFrame {
 
     private ObradaPjesma obrada;
     private Pjesma entitet;
-    
+
     /**
      * Creates new form Pjesma
      */
@@ -221,7 +221,7 @@ public class Pjesme extends javax.swing.JFrame {
         if (evt.getValueIsAdjusting()) {
             return;
         }
-        
+
         entitet = lstPjesme.getSelectedValue();
         if (entitet == null) {
             return;
@@ -232,16 +232,16 @@ public class Pjesme extends javax.swing.JFrame {
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         entitet = new Pjesma();
-            postaviVrijednostiUEntitet();
+        postaviVrijednostiUEntitet();
 
-try {
+        try {
             obrada.create();
             ucitajPodatke();
             ocistiPolja();
         } catch (EdunovaException ex) {
-           
+
         }
-        
+
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
@@ -250,8 +250,8 @@ try {
             return;
         }
 
-            postaviVrijednostiUEntitet();
-        
+        postaviVrijednostiUEntitet();
+
         try {
             obrada.update();
             ucitajPodatke();
@@ -262,7 +262,7 @@ try {
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-          entitet = lstPjesme.getSelectedValue();
+        entitet = lstPjesme.getSelectedValue();
         if (entitet == null) {
             return;
         }
@@ -276,7 +276,7 @@ try {
         } catch (EdunovaException e) {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnNazad;
@@ -300,20 +300,18 @@ try {
         lstPjesme.setModel(m);
 
     }
-    
-   
-     private void ocistiPolja() {
+
+    private void ocistiPolja() {
         txtIme.setText("");
         txtTrajanje.setText("");
     }
-    
+
     private void postaviVrijednostiUEntitet() {
         entitet.setIme(txtIme.getText());
         entitet.setTrajanje(txtTrajanje.getText());
 
         obrada.setEntitet(entitet);
-        
-    }
 
+    }
 
 }

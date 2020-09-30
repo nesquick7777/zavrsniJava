@@ -18,19 +18,18 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Umjetnik extends Entitet {
 
-	private String ime;
-	private String zanr;
-	private String podzanr;
-	private String mjesto;
-	private Date datumpocetka;
-	private Date datumkraja;
-        
-@ManyToMany
+    private String ime;
+    private String zanr;
+    private String podzanr;
+    private String mjesto;
+    private Date datumpocetka;
+    private Date datumkraja;
+
+    @ManyToMany
     private List<Clan> clanovi = new ArrayList<>();
 
-@ManyToMany
+    @ManyToMany
     private List<Album> albumi = new ArrayList<>();
-
 
     public Umjetnik(String ime, String zanr, String podzanr, String mjesto, Date datumpocetka, Date datumkraja) {
         this.ime = ime;
@@ -41,11 +40,8 @@ public class Umjetnik extends Entitet {
         this.datumkraja = datumkraja;
     }
 
-
-
     public Umjetnik() {
     }
-
 
     public String getIme() {
         return ime;
@@ -115,5 +111,4 @@ public class Umjetnik extends Entitet {
 //    public String toString() {
 //        return getIme();
 //    }
-        
 }

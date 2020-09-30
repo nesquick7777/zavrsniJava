@@ -13,22 +13,20 @@ import java.util.List;
  *
  * @author Bole
  */
-public class ObradaClan extends Obrada<Clan>{
+public class ObradaClan extends Obrada<Clan> {
 
     public ObradaClan(Clan clan) {
         super(clan);
     }
-    
+
     public ObradaClan() {
         super();
     }
-    
+
     @Override
     public List<Clan> getPodaci() {
-     return sesion.createQuery("from Clan").list();
+        return sesion.createQuery("from Clan").list();
     }
-    
-    
 
     @Override
     protected void kontrolaCreate() throws EdunovaException {
@@ -38,36 +36,35 @@ public class ObradaClan extends Obrada<Clan>{
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-     kontrolaIme();
-     kontrolaPrezime();
+        kontrolaIme();
+        kontrolaPrezime();
     }
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-    
+
     }
-    
-    
-    private void kontrolaIme() throws EdunovaException{
-        if(entitet.getIme()==null){
+
+    private void kontrolaIme() throws EdunovaException {
+        if (entitet.getIme() == null) {
             throw new EdunovaException(" Ime nije definirano! ");
         }
-        if(entitet.getIme().isEmpty()){
+        if (entitet.getIme().isEmpty()) {
             throw new EdunovaException(" Morate unijeti ime! ");
         }
-        if(entitet.getIme().length()>50){
+        if (entitet.getIme().length() > 50) {
             throw new EdunovaException(" Ime ne smije sadržavati više od 50 znakova. ");
         }
     }
-    
-    private void kontrolaPrezime() throws EdunovaException{
-        if(entitet.getPrezime()==null){
+
+    private void kontrolaPrezime() throws EdunovaException {
+        if (entitet.getPrezime() == null) {
             throw new EdunovaException(" Prezime nije definirano! ");
         }
-        if(entitet.getPrezime().isEmpty()){
+        if (entitet.getPrezime().isEmpty()) {
             throw new EdunovaException(" Morate unijeti prezime! ");
         }
-        if(entitet.getPrezime().length()>50){
+        if (entitet.getPrezime().length() > 50) {
             throw new EdunovaException(" Prezime ne smije sadržavati više od 50 znakova. ");
         }
     }

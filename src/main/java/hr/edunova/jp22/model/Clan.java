@@ -14,14 +14,14 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Clan extends Entitet {
-private String ime;
-private String prezime;
-private Date datumr;
-private String mjestor;
-private Date datump;
-private String mjestop;
-private String biljeske;
 
+    private String ime;
+    private String prezime;
+    private Date datumr;
+    private String mjestor;
+    private Date datump;
+    private String mjestop;
+    private String biljeske;
 
     public String getIme() {
         return ime;
@@ -91,6 +91,5 @@ private String biljeske;
         this.mjestop = mjestop;
         this.biljeske = biljeske;
     }
-    
 
 }

@@ -14,20 +14,19 @@ import java.util.List;
  * @author Bole
  */
 public class ObradaUmjetnik extends Obrada<Umjetnik> {
+
     public ObradaUmjetnik(Umjetnik umjetnik) {
         super(umjetnik);
     }
-    
+
     public ObradaUmjetnik() {
         super();
     }
-    
+
     @Override
     public List<Umjetnik> getPodaci() {
-     return sesion.createQuery("from Umjetnik").list();
+        return sesion.createQuery("from Umjetnik").list();
     }
-    
-    
 
     @Override
     protected void kontrolaCreate() throws EdunovaException {
@@ -36,22 +35,22 @@ public class ObradaUmjetnik extends Obrada<Umjetnik> {
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-       
+
     }
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-    
+
     }
-    
-    private void kontrolaIme() throws EdunovaException{
-        if(entitet.getIme()==null){
+
+    private void kontrolaIme() throws EdunovaException {
+        if (entitet.getIme() == null) {
             throw new EdunovaException(" Ime nije definirano! ");
         }
-        if(entitet.getIme().isEmpty()){
+        if (entitet.getIme().isEmpty()) {
             throw new EdunovaException(" Morate unijeti ime! ");
         }
-        if(entitet.getIme().length()>50){
+        if (entitet.getIme().length() > 50) {
             throw new EdunovaException(" Ime ne smije sadržavati više od 50 znakova. ");
         }
     }

@@ -24,7 +24,7 @@ public class Umjetnici extends javax.swing.JFrame {
 
     private ObradaUmjetnik obrada;
     private Umjetnik entitet;
-    
+
     /**
      * Creates new form Umjetnici
      */
@@ -272,13 +272,13 @@ public class Umjetnici extends javax.swing.JFrame {
         if (evt.getValueIsAdjusting()) {
             return;
         }
-        
+
         entitet = lstUmjetnik.getSelectedValue();
         if (entitet == null) {
             return;
         }
-        
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         txtIme.setText(entitet.getIme());
         txtZanr.setText(entitet.getZanr());
         txtPodzanr.setText(entitet.getPodzanr());
@@ -294,14 +294,14 @@ public class Umjetnici extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Umjetnici.class.getName()).log(Level.SEVERE, null, ex);
         }
-try {
+        try {
             obrada.create();
             ucitajPodatke();
             ocistiPolja();
         } catch (EdunovaException ex) {
-           
+
         }
-        
+
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
@@ -315,7 +315,7 @@ try {
         } catch (ParseException ex) {
             Logger.getLogger(Umjetnici.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             obrada.update();
             ucitajPodatke();
@@ -326,7 +326,7 @@ try {
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-          entitet = lstUmjetnik.getSelectedValue();
+        entitet = lstUmjetnik.getSelectedValue();
         if (entitet == null) {
             return;
         }
@@ -340,7 +340,7 @@ try {
         } catch (EdunovaException e) {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnNazad;
@@ -372,9 +372,8 @@ try {
         lstUmjetnik.setModel(m);
 
     }
-    
-   
-     private void ocistiPolja() {
+
+    private void ocistiPolja() {
         txtIme.setText("");
         txtZanr.setText("");
         txtPodzanr.setText("");
@@ -382,9 +381,9 @@ try {
         txtDatumP.setText("0000-00-00 00:00:00");
         txtDatumK.setText("0000-00-00 00:00:00");
     }
-    
+
     private void postaviVrijednostiUEntitet() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         entitet.setIme(txtIme.getText());
         entitet.setZanr(txtZanr.getText());
@@ -394,8 +393,7 @@ try {
         entitet.setDatumkraja(dateFormat.parse(txtDatumK.getText()));
 
         obrada.setEntitet(entitet);
-        
-    }
 
+    }
 
 }

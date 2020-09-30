@@ -207,31 +207,31 @@ public class Izbornik extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOdjavaActionPerformed
 
     private void btnClanoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClanoviActionPerformed
-       Clanovi clanovi = new Clanovi();
-       clanovi.setLocationRelativeTo(null);
-       clanovi.setVisible(true);
-       dispose();
+        Clanovi clanovi = new Clanovi();
+        clanovi.setLocationRelativeTo(null);
+        clanovi.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnClanoviActionPerformed
 
     private void btnUmjetniciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmjetniciActionPerformed
-       Umjetnici umjetnici = new Umjetnici();
-       umjetnici.setLocationRelativeTo(null);
-       umjetnici.setVisible(true);
-       dispose();
+        Umjetnici umjetnici = new Umjetnici();
+        umjetnici.setLocationRelativeTo(null);
+        umjetnici.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnUmjetniciActionPerformed
 
     private void btnAlbumiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumiActionPerformed
-       Albumi albumi = new Albumi();
-       albumi.setLocationRelativeTo(null);
-       albumi.setVisible(true);
-       dispose();
+        Albumi albumi = new Albumi();
+        albumi.setLocationRelativeTo(null);
+        albumi.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAlbumiActionPerformed
 
     private void btnUmjetniciPjesmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmjetniciPjesmeActionPerformed
-       Pjesme pjesme = new Pjesme();
-       pjesme.setLocationRelativeTo(null);
-       pjesme.setVisible(true);
-       dispose();
+        Pjesme pjesme = new Pjesme();
+        pjesme.setLocationRelativeTo(null);
+        pjesme.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnUmjetniciPjesmeActionPerformed
 
     /**

@@ -17,15 +17,15 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Album extends Entitet {
-    
-private String ime;
-private int ocjena;
-private Date datumalbuma;
-private String zanr;
-private String podzanr;
-private String izdavackakuca;
-private String vrsta;
-private String trajanje;
+
+    private String ime;
+    private int ocjena;
+    private Date datumalbuma;
+    private String zanr;
+    private String podzanr;
+    private String izdavackakuca;
+    private String vrsta;
+    private String trajanje;
 
     public String getTrajanje() {
         return trajanje;
@@ -35,8 +35,8 @@ private String trajanje;
         this.trajanje = trajanje;
     }
 
-@ManyToMany
-private List<Pjesma> pjesme = new ArrayList<>();
+    @ManyToMany
+    private List<Pjesma> pjesme = new ArrayList<>();
 
     public Album() {
     }
@@ -114,8 +114,5 @@ private List<Pjesma> pjesme = new ArrayList<>();
     public void setPjesme(List<Pjesma> pjesme) {
         this.pjesme = pjesme;
     }
-
-
-
 
 }

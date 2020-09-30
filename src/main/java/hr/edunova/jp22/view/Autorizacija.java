@@ -21,11 +21,11 @@ public class Autorizacija extends javax.swing.JFrame {
      */
     public Autorizacija() {
         initComponents();
-        
+
         txtEmail.requestFocus();
         txtEmail.setText("nesquick7777@gmail.com");
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -57,9 +57,9 @@ public class Autorizacija extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Autorizacija autorizacija = new Autorizacija();
-        autorizacija.setLocationRelativeTo(null);
+                autorizacija.setLocationRelativeTo(null);
 
-        autorizacija.setVisible(true);
+                autorizacija.setVisible(true);
             }
         });
     }
@@ -173,20 +173,18 @@ public class Autorizacija extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrijavaActionPerformed
 
     private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER && !txtEmail.getText().trim().isEmpty()){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && !txtEmail.getText().trim().isEmpty()) {
             txtLozinka.requestFocus();
         }
     }//GEN-LAST:event_txtEmailKeyReleased
 
     private void txtLozinkaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLozinkaKeyReleased
-     if (evt.getKeyCode() == KeyEvent.VK_ENTER && txtLozinka.getPassword().length>0){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && txtLozinka.getPassword().length > 0) {
             prijaviSe();
-            
+
+        } else if (txtLozinka.getPassword().length == 0 && evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JOptionPane.showMessageDialog(rootPane, "Unesite lozinku!");
         }
-     else if(txtLozinka.getPassword().length==0 && evt.getKeyCode() == KeyEvent.VK_ENTER)
-     {
-                    JOptionPane.showMessageDialog(rootPane, "Unesite lozinku!");
-                    }
     }//GEN-LAST:event_txtLozinkaKeyReleased
 
 
@@ -199,32 +197,30 @@ public class Autorizacija extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtLozinka;
     // End of variables declaration//GEN-END:variables
 
-private void prijaviSe() {
-        if(txtEmail.getText().trim().isEmpty()){
+    private void prijaviSe() {
+        if (txtEmail.getText().trim().isEmpty()) {
             txtEmail.requestFocus();
             JOptionPane.showMessageDialog(rootPane, "Unesite mail!");
             return;
         }
-        
-        
+
         try {
             InternetAddress emailAddr = new InternetAddress(txtEmail.getText());
             emailAddr.validate();
-         } catch (AddressException ex) {
-             txtEmail.requestFocus();
-                JOptionPane.showMessageDialog(rootPane, "Email je neispravan");
-                  return;
-         }
-    
-        if(txtLozinka.getPassword().length==0){
-            
+        } catch (AddressException ex) {
+            txtEmail.requestFocus();
+            JOptionPane.showMessageDialog(rootPane, "Email je neispravan");
+            return;
+        }
+
+        if (txtLozinka.getPassword().length == 0) {
+
             txtLozinka.requestFocus();
             JOptionPane.showMessageDialog(rootPane, "Unesite lozinku!");
             return;
         }
-        
+
         //siguran si da su vrijednosti unesene i možeš na kontroler
-        
 //        ObradaOperater oo = new ObradaOperater();
 //        Operater operater = oo.autoriziraj(txtEmail.getText(), pswLozinka.getPassword());
 //        if(operater==null){
@@ -233,17 +229,12 @@ private void prijaviSe() {
 //        }
 //        
 //        Aplikacija.operater=operater;
-        
         Izbornik izbornik = new Izbornik();
         izbornik.setLocationRelativeTo(null);
         izbornik.setVisible(true);
         dispose();
-        
-       // System.out.println(operater.getImePrezime());
-        
-        
+
+        // System.out.println(operater.getImePrezime());
     }
-
-
 
 }

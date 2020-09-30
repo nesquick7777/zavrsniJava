@@ -9,16 +9,16 @@ package hr.edunova.jp22.utility;
  *
  * @author Korisnik
  */
-public class EdunovaException extends Exception{
-    
+public class EdunovaException extends Exception {
+
     private String poruka;
 
     public EdunovaException(String poruka) {
-        this.poruka=poruka;
+        this.poruka = poruka;
     }
 
     public String getPoruka() {
         return poruka;
     }
-    
+
 }

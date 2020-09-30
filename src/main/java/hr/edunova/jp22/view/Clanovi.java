@@ -24,7 +24,7 @@ public class Clanovi extends javax.swing.JFrame {
 
     private ObradaClan obrada;
     private Clan entitet;
-    
+
     /**
      * Creates new form Clanovi
      */
@@ -281,13 +281,13 @@ public class Clanovi extends javax.swing.JFrame {
         if (evt.getValueIsAdjusting()) {
             return;
         }
-        
+
         entitet = lstClanovi.getSelectedValue();
         if (entitet == null) {
             return;
         }
-        
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         txtIme.setText(entitet.getIme());
         txtPrezime.setText(entitet.getPrezime());
         txtMjestoR.setText(entitet.getMjestor());
@@ -304,14 +304,14 @@ public class Clanovi extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Clanovi.class.getName()).log(Level.SEVERE, null, ex);
         }
-try {
+        try {
             obrada.create();
             ucitajPodatke();
             ocistiPolja();
         } catch (EdunovaException ex) {
-           
+
         }
-        
+
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
@@ -325,7 +325,7 @@ try {
         } catch (ParseException ex) {
             Logger.getLogger(Clanovi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             obrada.update();
             ucitajPodatke();
@@ -336,7 +336,7 @@ try {
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-          entitet = lstClanovi.getSelectedValue();
+        entitet = lstClanovi.getSelectedValue();
         if (entitet == null) {
             return;
         }
@@ -350,7 +350,7 @@ try {
         } catch (EdunovaException e) {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnNazad;
@@ -384,20 +384,19 @@ try {
         lstClanovi.setModel(m);
 
     }
-    
-   
-     private void ocistiPolja() {
+
+    private void ocistiPolja() {
         txtIme.setText("");
         txtPrezime.setText("");
         txtMjestoR.setText("");
         txtMjestoP.setText("");
         txtDatumR.setText("0000-00-00 00:00:00");
         txtDatumP.setText("0000-00-00 00:00:00");
-        txtBiljeske.setText(""); 
+        txtBiljeske.setText("");
     }
-    
+
     private void postaviVrijednostiUEntitet() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         entitet.setIme(txtIme.getText());
         entitet.setPrezime(txtPrezime.getText());
@@ -408,8 +407,7 @@ try {
         entitet.setBiljeske(txtBiljeske.getText());
 
         obrada.setEntitet(entitet);
-        
-    }
 
+    }
 
 }

@@ -18,18 +18,20 @@ public abstract class Obrada<T> {
 
     protected T entitet;
     protected Session sesion;
-    
+
     public abstract List<T> getPodaci();
+
     protected abstract void kontrolaCreate() throws EdunovaException;
+
     protected abstract void kontrolaUpdate() throws EdunovaException;
+
     protected abstract void kontrolaDelete() throws EdunovaException;
-    
 
     public Obrada(T entitet) {
         this();
         this.entitet = entitet;
-    }  
-    
+    }
+
     public Obrada() {
         this.sesion = HibernateUtil.getSessionFactory().openSession();
     }
@@ -39,7 +41,7 @@ public abstract class Obrada<T> {
         save();
         return entitet;
     }
-    
+
     public T createAll(List<T> lista) throws EdunovaException {
         sesion.beginTransaction();
         for (T t : lista) {
@@ -48,8 +50,7 @@ public abstract class Obrada<T> {
             sesion.save(t);
         }
         sesion.getTransaction().commit();
-       
-      
+
         return entitet;
     }
 
@@ -81,5 +82,4 @@ public abstract class Obrada<T> {
         this.entitet = entitet;
     }
 
-    
 }

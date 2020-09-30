@@ -12,10 +12,10 @@ import javax.persistence.Entity;
  * @author Bole
  */
 @Entity
-public class Pjesma extends Entitet{
- 
-private String ime;
-private String trajanje;
+public class Pjesma extends Entitet {
+
+    private String ime;
+    private String trajanje;
 
     public Pjesma() {
     }
@@ -40,6 +40,5 @@ private String trajanje;
     public void setTrajanje(String trajanje) {
         this.trajanje = trajanje;
     }
-
 
 }

@@ -15,6 +15,7 @@ import hr.edunova.jp22.view.Izbornik;
  * @author Bole
  */
 public class Start {
+
     public static void main(String[] args) {
         //PocetniInsert.izvedi();
         // HibernateUtil.getSessionFactory().openSession();

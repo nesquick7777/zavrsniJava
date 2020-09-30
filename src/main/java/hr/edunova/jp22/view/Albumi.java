@@ -24,7 +24,7 @@ public class Albumi extends javax.swing.JFrame {
 
     private ObradaAlbum obrada;
     private Album entitet;
-    
+
     /**
      * Creates new form Albumi
      */
@@ -295,13 +295,13 @@ public class Albumi extends javax.swing.JFrame {
         if (evt.getValueIsAdjusting()) {
             return;
         }
-        
+
         entitet = lstAlbumi.getSelectedValue();
         if (entitet == null) {
             return;
         }
-        
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         txtIme.setText(entitet.getIme());
         txtOcjena.setText(String.format("%d", entitet.getOcjena()));
         txtDatumA.setText(dateFormat.format(entitet.getDatumalbuma()));
@@ -319,14 +319,14 @@ public class Albumi extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Albumi.class.getName()).log(Level.SEVERE, null, ex);
         }
-try {
+        try {
             obrada.create();
             ucitajPodatke();
             ocistiPolja();
         } catch (EdunovaException ex) {
-           
+
         }
-        
+
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
@@ -340,7 +340,7 @@ try {
         } catch (ParseException ex) {
             Logger.getLogger(Albumi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             obrada.update();
             ucitajPodatke();
@@ -351,7 +351,7 @@ try {
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-          entitet = lstAlbumi.getSelectedValue();
+        entitet = lstAlbumi.getSelectedValue();
         if (entitet == null) {
             return;
         }
@@ -365,7 +365,7 @@ try {
         } catch (EdunovaException e) {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnNazad;
@@ -401,22 +401,21 @@ try {
         lstAlbumi.setModel(m);
 
     }
-    
-   
-     private void ocistiPolja() {
+
+    private void ocistiPolja() {
         txtIme.setText("");
         txtOcjena.setText("");
         txtDatumA.setText("");
         txtZanr.setText("");
         txtPodzanr.setText("0000-00-00 00:00:00");
         txtIzdavackaK.setText("0000-00-00 00:00:00");
-        txtVrsta.setText(""); 
-        txtTrajanje.setText(""); 
+        txtVrsta.setText("");
+        txtTrajanje.setText("");
     }
-    
+
     private void postaviVrijednostiUEntitet() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
- 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         entitet.setIme(txtIme.getText());
         entitet.setOcjena(Integer.parseInt(txtOcjena.getText()));
         entitet.setDatumalbuma(dateFormat.parse(txtDatumA.getText()));
@@ -425,10 +424,9 @@ try {
         entitet.setIzdavackakuca(txtIzdavackaK.getText());
         entitet.setVrsta(txtVrsta.getText());
         entitet.setTrajanje(txtTrajanje.getText());
-        
-        obrada.setEntitet(entitet);
-        
-    }
 
+        obrada.setEntitet(entitet);
+
+    }
 
 }

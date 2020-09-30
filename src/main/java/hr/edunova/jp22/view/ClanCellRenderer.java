@@ -19,11 +19,11 @@ import javax.swing.border.Border;
  * @author Bole
  */
 public class ClanCellRenderer extends JLabel implements ListCellRenderer<Clan> {
-    
+
     @Override
     public Component getListCellRendererComponent(JList<? extends Clan> list, Clan value, int index, boolean isSelected, boolean cellHasFocus) {
         setText(value.getIme() + " " + value.getPrezime());
-        Color customColor = new Color(0,0,102);
+        Color customColor = new Color(0, 0, 102);
         if (isSelected) {
             setBorder(BorderFactory.createLineBorder(customColor));
             list.setSelectionBackground(customColor);
@@ -34,6 +34,5 @@ public class ClanCellRenderer extends JLabel implements ListCellRenderer<Clan> {
         }
         return this;
     }
-   
-    
+
 }
