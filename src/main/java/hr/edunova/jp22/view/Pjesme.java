@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -309,7 +310,8 @@ public class Pjesme extends javax.swing.JFrame {
     private void postaviVrijednostiUEntitet() {
         entitet.setIme(txtIme.getText());
         entitet.setTrajanje(txtTrajanje.getText());
-
+        
+        
         obrada.setEntitet(entitet);
 
     }

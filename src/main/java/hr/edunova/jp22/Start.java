@@ -17,11 +17,12 @@ import hr.edunova.jp22.view.Izbornik;
 public class Start {
 
     public static void main(String[] args) {
-        //PocetniInsert.izvedi();
+//        PocetniInsert.izvedi();
+         PocetniInsert.adminOperater();
         // HibernateUtil.getSessionFactory().openSession();
-        Autorizacija autorizacija = new Autorizacija();
-        autorizacija.setLocationRelativeTo(null);
-
-        autorizacija.setVisible(true);
+//        Autorizacija autorizacija = new Autorizacija();
+//        autorizacija.setLocationRelativeTo(null);
+//
+//        autorizacija.setVisible(true);
     }
 }

@@ -49,6 +49,8 @@
          <mapping class="hr.edunova.jp22.model.Entitet" />
          <mapping class="hr.edunova.jp22.model.Pjesma" />
          <mapping class="hr.edunova.jp22.model.Umjetnik" />
+         <mapping class="hr.edunova.jp22.model.Operater" />
+         
         
     </session-factory>
 </hibernate-configuration>

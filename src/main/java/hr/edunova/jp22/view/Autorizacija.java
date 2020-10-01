@@ -5,6 +5,8 @@
  */
 package hr.edunova.jp22.view;
 
+import hr.edunova.jp22.controller.ObradaOperater;
+import hr.edunova.jp22.model.Operater;
 import java.awt.event.KeyEvent;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -78,7 +80,7 @@ public class Autorizacija extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtLozinka = new javax.swing.JPasswordField();
+        pswLozinka = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autorizacija");
@@ -114,9 +116,9 @@ public class Autorizacija extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Lozinka:");
 
-        txtLozinka.addKeyListener(new java.awt.event.KeyAdapter() {
+        pswLozinka.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtLozinkaKeyReleased(evt);
+                pswLozinkaKeyReleased(evt);
             }
         });
 
@@ -131,7 +133,7 @@ public class Autorizacija extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmail)
                     .addComponent(btnPrijava, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                    .addComponent(txtLozinka))
+                    .addComponent(pswLozinka))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,7 +146,7 @@ public class Autorizacija extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pswLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnPrijava)
                 .addGap(35, 35, 35))
@@ -174,18 +176,18 @@ public class Autorizacija extends javax.swing.JFrame {
 
     private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER && !txtEmail.getText().trim().isEmpty()) {
-            txtLozinka.requestFocus();
+            pswLozinka.requestFocus();
         }
     }//GEN-LAST:event_txtEmailKeyReleased
 
-    private void txtLozinkaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLozinkaKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER && txtLozinka.getPassword().length > 0) {
+    private void pswLozinkaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswLozinkaKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && pswLozinka.getPassword().length > 0) {
             prijaviSe();
 
-        } else if (txtLozinka.getPassword().length == 0 && evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        } else if (pswLozinka.getPassword().length == 0 && evt.getKeyCode() == KeyEvent.VK_ENTER) {
             JOptionPane.showMessageDialog(rootPane, "Unesite lozinku!");
         }
-    }//GEN-LAST:event_txtLozinkaKeyReleased
+    }//GEN-LAST:event_pswLozinkaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -193,8 +195,8 @@ public class Autorizacija extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField pswLozinka;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JPasswordField txtLozinka;
     // End of variables declaration//GEN-END:variables
 
     private void prijaviSe() {
@@ -213,28 +215,26 @@ public class Autorizacija extends javax.swing.JFrame {
             return;
         }
 
-        if (txtLozinka.getPassword().length == 0) {
+        if (pswLozinka.getPassword().length == 0) {
 
-            txtLozinka.requestFocus();
+            pswLozinka.requestFocus();
             JOptionPane.showMessageDialog(rootPane, "Unesite lozinku!");
             return;
         }
 
         //siguran si da su vrijednosti unesene i možeš na kontroler
-//        ObradaOperater oo = new ObradaOperater();
-//        Operater operater = oo.autoriziraj(txtEmail.getText(), pswLozinka.getPassword());
-//        if(operater==null){
-//           JOptionPane.showMessageDialog(rootPane, "Ne ispravna kombinacija email i lozinka");
-//            return; 
-//        }
-//        
-//        Aplikacija.operater=operater;
+        ObradaOperater oo = new ObradaOperater();
+        Operater operater = oo.autoriziraj(txtEmail.getText(), pswLozinka.getPassword());
+        if(operater==null){
+           JOptionPane.showMessageDialog(rootPane, "Ne ispravna kombinacija email i lozinka");
+            return; 
+        }
+        
+        Aplikacija.operater=operater;
         Izbornik izbornik = new Izbornik();
         izbornik.setLocationRelativeTo(null);
         izbornik.setVisible(true);
         dispose();
-
-        // System.out.println(operater.getImePrezime());
     }
 
 }

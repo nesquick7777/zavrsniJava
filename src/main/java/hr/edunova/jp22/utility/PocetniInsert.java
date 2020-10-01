@@ -6,9 +6,11 @@
 package hr.edunova.jp22.utility;
 
 import com.github.javafaker.Faker;
+import hr.edunova.jp22.controller.ObradaOperater;
 import hr.edunova.jp22.model.Clan;
 import hr.edunova.jp22.model.Umjetnik;
 import hr.edunova.jp22.model.Album;
+import hr.edunova.jp22.model.Operater;
 import hr.edunova.jp22.model.Pjesma;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -27,6 +30,21 @@ public class PocetniInsert {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        Operater operater = new Operater();
+        operater.setIme("Bojan");
+        operater.setPrezime("Drezgic");
+        operater.setUloga("oper");
+        operater.setEmail("nesquick7777@gmail.com");
+        operater.setLozinka(BCrypt.hashpw("n", BCrypt.gensalt()));
+        
+        ObradaOperater oo = new ObradaOperater();
+        oo.setEntitet(operater);
+        try {
+            oo.create();
+        } catch (EdunovaException ex) {
+            ex.printStackTrace();
+        }
+        
         Faker faker = new Faker();
         String[] zanr = {"Rock", "Pop", "Country", "Metal", "Blues", "EDM", "Punk", "Jazz", "Hip Hop", "Soul"};
         String[] podZanr = {"Alternative", "Post", "Experimental", "Fusion", "Parody"};
@@ -158,6 +176,27 @@ public class PocetniInsert {
         session.getTransaction().commit();    //END
 
     }
+//    session.beginTransaction();   //START
+     public static void adminOperater(){
+       
+        Operater operater = new Operater();
+        operater.setIme("Moja");
+        operater.setPrezime("Diskografija");
+        operater.setUloga("admin");
+        operater.setEmail("mDiskografija@mDiskografija.hr");
+        operater.setLozinka(BCrypt.hashpw("z", BCrypt.gensalt()));
+        
+        ObradaOperater oo = new ObradaOperater();
+        oo.setEntitet(operater);
+        try {
+            oo.create();
+        } catch (EdunovaException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+     
+//     session.getTransaction().commit();    //END
 
     public static int getRandomIntegerBetweenRange(int min, int max) {
         int x = (int) (Math.random() * ((max - min) + 1)) + min;
@@ -191,4 +230,6 @@ public class PocetniInsert {
             return "LP";
         }
     }
+    
+    
 }
