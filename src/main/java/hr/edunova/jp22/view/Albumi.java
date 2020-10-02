@@ -5,6 +5,7 @@
  */
 package hr.edunova.jp22.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
 import hr.edunova.jp22.controller.ObradaAlbum;
 import hr.edunova.jp22.model.Album;
 import hr.edunova.jp22.utility.EdunovaException;
@@ -12,7 +13,11 @@ import javax.swing.DefaultListModel;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,7 +36,13 @@ public class Albumi extends javax.swing.JFrame {
     public Albumi() {
         initComponents();
         lstAlbumi.setCellRenderer(new AlbumCellRenderer());
+        
+        DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
+        dps.setFormatForDatesCommonEra("yyyy-MM-dd");
+        dpiDatumA.setSettings(dps);
+        
         obrada = new ObradaAlbum();
+       
         ucitajPodatke();
     }
 
@@ -51,7 +62,6 @@ public class Albumi extends javax.swing.JFrame {
         jPanel = new javax.swing.JPanel();
         txtIme = new javax.swing.JTextField();
         txtOcjena = new javax.swing.JTextField();
-        txtDatumA = new javax.swing.JTextField();
         txtZanr = new javax.swing.JTextField();
         txtPodzanr = new javax.swing.JTextField();
         txtIzdavackaK = new javax.swing.JTextField();
@@ -69,6 +79,7 @@ public class Albumi extends javax.swing.JFrame {
         btnObrisi = new javax.swing.JButton();
         txtTrajanje = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        dpiDatumA = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Albumi");
@@ -193,7 +204,6 @@ public class Albumi extends javax.swing.JFrame {
                         .addGap(62, 62, 62))
                     .addComponent(txtIme)
                     .addComponent(txtOcjena)
-                    .addComponent(txtDatumA)
                     .addComponent(txtZanr)
                     .addComponent(txtPodzanr)
                     .addComponent(txtIzdavackaK)
@@ -201,7 +211,8 @@ public class Albumi extends javax.swing.JFrame {
                     .addComponent(txtTrajanje)
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(dpiDatumA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +230,7 @@ public class Albumi extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDatumA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dpiDatumA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addGap(10, 10, 10)
@@ -296,15 +307,22 @@ public class Albumi extends javax.swing.JFrame {
             return;
         }
 
+
+        
         entitet = lstAlbumi.getSelectedValue();
         if (entitet == null) {
             return;
         }
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (entitet.getDatumalbuma() != null) {
+            dpiDatumA.setDate(entitet.getDatumalbuma().toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate());
+        }
+        
+        
         txtIme.setText(entitet.getIme());
         txtOcjena.setText(String.format("%d", entitet.getOcjena()));
-        txtDatumA.setText(dateFormat.format(entitet.getDatumalbuma()));
         txtZanr.setText(entitet.getZanr());
         txtPodzanr.setText(entitet.getPodzanr());
         txtIzdavackaK.setText(entitet.getIzdavackakuca());
@@ -371,6 +389,7 @@ public class Albumi extends javax.swing.JFrame {
     private javax.swing.JButton btnNazad;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
+    private com.github.lgooddatepicker.components.DatePicker dpiDatumA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -384,7 +403,6 @@ public class Albumi extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Album> lstAlbumi;
-    private javax.swing.JTextField txtDatumA;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtIzdavackaK;
     private javax.swing.JTextField txtOcjena;
@@ -405,20 +423,25 @@ public class Albumi extends javax.swing.JFrame {
     private void ocistiPolja() {
         txtIme.setText("");
         txtOcjena.setText("");
-        txtDatumA.setText("");
+        dpiDatumA.setDateToToday();
         txtZanr.setText("");
-        txtPodzanr.setText("0000-00-00 00:00:00");
-        txtIzdavackaK.setText("0000-00-00 00:00:00");
+        txtPodzanr.setText("");
+        txtIzdavackaK.setText("");
         txtVrsta.setText("");
         txtTrajanje.setText("");
     }
 
     private void postaviVrijednostiUEntitet() throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+ 
 
         entitet.setIme(txtIme.getText());
         entitet.setOcjena(Integer.parseInt(txtOcjena.getText()));
-        entitet.setDatumalbuma(dateFormat.parse(txtDatumA.getText()));
+        if (dpiDatumA.getDate() != null) {
+            entitet.setDatumalbuma(Date.from(dpiDatumA.getDate().atStartOfDay()
+                    .atZone(ZoneId.systemDefault())
+                    .toInstant()));
+        }
         entitet.setZanr(txtZanr.getText());
         entitet.setPodzanr(txtPodzanr.getText());
         entitet.setIzdavackakuca(txtIzdavackaK.getText());
