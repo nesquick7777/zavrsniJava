@@ -85,11 +85,11 @@ public class Autorizacija extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autorizacija");
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btnPrijava.setBackground(new java.awt.Color(0, 0, 102));
-        btnPrijava.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrijava.setBackground(new java.awt.Color(255, 255, 255));
+        btnPrijava.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnPrijava.setText("Prijava");
         btnPrijava.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

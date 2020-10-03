@@ -9,6 +9,7 @@ import com.github.lgooddatepicker.components.DatePickerSettings;
 import hr.edunova.jp22.controller.ObradaAlbum;
 import hr.edunova.jp22.model.Album;
 import hr.edunova.jp22.utility.EdunovaException;
+import hr.edunova.jp22.utility.StarRater;
 import javax.swing.DefaultListModel;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -33,8 +34,21 @@ public class Albumi extends javax.swing.JFrame {
     /**
      * Creates new form Albumi
      */
+   
+
     public Albumi() {
         initComponents();
+        
+        StarRater starRater = new StarRater(5, 2, 1);
+        starRater.addStarListener(
+            new StarRater.StarListener()   {
+
+                public void handleSelection(int selection) {
+                    System.out.println(selection);
+                }
+            });
+        jPanel2.add(starRater);
+        
         lstAlbumi.setCellRenderer(new AlbumCellRenderer());
         
         DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
@@ -84,19 +98,18 @@ public class Albumi extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Albumi");
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 153));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 51));
         jPanel2.setForeground(new java.awt.Color(51, 102, 255));
 
-        btnNazad.setBackground(new java.awt.Color(0, 0, 102));
-        btnNazad.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnNazad.setForeground(new java.awt.Color(255, 255, 255));
         btnNazad.setText("Idi nazad");
+        btnNazad.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnNazad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNazadActionPerformed(evt);
             }
         });
 
+        lstAlbumi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lstAlbumi.setForeground(new java.awt.Color(0, 0, 153));
         lstAlbumi.setToolTipText("");
         lstAlbumi.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -106,70 +119,69 @@ public class Albumi extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lstAlbumi);
 
-        jPanel.setBackground(new java.awt.Color(0, 0, 153));
+        jPanel.setBackground(new java.awt.Color(0, 0, 51));
 
+        jLabel1.setText("Podatci:");
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Podatci:");
 
+        jLabel2.setText("Ime:");
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Ime:");
 
+        jLabel3.setText("Ocjena:");
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Ocjena:");
 
+        jLabel4.setText("Datum albuma:");
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Datum albuma:");
 
+        jLabel5.setText("Zanr:");
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Zanr:");
 
+        jLabel6.setText("Izdavačka kuća:");
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Izdavačka kuća:");
 
+        jLabel7.setText("Podzanr:");
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Podzanr:");
 
+        jLabel8.setText("Vrsta:");
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Vrsta:");
 
-        btnDodaj.setBackground(new java.awt.Color(0, 0, 102));
-        btnDodaj.setForeground(new java.awt.Color(255, 255, 255));
         btnDodaj.setText("Dodaj");
+        btnDodaj.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDodajActionPerformed(evt);
             }
         });
 
-        btnPromjeni.setBackground(new java.awt.Color(0, 0, 102));
-        btnPromjeni.setForeground(new java.awt.Color(255, 255, 255));
         btnPromjeni.setText("Promjeni");
+        btnPromjeni.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnPromjeni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPromjeniActionPerformed(evt);
             }
         });
 
-        btnObrisi.setBackground(new java.awt.Color(0, 0, 102));
-        btnObrisi.setForeground(new java.awt.Color(255, 255, 255));
         btnObrisi.setText("Obriši");
+        btnObrisi.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnObrisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnObrisiActionPerformed(evt);
             }
         });
 
+        jLabel9.setText("Trajanje:");
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Trajanje:");
+
+        dpiDatumA.setBackground(new java.awt.Color(0, 0, 51));
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
