@@ -43,6 +43,9 @@
           <Color blue="ff" green="66" red="33" type="rgb"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new StarRater(5, 2, 1);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

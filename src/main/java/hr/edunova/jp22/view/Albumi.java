@@ -38,8 +38,9 @@ public class Albumi extends javax.swing.JFrame {
 
     public Albumi() {
         initComponents();
+//        Albumi albumi = new Albumi();
         
-        StarRater starRater = new StarRater(5, 2, 1);
+        StarRater starRater = new StarRater(5, (float) 3.61, 3);
         starRater.addStarListener(
             new StarRater.StarListener()   {
 
@@ -48,6 +49,8 @@ public class Albumi extends javax.swing.JFrame {
                 }
             });
         jPanel2.add(starRater);
+//        albumi.getContentPane().add(jPanel2);
+//        albumi.pack();
         
         lstAlbumi.setCellRenderer(new AlbumCellRenderer());
         
@@ -69,7 +72,7 @@ public class Albumi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new StarRater(5, 2, 1);
         btnNazad = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstAlbumi = new javax.swing.JList<>();
@@ -444,7 +447,6 @@ public class Albumi extends javax.swing.JFrame {
     }
 
     private void postaviVrijednostiUEntitet() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
  
 
         entitet.setIme(txtIme.getText());
