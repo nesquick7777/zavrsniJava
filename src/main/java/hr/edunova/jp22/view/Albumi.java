@@ -38,19 +38,9 @@ public class Albumi extends javax.swing.JFrame {
 
     public Albumi() {
         initComponents();
+        
 //        Albumi albumi = new Albumi();
         
-        StarRater starRater = new StarRater(5, (float) 3.61, 3);
-        starRater.addStarListener(
-            new StarRater.StarListener()   {
-
-                public void handleSelection(int selection) {
-                    System.out.println(selection);
-                }
-            });
-        jPanel2.add(starRater);
-//        albumi.getContentPane().add(jPanel2);
-//        albumi.pack();
         
         lstAlbumi.setCellRenderer(new AlbumCellRenderer());
         
@@ -72,13 +62,12 @@ public class Albumi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new StarRater(5, 2, 1);
+        jPanel2 = new javax.swing.JPanel();
         btnNazad = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstAlbumi = new javax.swing.JList<>();
         jPanel = new javax.swing.JPanel();
         txtIme = new javax.swing.JTextField();
-        txtOcjena = new javax.swing.JTextField();
         txtZanr = new javax.swing.JTextField();
         txtPodzanr = new javax.swing.JTextField();
         txtIzdavackaK = new javax.swing.JTextField();
@@ -97,6 +86,7 @@ public class Albumi extends javax.swing.JFrame {
         txtTrajanje = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         dpiDatumA = new com.github.lgooddatepicker.components.DatePicker();
+        pnlZvjezdica = new StarRater(10, 2, 0);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Albumi");
@@ -186,6 +176,17 @@ public class Albumi extends javax.swing.JFrame {
 
         dpiDatumA.setBackground(new java.awt.Color(0, 0, 51));
 
+        javax.swing.GroupLayout pnlZvjezdicaLayout = new javax.swing.GroupLayout(pnlZvjezdica);
+        pnlZvjezdica.setLayout(pnlZvjezdicaLayout);
+        pnlZvjezdicaLayout.setHorizontalGroup(
+            pnlZvjezdicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 185, Short.MAX_VALUE)
+        );
+        pnlZvjezdicaLayout.setVerticalGroup(
+            pnlZvjezdicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 29, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
@@ -218,16 +219,17 @@ public class Albumi extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(62, 62, 62))
                     .addComponent(txtIme)
-                    .addComponent(txtOcjena)
                     .addComponent(txtZanr)
                     .addComponent(txtPodzanr)
                     .addComponent(txtIzdavackaK)
                     .addComponent(txtVrsta)
                     .addComponent(txtTrajanje)
+                    .addComponent(dpiDatumA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(dpiDatumA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlZvjezdica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,9 +242,9 @@ public class Albumi extends javax.swing.JFrame {
                 .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtOcjena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlZvjezdica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dpiDatumA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,13 +268,15 @@ public class Albumi extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDodaj)
                     .addComponent(btnPromjeni)
                     .addComponent(btnObrisi))
                 .addGap(19, 19, 19))
         );
+
+        pnlZvjezdica.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -322,8 +326,6 @@ public class Albumi extends javax.swing.JFrame {
             return;
         }
 
-
-        
         entitet = lstAlbumi.getSelectedValue();
         if (entitet == null) {
             return;
@@ -335,14 +337,19 @@ public class Albumi extends javax.swing.JFrame {
                     .toLocalDate());
         }
         
-        
+
         txtIme.setText(entitet.getIme());
-        txtOcjena.setText(String.format("%d", entitet.getOcjena()));
+     //   txtOcjena.setText(String.format("%d", entitet.getOcjena()));
         txtZanr.setText(entitet.getZanr());
         txtPodzanr.setText(entitet.getPodzanr());
         txtIzdavackaK.setText(entitet.getIzdavackakuca());
         txtVrsta.setText(entitet.getVrsta());
         txtTrajanje.setText(entitet.getTrajanje());
+        StarRater starRater = new StarRater(10, 2, 1);
+        pnlZvjezdica.add (starRater);
+        starRater.setRating(3);
+        pnlZvjezdica.repaint();
+
     }//GEN-LAST:event_lstAlbumiValueChanged
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
@@ -418,9 +425,9 @@ public class Albumi extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Album> lstAlbumi;
+    private javax.swing.JPanel pnlZvjezdica;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtIzdavackaK;
-    private javax.swing.JTextField txtOcjena;
     private javax.swing.JTextField txtPodzanr;
     private javax.swing.JTextField txtTrajanje;
     private javax.swing.JTextField txtVrsta;
@@ -437,7 +444,7 @@ public class Albumi extends javax.swing.JFrame {
 
     private void ocistiPolja() {
         txtIme.setText("");
-        txtOcjena.setText("");
+       // txtOcjena.setText("");
         dpiDatumA.setDateToToday();
         txtZanr.setText("");
         txtPodzanr.setText("");
@@ -450,7 +457,7 @@ public class Albumi extends javax.swing.JFrame {
  
 
         entitet.setIme(txtIme.getText());
-        entitet.setOcjena(Integer.parseInt(txtOcjena.getText()));
+      //  entitet.setOcjena(Integer.parseInt(txtOcjena.getText()));
         if (dpiDatumA.getDate() != null) {
             entitet.setDatumalbuma(Date.from(dpiDatumA.getDate().atStartOfDay()
                     .atZone(ZoneId.systemDefault())
