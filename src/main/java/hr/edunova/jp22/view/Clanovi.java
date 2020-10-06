@@ -127,7 +127,7 @@ public class Clanovi extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Bilješke:");
 
-        btnDodaj.setBackground(new java.awt.Color(0, 0, 0));
+        btnDodaj.setBackground(new java.awt.Color(0, 0, 102));
         btnDodaj.setForeground(new java.awt.Color(255, 255, 255));
         btnDodaj.setText("Dodaj");
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
