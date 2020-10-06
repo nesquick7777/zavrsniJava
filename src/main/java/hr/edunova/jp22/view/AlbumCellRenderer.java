@@ -25,20 +25,20 @@ public class AlbumCellRenderer extends JLabel implements ListCellRenderer<Album>
     @Override
     public Component getListCellRendererComponent(JList<? extends Album> list, Album value, int index, boolean isSelected, boolean cellHasFocus) {
         setText(value.getIme());
-        Color customColor = new Color(0, 0, 0);
-        Font font = new Font("Tahoma", Font.BOLD,12);
+        Color customColor = new Color(0, 0, 102);
+       // Font font = new Font("Tahoma", Font.BOLD,10);
         if (isSelected) {
             setBorder(BorderFactory.createLineBorder(customColor));
             list.setSelectionBackground(customColor);
             setForeground(customColor);
             
-            setFont(font);
+            //setFont(font);
            
             
         } else {
             setBorder(javax.swing.BorderFactory.createEmptyBorder());
             setForeground(customColor);
-            setFont(font);
+            //setFont(font);
         }
         return this;
     }
