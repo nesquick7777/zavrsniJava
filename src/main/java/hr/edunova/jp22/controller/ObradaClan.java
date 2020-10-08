@@ -25,7 +25,16 @@ public class ObradaClan extends Obrada<Clan> {
 
     @Override
     public List<Clan> getPodaci() {
-        return sesion.createQuery("from Clan").list();
+      return sesion.createQuery("from Clan").list();
+    }
+    
+    public List<Clan> getPodaci(String uvjet) {
+        return sesion.createQuery("from Clan c "
+              + " where concat(c.ime, ' ', c.prezime, ' ') "
+              + " like :uvjet ")
+              .setParameter("uvjet", "%"+uvjet+"%")
+              .setMaxResults(20)
+              .list();
     }
 
     @Override

@@ -10,7 +10,11 @@ import hr.edunova.jp22.controller.ObradaClan;
 import hr.edunova.jp22.controller.ObradaPjesma;
 import hr.edunova.jp22.controller.ObradaUmjetnik;
 import hr.edunova.jp22.model.Album;
+import hr.edunova.jp22.model.Clan;
 import hr.edunova.jp22.model.Umjetnik;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -48,76 +52,106 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        txtTrazi = new javax.swing.JTextField();
+        btnPridruzi = new javax.swing.JButton();
+        btnUkloni = new javax.swing.JButton();
+        btnTrazi = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        lstPridruzi = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        lstGlavni = new javax.swing.JList<>();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lstTrazi = new javax.swing.JList<>();
+        btnOdjava = new javax.swing.JButton();
+        btnPrimjeni = new javax.swing.JButton();
+        llblGlavni = new javax.swing.JLabel();
+        lblPridruzi = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnUmjetnikClan = new javax.swing.JButton();
+        btnUmjetnikAlbum = new javax.swing.JButton();
+        btnAlbumPjesma = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
-        jButton1.setText("->");
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 102));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPridruzi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnPridruzi.setForeground(new java.awt.Color(0, 0, 102));
+        btnPridruzi.setText("->");
+        btnPridruzi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPridruziActionPerformed(evt);
             }
         });
 
-        jButton2.setText("<-");
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 102));
+        btnUkloni.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnUkloni.setForeground(new java.awt.Color(0, 0, 102));
+        btnUkloni.setText("<-");
 
-        jButton3.setText("¤");
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnTrazi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnTrazi.setText("¤");
+        btnTrazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziActionPerformed(evt);
+            }
+        });
 
-        jScrollPane4.setViewportView(jList1);
+        jScrollPane4.setViewportView(lstPridruzi);
 
-        jScrollPane5.setViewportView(jList2);
+        jScrollPane5.setViewportView(lstGlavni);
 
-        jScrollPane6.setViewportView(jList3);
+        jScrollPane6.setViewportView(lstTrazi);
 
-        jButton4.setText("Odjavite se");
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnOdjava.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnOdjava.setText("Odjavite se");
+        btnOdjava.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOdjavaActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Primjeni");
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnPrimjeni.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnPrimjeni.setText("Primjeni");
+        btnPrimjeni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrimjeniActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Umjetnik");
+        llblGlavni.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        llblGlavni.setForeground(new java.awt.Color(255, 255, 255));
+        llblGlavni.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        llblGlavni.setText("Umjetnik");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Član");
+        lblPridruzi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblPridruzi.setForeground(new java.awt.Color(255, 255, 255));
+        lblPridruzi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPridruzi.setText("Član");
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton6.setText("Umjetnik_Član");
+        btnUmjetnikClan.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnUmjetnikClan.setText("Umjetnik_Član");
+        btnUmjetnikClan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUmjetnikClanActionPerformed(evt);
+            }
+        });
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton7.setText("Umjetnik_Album");
+        btnUmjetnikAlbum.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnUmjetnikAlbum.setText("Umjetnik_Album");
+        btnUmjetnikAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUmjetnikAlbumActionPerformed(evt);
+            }
+        });
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton8.setText("Album_Pjesma");
+        btnAlbumPjesma.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAlbumPjesma.setText("Album_Pjesma");
+        btnAlbumPjesma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlbumPjesmaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,17 +159,17 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnOdjava, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUmjetnikClan, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUmjetnikAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAlbumPjesma, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSeparator2)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                    .addComponent(llblGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPrimjeni, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -144,15 +178,15 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)))
+                            .addComponent(btnPridruzi)
+                            .addComponent(btnUkloni)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
+                        .addComponent(btnTrazi)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                    .addComponent(lblPridruzi, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -161,17 +195,17 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(167, 167, 167)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPridruzi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnUkloni, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                            .addComponent(txtTrazi)
+                            .addComponent(btnTrazi, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,12 +214,12 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
                                 .addComponent(jScrollPane6))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(139, 139, 139)
-                                .addComponent(jButton5)
+                                .addComponent(btnPrimjeni)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(llblGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPridruzi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -193,13 +227,13 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton6)
+                                        .addComponent(btnUmjetnikClan)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton7)
+                                        .addComponent(btnUmjetnikAlbum)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton8)
+                                        .addComponent(btnAlbumPjesma)
                                         .addGap(270, 270, 270)
-                                        .addComponent(jButton4)
+                                        .addComponent(btnOdjava)
                                         .addContainerGap())
                                     .addComponent(jScrollPane4)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -222,12 +256,47 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Izbornik izbornik = new Izbornik();
+    private void btnPridruziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziActionPerformed
+
+    }//GEN-LAST:event_btnPridruziActionPerformed
+
+    private void btnUmjetnikClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmjetnikClanActionPerformed
+        ucitajPodatkeU();
+        lstGlavni.setCellRenderer(new UmjetniciCellRenderer());
+        
+    }//GEN-LAST:event_btnUmjetnikClanActionPerformed
+
+    private void btnUmjetnikAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmjetnikAlbumActionPerformed
+        ucitajPodatkeU();
+        lstGlavni.setCellRenderer(new UmjetniciCellRenderer());
+    }//GEN-LAST:event_btnUmjetnikAlbumActionPerformed
+
+    private void btnAlbumPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumPjesmaActionPerformed
+        ucitajPodatkeU();
+        lstGlavni.setCellRenderer(new UmjetniciCellRenderer());
+    }//GEN-LAST:event_btnAlbumPjesmaActionPerformed
+
+    private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+        ucitajClanove();
+        lstTrazi.setCellRenderer(new ClanCellRenderer());
+    }//GEN-LAST:event_btnTraziActionPerformed
+
+    private void btnOdjavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdjavaActionPerformed
+       Izbornik izbornik = new Izbornik();
         izbornik.setLocationRelativeTo(null);
         izbornik.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnOdjavaActionPerformed
+
+    private void btnPrimjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniActionPerformed
+//        entitet.setPolaznici(new ArrayList<>());
+//        DefaultListModel<Clan> m = (DefaultListModel<Clan>) lstPolazniciNaGrupi.getModel();
+//        for (int i = 0; i < m.size(); i++) {
+//            entitet.getPolaznici().add(m.getElementAt(i));
+//        }
+//
+//        obrada.setEntitet(entitet);
+    }//GEN-LAST:event_btnPrimjeniActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,19 +334,14 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
+    private javax.swing.JButton btnAlbumPjesma;
+    private javax.swing.JButton btnOdjava;
+    private javax.swing.JButton btnPridruzi;
+    private javax.swing.JButton btnPrimjeni;
+    private javax.swing.JButton btnTrazi;
+    private javax.swing.JButton btnUkloni;
+    private javax.swing.JButton btnUmjetnikAlbum;
+    private javax.swing.JButton btnUmjetnikClan;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -285,6 +349,36 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblPridruzi;
+    private javax.swing.JLabel llblGlavni;
+    private javax.swing.JList<Umjetnik> lstGlavni;
+    private javax.swing.JList<String> lstPridruzi;
+    private javax.swing.JList<Clan> lstTrazi;
+    private javax.swing.JTextField txtTrazi;
     // End of variables declaration//GEN-END:variables
+
+
+    private void ucitajPodatkeU() {
+        DefaultListModel<Umjetnik> m = new DefaultListModel<>();
+        obradaU.getPodaci().forEach(s -> m.addElement(s));
+        lstGlavni.setModel(m);
+    }
+
+     private void ucitajPodatkeA() {
+//        lstGlavni.;
+//        DefaultListModel<Album> m = new DefaultListModel<>();
+//        obradaA.getPodaci().forEach(s -> m.addElement(s));
+//        lstGlavni.setModel(m);
+    }
+    
+    
+    private void ucitajClanove() {
+        DefaultListModel<Clan> m = new DefaultListModel<>();
+
+        obradaC.getPodaci(txtTrazi.getText()).forEach(s -> m.addElement(s));
+
+        lstTrazi.setModel(m);
+    }
+
+
 }
