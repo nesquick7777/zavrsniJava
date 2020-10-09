@@ -35,7 +35,7 @@ public class ObradaUmjetnik extends Obrada<Umjetnik> {
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-
+         kontrolaIme();
     }
 
     @Override

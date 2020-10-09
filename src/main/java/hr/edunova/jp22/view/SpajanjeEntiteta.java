@@ -12,6 +12,7 @@ import hr.edunova.jp22.controller.ObradaUmjetnik;
 import hr.edunova.jp22.model.Album;
 import hr.edunova.jp22.model.Clan;
 import hr.edunova.jp22.model.Umjetnik;
+import hr.edunova.jp22.utility.EdunovaException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -88,6 +89,11 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         btnUkloni.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnUkloni.setForeground(new java.awt.Color(0, 0, 102));
         btnUkloni.setText("<-");
+        btnUkloni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUkloniActionPerformed(evt);
+            }
+        });
 
         btnTrazi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnTrazi.setText("¤");
@@ -99,6 +105,11 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(lstPridruzi);
 
+        lstGlavni.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstGlavniValueChanged(evt);
+            }
+        });
         jScrollPane5.setViewportView(lstGlavni);
 
         jScrollPane6.setViewportView(lstTrazi);
@@ -257,12 +268,35 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPridruziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziActionPerformed
+DefaultListModel<Clan> m;
+        try {
+            m = (DefaultListModel<Clan>) lstPridruzi.getModel();
+            m.get(0).toString();
+        } catch (Exception e) {
+            m = new DefaultListModel<>();
+            lstPridruzi.setModel(m);
+        }
+        boolean postoji;
+        for (Clan p : lstTrazi.getSelectedValuesList()) {
+            postoji = false;
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.get(i).getId())) {
+                    postoji = true;
+                    break;
+                }
+            }
+            if (!postoji) {
+                m.addElement(p);
+            }
 
+        }
+        lstPridruzi.repaint();
     }//GEN-LAST:event_btnPridruziActionPerformed
 
     private void btnUmjetnikClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmjetnikClanActionPerformed
         ucitajPodatkeU();
         lstGlavni.setCellRenderer(new UmjetniciCellRenderer());
+        lstPridruzi.setCellRenderer(new ClanCellRenderer());
         
     }//GEN-LAST:event_btnUmjetnikClanActionPerformed
 
@@ -272,8 +306,7 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUmjetnikAlbumActionPerformed
 
     private void btnAlbumPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumPjesmaActionPerformed
-        ucitajPodatkeU();
-        lstGlavni.setCellRenderer(new UmjetniciCellRenderer());
+        
     }//GEN-LAST:event_btnAlbumPjesmaActionPerformed
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
@@ -289,14 +322,74 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOdjavaActionPerformed
 
     private void btnPrimjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniActionPerformed
-//        entitet.setPolaznici(new ArrayList<>());
-//        DefaultListModel<Clan> m = (DefaultListModel<Clan>) lstPolazniciNaGrupi.getModel();
-//        for (int i = 0; i < m.size(); i++) {
-//            entitet.getPolaznici().add(m.getElementAt(i));
-//        }
-//
-//        obrada.setEntitet(entitet);
+        entitetU = lstGlavni.getSelectedValue();
+        if (entitetU == null) {
+            return;
+        }
+            
+            
+        entitetU.setClanovi(new ArrayList<>());
+         
+        entitetU.setIme(entitetU.getIme());
+        entitetU.setZanr(entitetU.getZanr());
+        entitetU.setPodzanr(entitetU.getPodzanr());
+        entitetU.setMjesto(entitetU.getMjesto());
+        entitetU.setDatumpocetka(entitetU.getDatumpocetka());
+        entitetU.setDatumkraja(entitetU.getDatumkraja());
+        
+        DefaultListModel<Clan> m = (DefaultListModel<Clan>) lstPridruzi.getModel();
+        for (int i = 0; i < m.size(); i++) {
+            entitetU.getClanovi().add(m.getElementAt(i));
+        }
+        obradaU.setEntitet(entitetU);
+        try {
+            obradaU.update();
+            ucitajPodatkeU();
+
+        } catch (EdunovaException e) {
+            System.out.println(e.getPoruka());
+        }
+
     }//GEN-LAST:event_btnPrimjeniActionPerformed
+
+    private void lstGlavniValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstGlavniValueChanged
+        
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+
+        entitetU = lstGlavni.getSelectedValue();
+        if (entitetU == null) {
+            return;
+        }
+        
+        DefaultListModel<Clan> m = new DefaultListModel<>();
+        for (Clan p : entitetU.getClanovi()) {
+            m.addElement(p);
+        }
+        lstPridruzi.setModel(m);
+    }//GEN-LAST:event_lstGlavniValueChanged
+
+    private void btnUkloniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniActionPerformed
+          DefaultListModel<Clan> m;
+        try {
+            m = (DefaultListModel<Clan>) lstPridruzi.getModel();
+        } catch (Exception e) {
+            return;
+        }
+
+        // big o notation https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
+        for (Clan p : lstPridruzi.getSelectedValuesList()) {
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.getElementAt(i).getId())) {
+                    m.removeElementAt(i);
+                    break;
+                }
+            }
+        }
+
+        lstPridruzi.repaint();
+    }//GEN-LAST:event_btnUkloniActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,7 +445,7 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     private javax.swing.JLabel lblPridruzi;
     private javax.swing.JLabel llblGlavni;
     private javax.swing.JList<Umjetnik> lstGlavni;
-    private javax.swing.JList<String> lstPridruzi;
+    private javax.swing.JList<Clan> lstPridruzi;
     private javax.swing.JList<Clan> lstTrazi;
     private javax.swing.JTextField txtTrazi;
     // End of variables declaration//GEN-END:variables
