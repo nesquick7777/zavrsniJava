@@ -557,6 +557,219 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lstGlavniAlbumPValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstGlavniAlbumPValueChanged
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+
+        entitetA = lstGlavniAlbumP.getSelectedValue();
+        if (entitetA == null) {
+            return;
+        }
+
+        DefaultListModel<Pjesma> m = new DefaultListModel<>();
+        for (Pjesma p : entitetA.getPjesme()) {
+            m.addElement(p);
+        }
+        lstPridruzenPjesma.setModel(m);
+    }//GEN-LAST:event_lstGlavniAlbumPValueChanged
+
+    private void btnPrimjeniAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniAPActionPerformed
+        entitetA = lstGlavniAlbumP.getSelectedValue();
+        if (entitetA == null) {
+            return;
+        }
+
+        entitetA.setPjesme(new ArrayList<>());
+
+        DefaultListModel<Pjesma> m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
+        for (int i = 0; i < m.size(); i++) {
+            entitetA.getPjesme().add(m.getElementAt(i));
+        }
+        obradaA.setEntitet(entitetA);
+        try {
+            obradaA.update();
+            ucitajPodatkeU();
+
+        } catch (EdunovaException e) {
+            System.out.println(e.getPoruka());
+        }
+    }//GEN-LAST:event_btnPrimjeniAPActionPerformed
+
+    private void lstTraziPjesmaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTraziPjesmaValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstTraziPjesmaValueChanged
+
+    private void lstPridruzenPjesmaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPridruzenPjesmaValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstPridruzenPjesmaValueChanged
+
+    private void btnTraziPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziPjesmaActionPerformed
+        ucitajPjesme();
+        lstTraziPjesma.setCellRenderer(new PjesmaCellRenderer());
+    }//GEN-LAST:event_btnTraziPjesmaActionPerformed
+
+    private void btnUkloniPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniPjesmaActionPerformed
+        DefaultListModel<Pjesma> m;
+        try {
+            m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
+        } catch (Exception e) {
+            return;
+        }
+
+        for (Pjesma p : lstPridruzenPjesma.getSelectedValuesList()) {
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.getElementAt(i).getId())) {
+                    m.removeElementAt(i);
+                    break;
+                }
+            }
+        }
+
+        lstPridruzenPjesma.repaint();
+    }//GEN-LAST:event_btnUkloniPjesmaActionPerformed
+
+    private void btnPridruziPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziPjesmaActionPerformed
+        DefaultListModel<Pjesma> m;
+        try {
+            m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
+            m.get(0).toString();
+        } catch (Exception e) {
+            m = new DefaultListModel<>();
+            lstPridruzenPjesma.setModel(m);
+        }
+        boolean postoji;
+        for (Pjesma p : lstTraziPjesma.getSelectedValuesList()) {
+            postoji = false;
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.get(i).getId())) {
+                    postoji = true;
+                    break;
+                }
+            }
+            if (!postoji) {
+                m.addElement(p);
+            }
+
+        }
+        lstPridruzenPjesma.repaint();
+    }//GEN-LAST:event_btnPridruziPjesmaActionPerformed
+
+    private void lstGlavniUmjetnikAValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstGlavniUmjetnikAValueChanged
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+
+        entitetU = lstGlavniUmjetnikA.getSelectedValue();
+        if (entitetU == null) {
+            return;
+        }
+
+        DefaultListModel<Album> m = new DefaultListModel<>();
+        for (Album p : entitetU.getAlbumi()) {
+            m.addElement(p);
+        }
+        lstPridruzenAlbum.setModel(m);
+    }//GEN-LAST:event_lstGlavniUmjetnikAValueChanged
+
+    private void btnPrimjeniUAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniUAActionPerformed
+        entitetU = lstGlavniUmjetnikA.getSelectedValue();
+        if (entitetU == null) {
+            return;
+        }
+
+        entitetU.setAlbumi(new ArrayList<>());
+
+        DefaultListModel<Album> m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
+        for (int i = 0; i < m.size(); i++) {
+            entitetU.getAlbumi().add(m.getElementAt(i));
+        }
+        obradaU.setEntitet(entitetU);
+        try {
+            obradaU.update();
+            ucitajPodatkeU();
+
+        } catch (EdunovaException e) {
+            System.out.println(e.getPoruka());
+        }
+    }//GEN-LAST:event_btnPrimjeniUAActionPerformed
+
+    private void lstTraziAlbumValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTraziAlbumValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstTraziAlbumValueChanged
+
+    private void lstPridruzenAlbumValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPridruzenAlbumValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstPridruzenAlbumValueChanged
+
+    private void btnTraziAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziAlbumActionPerformed
+        ucitajAlbume();
+        lstTraziAlbum.setCellRenderer(new AlbumCellRenderer());
+    }//GEN-LAST:event_btnTraziAlbumActionPerformed
+
+    private void btnUkloniAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniAlbumActionPerformed
+        DefaultListModel<Album> m;
+        try {
+            m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
+        } catch (Exception e) {
+            return;
+        }
+
+        for (Album p : lstPridruzenAlbum.getSelectedValuesList()) {
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.getElementAt(i).getId())) {
+                    m.removeElementAt(i);
+                    break;
+                }
+            }
+        }
+
+        lstPridruzenAlbum.repaint();
+    }//GEN-LAST:event_btnUkloniAlbumActionPerformed
+
+    private void btnPridruziAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziAlbumActionPerformed
+        DefaultListModel<Album> m;
+        try {
+            m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
+            m.get(0).toString();
+        } catch (Exception e) {
+            m = new DefaultListModel<>();
+            lstPridruzenAlbum.setModel(m);
+        }
+        boolean postoji;
+        for (Album p : lstTraziAlbum.getSelectedValuesList()) {
+            postoji = false;
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.get(i).getId())) {
+                    postoji = true;
+                    break;
+                }
+            }
+            if (!postoji) {
+                m.addElement(p);
+            }
+
+        }
+        lstPridruzenAlbum.repaint();
+    }//GEN-LAST:event_btnPridruziAlbumActionPerformed
+
+    private void lstGlavniUmjetnikCValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstGlavniUmjetnikCValueChanged
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+
+        entitetU = lstGlavniUmjetnikC.getSelectedValue();
+        if (entitetU == null) {
+            return;
+        }
+
+        DefaultListModel<Clan> m = new DefaultListModel<>();
+        for (Clan p : entitetU.getClanovi()) {
+            m.addElement(p);
+        }
+        lstPridruzenClan.setModel(m);
+    }//GEN-LAST:event_lstGlavniUmjetnikCValueChanged
+
     private void btnPrimjeniUCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniUCActionPerformed
         entitetU = lstGlavniUmjetnikC.getSelectedValue();
         if (entitetU == null) {
@@ -579,22 +792,13 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPrimjeniUCActionPerformed
 
-    private void lstGlavniUmjetnikCValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstGlavniUmjetnikCValueChanged
-        if (evt.getValueIsAdjusting()) {
-            return;
-        }
+    private void lstTraziClanValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTraziClanValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstTraziClanValueChanged
 
-        entitetU = lstGlavniUmjetnikC.getSelectedValue();
-        if (entitetU == null) {
-            return;
-        }
-
-        DefaultListModel<Clan> m = new DefaultListModel<>();
-        for (Clan p : entitetU.getClanovi()) {
-            m.addElement(p);
-        }
-        lstPridruzenClan.setModel(m);
-    }//GEN-LAST:event_lstGlavniUmjetnikCValueChanged
+    private void lstPridruzenClanValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPridruzenClanValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstPridruzenClanValueChanged
 
     private void btnTraziClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziClanActionPerformed
         ucitajClanove();
@@ -646,210 +850,6 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         }
         lstPridruzenClan.repaint();
     }//GEN-LAST:event_btnPridruziClanActionPerformed
-
-    private void btnPridruziAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziAlbumActionPerformed
-        DefaultListModel<Album> m;
-        try {
-            m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
-            m.get(0).toString();
-        } catch (Exception e) {
-            m = new DefaultListModel<>();
-            lstPridruzenAlbum.setModel(m);
-        }
-        boolean postoji;
-        for (Album p : lstTraziAlbum.getSelectedValuesList()) {
-            postoji = false;
-            for (int i = 0; i < m.size(); i++) {
-                if (p.getId().equals(m.get(i).getId())) {
-                    postoji = true;
-                    break;
-                }
-            }
-            if (!postoji) {
-                m.addElement(p);
-            }
-
-        }
-        lstPridruzenAlbum.repaint();
-    }//GEN-LAST:event_btnPridruziAlbumActionPerformed
-
-    private void btnUkloniAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniAlbumActionPerformed
-        DefaultListModel<Album> m;
-        try {
-            m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
-        } catch (Exception e) {
-            return;
-        }
-
-        for (Album p : lstPridruzenAlbum.getSelectedValuesList()) {
-            for (int i = 0; i < m.size(); i++) {
-                if (p.getId().equals(m.getElementAt(i).getId())) {
-                    m.removeElementAt(i);
-                    break;
-                }
-            }
-        }
-
-        lstPridruzenAlbum.repaint();
-    }//GEN-LAST:event_btnUkloniAlbumActionPerformed
-
-    private void btnTraziAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziAlbumActionPerformed
-        ucitajAlbume();
-        lstTraziAlbum.setCellRenderer(new AlbumCellRenderer());
-    }//GEN-LAST:event_btnTraziAlbumActionPerformed
-
-    private void btnPrimjeniUAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniUAActionPerformed
-        entitetU = lstGlavniUmjetnikA.getSelectedValue();
-        if (entitetU == null) {
-            return;
-        }
-
-        entitetU.setAlbumi(new ArrayList<>());
-
-        DefaultListModel<Album> m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
-        for (int i = 0; i < m.size(); i++) {
-            entitetU.getAlbumi().add(m.getElementAt(i));
-        }
-        obradaU.setEntitet(entitetU);
-        try {
-            obradaU.update();
-            ucitajPodatkeU();
-
-        } catch (EdunovaException e) {
-            System.out.println(e.getPoruka());
-        }
-    }//GEN-LAST:event_btnPrimjeniUAActionPerformed
-
-    private void lstGlavniUmjetnikAValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstGlavniUmjetnikAValueChanged
-        if (evt.getValueIsAdjusting()) {
-            return;
-        }
-
-        entitetU = lstGlavniUmjetnikA.getSelectedValue();
-        if (entitetU == null) {
-            return;
-        }
-
-        DefaultListModel<Album> m = new DefaultListModel<>();
-        for (Album p : entitetU.getAlbumi()) {
-            m.addElement(p);
-        }
-        lstPridruzenAlbum.setModel(m);
-    }//GEN-LAST:event_lstGlavniUmjetnikAValueChanged
-
-    private void btnPridruziPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziPjesmaActionPerformed
-        DefaultListModel<Pjesma> m;
-        try {
-            m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
-            m.get(0).toString();
-        } catch (Exception e) {
-            m = new DefaultListModel<>();
-            lstPridruzenPjesma.setModel(m);
-        }
-        boolean postoji;
-        for (Pjesma p : lstTraziPjesma.getSelectedValuesList()) {
-            postoji = false;
-            for (int i = 0; i < m.size(); i++) {
-                if (p.getId().equals(m.get(i).getId())) {
-                    postoji = true;
-                    break;
-                }
-            }
-            if (!postoji) {
-                m.addElement(p);
-            }
-
-        }
-        lstPridruzenPjesma.repaint();
-    }//GEN-LAST:event_btnPridruziPjesmaActionPerformed
-
-    private void btnUkloniPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniPjesmaActionPerformed
-        DefaultListModel<Pjesma> m;
-        try {
-            m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
-        } catch (Exception e) {
-            return;
-        }
-
-        for (Pjesma p : lstPridruzenPjesma.getSelectedValuesList()) {
-            for (int i = 0; i < m.size(); i++) {
-                if (p.getId().equals(m.getElementAt(i).getId())) {
-                    m.removeElementAt(i);
-                    break;
-                }
-            }
-        }
-
-        lstPridruzenPjesma.repaint();
-    }//GEN-LAST:event_btnUkloniPjesmaActionPerformed
-
-    private void btnTraziPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziPjesmaActionPerformed
-        ucitajPjesme();
-        lstTraziPjesma.setCellRenderer(new PjesmaCellRenderer());
-    }//GEN-LAST:event_btnTraziPjesmaActionPerformed
-
-    private void btnPrimjeniAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniAPActionPerformed
-        entitetA = lstGlavniAlbumP.getSelectedValue();
-        if (entitetA == null) {
-            return;
-        }
-
-        entitetA.setPjesme(new ArrayList<>());
-
-        DefaultListModel<Pjesma> m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
-        for (int i = 0; i < m.size(); i++) {
-            entitetA.getPjesme().add(m.getElementAt(i));
-        }
-        obradaA.setEntitet(entitetA);
-        try {
-            obradaA.update();
-            ucitajPodatkeU();
-
-        } catch (EdunovaException e) {
-            System.out.println(e.getPoruka());
-        }
-    }//GEN-LAST:event_btnPrimjeniAPActionPerformed
-
-    private void lstGlavniAlbumPValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstGlavniAlbumPValueChanged
-        if (evt.getValueIsAdjusting()) {
-            return;
-        }
-
-        entitetA = lstGlavniAlbumP.getSelectedValue();
-        if (entitetA == null) {
-            return;
-        }
-
-        DefaultListModel<Pjesma> m = new DefaultListModel<>();
-        for (Pjesma p : entitetA.getPjesme()) {
-            m.addElement(p);
-        }
-        lstPridruzenPjesma.setModel(m);
-    }//GEN-LAST:event_lstGlavniAlbumPValueChanged
-
-    private void lstTraziClanValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTraziClanValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lstTraziClanValueChanged
-
-    private void lstPridruzenClanValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPridruzenClanValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lstPridruzenClanValueChanged
-
-    private void lstTraziAlbumValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTraziAlbumValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lstTraziAlbumValueChanged
-
-    private void lstPridruzenAlbumValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPridruzenAlbumValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lstPridruzenAlbumValueChanged
-
-    private void lstTraziPjesmaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTraziPjesmaValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lstTraziPjesmaValueChanged
-
-    private void lstPridruzenPjesmaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPridruzenPjesmaValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lstPridruzenPjesmaValueChanged
 
     /**
      * @param args the command line arguments
