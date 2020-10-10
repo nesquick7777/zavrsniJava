@@ -27,7 +27,14 @@ public class ObradaPjesma extends Obrada<Pjesma> {
      return sesion.createQuery("from Pjesma").list();
     }
     
-    
+    public List<Pjesma> getPodaci(String uvjet) {
+        return sesion.createQuery("from Pjesma p "
+              + " where concat(p.ime, ' ') "
+              + " like :uvjet ")
+              .setParameter("uvjet", "%"+uvjet+"%")
+              .setMaxResults(20)
+              .list();
+    }
 
     @Override
     protected void kontrolaCreate() throws EdunovaException {

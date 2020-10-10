@@ -28,6 +28,16 @@ public class ObradaAlbum extends Obrada<Album> {
         return sesion.createQuery("from Album").list();
     }
 
+    public List<Album> getPodaci(String uvjet) {
+        return sesion.createQuery("from Album a "
+              + " where concat(a.ime, ' ') "
+              + " like :uvjet ")
+              .setParameter("uvjet", "%"+uvjet+"%")
+              .setMaxResults(20)
+              .list();
+    }
+    
+    
     @Override
     protected void kontrolaCreate() throws EdunovaException {
         kontrolaIme();

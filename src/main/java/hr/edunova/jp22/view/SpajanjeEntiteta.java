@@ -42,6 +42,16 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         obradaA = new ObradaAlbum();
         obradaP = new ObradaPjesma();
 
+        ucitajPodatkeU();
+        lstGlavniUmjetnikC.setCellRenderer(new UmjetniciCellRenderer());
+        lstGlavniUmjetnikA.setCellRenderer(new UmjetniciCellRenderer());
+        lstPridruzenClan.setCellRenderer(new ClanCellRenderer());
+        lstPridruzenAlbum.setCellRenderer(new AlbumCellRenderer());
+
+        ucitajPodatkeA();
+        lstGlavniAlbumP.setCellRenderer(new AlbumCellRenderer());
+        lstPridruzenPjesma.setCellRenderer(new PjesmaCellRenderer());
+
     }
 
     /**
@@ -106,9 +116,6 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         jScrollPane15 = new javax.swing.JScrollPane();
         lstGlavniAlbumP = new javax.swing.JList<>();
         jSeparator15 = new javax.swing.JSeparator();
-        btnOdjava3 = new javax.swing.JButton();
-        btnUmjetnikClan2 = new javax.swing.JButton();
-        btnUmjetnikAlbum2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -525,142 +532,299 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
 
         tabSpajanje.addTab("Album_Pjesma", pnlAP);
 
-        btnOdjava3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnOdjava3.setText("Odjavite se");
-        btnOdjava3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOdjava3ActionPerformed(evt);
-            }
-        });
-
-        btnUmjetnikClan2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnUmjetnikClan2.setText("Umjetnik_Član");
-        btnUmjetnikClan2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUmjetnikClan2ActionPerformed(evt);
-            }
-        });
-
-        btnUmjetnikAlbum2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnUmjetnikAlbum2.setText("Umjetnik_Album");
-        btnUmjetnikAlbum2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUmjetnikAlbum2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlGlavniLayout = new javax.swing.GroupLayout(pnlGlavni);
         pnlGlavni.setLayout(pnlGlavniLayout);
         pnlGlavniLayout.setHorizontalGroup(
             pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlGlavniLayout.createSequentialGroup()
-                .addGroup(pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlGlavniLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(btnUmjetnikAlbum2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97)
-                        .addComponent(btnUmjetnikClan2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnOdjava3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+            .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 868, Short.MAX_VALUE)
         );
         pnlGlavniLayout.setVerticalGroup(
             pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlGlavniLayout.createSequentialGroup()
-                .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUmjetnikClan2)
-                    .addComponent(btnOdjava3)
-                    .addComponent(btnUmjetnikAlbum2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 536, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
+            .addComponent(pnlGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGlavni, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrimjeniUCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniUCActionPerformed
-        // TODO add your handling code here:
+        entitetU = lstGlavniUmjetnikC.getSelectedValue();
+        if (entitetU == null) {
+            return;
+        }
+
+        entitetU.setClanovi(new ArrayList<>());
+
+        DefaultListModel<Clan> m = (DefaultListModel<Clan>) lstPridruzenClan.getModel();
+        for (int i = 0; i < m.size(); i++) {
+            entitetU.getClanovi().add(m.getElementAt(i));
+        }
+        obradaU.setEntitet(entitetU);
+        try {
+            obradaU.update();
+            ucitajPodatkeU();
+
+        } catch (EdunovaException e) {
+            System.out.println(e.getPoruka());
+        }
     }//GEN-LAST:event_btnPrimjeniUCActionPerformed
 
     private void lstGlavniUmjetnikCValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstGlavniUmjetnikCValueChanged
-        // TODO add your handling code here:
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+
+        entitetU = lstGlavniUmjetnikC.getSelectedValue();
+        if (entitetU == null) {
+            return;
+        }
+
+        DefaultListModel<Clan> m = new DefaultListModel<>();
+        for (Clan p : entitetU.getClanovi()) {
+            m.addElement(p);
+        }
+        lstPridruzenClan.setModel(m);
     }//GEN-LAST:event_lstGlavniUmjetnikCValueChanged
 
     private void btnTraziClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziClanActionPerformed
-        // TODO add your handling code here:
+        ucitajClanove();
+        lstTraziClan.setCellRenderer(new ClanCellRenderer());
     }//GEN-LAST:event_btnTraziClanActionPerformed
 
     private void btnUkloniClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniClanActionPerformed
-        // TODO add your handling code here:
+        DefaultListModel<Clan> m;
+        try {
+            m = (DefaultListModel<Clan>) lstPridruzenClan.getModel();
+        } catch (Exception e) {
+            return;
+        }
+
+        for (Clan p : lstPridruzenClan.getSelectedValuesList()) {
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.getElementAt(i).getId())) {
+                    m.removeElementAt(i);
+                    break;
+                }
+            }
+        }
+
+        lstPridruzenClan.repaint();
     }//GEN-LAST:event_btnUkloniClanActionPerformed
 
     private void btnPridruziClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziClanActionPerformed
-        // TODO add your handling code here:
+        DefaultListModel<Clan> m;
+        try {
+            m = (DefaultListModel<Clan>) lstPridruzenClan.getModel();
+            m.get(0).toString();
+        } catch (Exception e) {
+            m = new DefaultListModel<>();
+            lstPridruzenClan.setModel(m);
+        }
+        boolean postoji;
+        for (Clan p : lstTraziClan.getSelectedValuesList()) {
+            postoji = false;
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.get(i).getId())) {
+                    postoji = true;
+                    break;
+                }
+            }
+            if (!postoji) {
+                m.addElement(p);
+            }
+
+        }
+        lstPridruzenClan.repaint();
     }//GEN-LAST:event_btnPridruziClanActionPerformed
 
-    private void btnUmjetnikClan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmjetnikClan2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUmjetnikClan2ActionPerformed
-
-    private void btnUmjetnikAlbum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmjetnikAlbum2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUmjetnikAlbum2ActionPerformed
-
-    private void btnOdjava3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdjava3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOdjava3ActionPerformed
-
     private void btnPridruziAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziAlbumActionPerformed
-        // TODO add your handling code here:
+        DefaultListModel<Album> m;
+        try {
+            m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
+            m.get(0).toString();
+        } catch (Exception e) {
+            m = new DefaultListModel<>();
+            lstPridruzenAlbum.setModel(m);
+        }
+        boolean postoji;
+        for (Album p : lstTraziAlbum.getSelectedValuesList()) {
+            postoji = false;
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.get(i).getId())) {
+                    postoji = true;
+                    break;
+                }
+            }
+            if (!postoji) {
+                m.addElement(p);
+            }
+
+        }
+        lstPridruzenAlbum.repaint();
     }//GEN-LAST:event_btnPridruziAlbumActionPerformed
 
     private void btnUkloniAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniAlbumActionPerformed
-        // TODO add your handling code here:
+        DefaultListModel<Album> m;
+        try {
+            m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
+        } catch (Exception e) {
+            return;
+        }
+
+        for (Album p : lstPridruzenAlbum.getSelectedValuesList()) {
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.getElementAt(i).getId())) {
+                    m.removeElementAt(i);
+                    break;
+                }
+            }
+        }
+
+        lstPridruzenAlbum.repaint();
     }//GEN-LAST:event_btnUkloniAlbumActionPerformed
 
     private void btnTraziAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziAlbumActionPerformed
-        // TODO add your handling code here:
+        ucitajAlbume();
+        lstTraziAlbum.setCellRenderer(new AlbumCellRenderer());
     }//GEN-LAST:event_btnTraziAlbumActionPerformed
 
     private void btnPrimjeniUAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniUAActionPerformed
-        // TODO add your handling code here:
+        entitetU = lstGlavniUmjetnikA.getSelectedValue();
+        if (entitetU == null) {
+            return;
+        }
+
+        entitetU.setAlbumi(new ArrayList<>());
+
+        DefaultListModel<Album> m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
+        for (int i = 0; i < m.size(); i++) {
+            entitetU.getAlbumi().add(m.getElementAt(i));
+        }
+        obradaU.setEntitet(entitetU);
+        try {
+            obradaU.update();
+            ucitajPodatkeU();
+
+        } catch (EdunovaException e) {
+            System.out.println(e.getPoruka());
+        }
     }//GEN-LAST:event_btnPrimjeniUAActionPerformed
 
     private void lstGlavniUmjetnikAValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstGlavniUmjetnikAValueChanged
-        // TODO add your handling code here:
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+
+        entitetU = lstGlavniUmjetnikA.getSelectedValue();
+        if (entitetU == null) {
+            return;
+        }
+
+        DefaultListModel<Album> m = new DefaultListModel<>();
+        for (Album p : entitetU.getAlbumi()) {
+            m.addElement(p);
+        }
+        lstPridruzenAlbum.setModel(m);
     }//GEN-LAST:event_lstGlavniUmjetnikAValueChanged
 
     private void btnPridruziPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziPjesmaActionPerformed
-        // TODO add your handling code here:
+        DefaultListModel<Pjesma> m;
+        try {
+            m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
+            m.get(0).toString();
+        } catch (Exception e) {
+            m = new DefaultListModel<>();
+            lstPridruzenPjesma.setModel(m);
+        }
+        boolean postoji;
+        for (Pjesma p : lstTraziPjesma.getSelectedValuesList()) {
+            postoji = false;
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.get(i).getId())) {
+                    postoji = true;
+                    break;
+                }
+            }
+            if (!postoji) {
+                m.addElement(p);
+            }
+
+        }
+        lstPridruzenPjesma.repaint();
     }//GEN-LAST:event_btnPridruziPjesmaActionPerformed
 
     private void btnUkloniPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniPjesmaActionPerformed
-        // TODO add your handling code here:
+        DefaultListModel<Pjesma> m;
+        try {
+            m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
+        } catch (Exception e) {
+            return;
+        }
+
+        for (Pjesma p : lstPridruzenPjesma.getSelectedValuesList()) {
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.getElementAt(i).getId())) {
+                    m.removeElementAt(i);
+                    break;
+                }
+            }
+        }
+
+        lstPridruzenPjesma.repaint();
     }//GEN-LAST:event_btnUkloniPjesmaActionPerformed
 
     private void btnTraziPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziPjesmaActionPerformed
-        // TODO add your handling code here:
+        ucitajPjesme();
+        lstTraziPjesma.setCellRenderer(new PjesmaCellRenderer());
     }//GEN-LAST:event_btnTraziPjesmaActionPerformed
 
     private void btnPrimjeniAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniAPActionPerformed
-        // TODO add your handling code here:
+        entitetA = lstGlavniAlbumP.getSelectedValue();
+        if (entitetA == null) {
+            return;
+        }
+
+        entitetA.setPjesme(new ArrayList<>());
+
+        DefaultListModel<Pjesma> m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
+        for (int i = 0; i < m.size(); i++) {
+            entitetA.getPjesme().add(m.getElementAt(i));
+        }
+        obradaA.setEntitet(entitetA);
+        try {
+            obradaA.update();
+            ucitajPodatkeU();
+
+        } catch (EdunovaException e) {
+            System.out.println(e.getPoruka());
+        }
     }//GEN-LAST:event_btnPrimjeniAPActionPerformed
 
     private void lstGlavniAlbumPValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstGlavniAlbumPValueChanged
-        // TODO add your handling code here:
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+
+        entitetA = lstGlavniAlbumP.getSelectedValue();
+        if (entitetA == null) {
+            return;
+        }
+
+        DefaultListModel<Pjesma> m = new DefaultListModel<>();
+        for (Pjesma p : entitetA.getPjesme()) {
+            m.addElement(p);
+        }
+        lstPridruzenPjesma.setModel(m);
     }//GEN-LAST:event_lstGlavniAlbumPValueChanged
 
     private void lstTraziClanValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTraziClanValueChanged
@@ -723,7 +887,6 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnOdjava3;
     private javax.swing.JButton btnPridruziAlbum;
     private javax.swing.JButton btnPridruziClan;
     private javax.swing.JButton btnPridruziPjesma;
@@ -736,8 +899,6 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     private javax.swing.JButton btnUkloniAlbum;
     private javax.swing.JButton btnUkloniClan;
     private javax.swing.JButton btnUkloniPjesma;
-    private javax.swing.JButton btnUmjetnikAlbum2;
-    private javax.swing.JButton btnUmjetnikClan2;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
@@ -781,44 +942,41 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     private javax.swing.JTextField txtTraziPjesma;
     // End of variables declaration//GEN-END:variables
 
-
     private void ucitajPodatkeU() {
         DefaultListModel<Umjetnik> m = new DefaultListModel<>();
         obradaU.getPodaci().forEach(s -> m.addElement(s));
-        //lstGlavni.setModel(m);
+        lstGlavniUmjetnikC.setModel(m);
+        lstGlavniUmjetnikA.setModel(m);
     }
 
-     private void ucitajPodatkeA() {
-//        lstGlavni.;
-//        DefaultListModel<Album> m = new DefaultListModel<>();
-//        obradaA.getPodaci().forEach(s -> m.addElement(s));
-//        lstGlavni.setModel(m);
+    private void ucitajPodatkeA() {
+        DefaultListModel<Album> m = new DefaultListModel<>();
+        obradaA.getPodaci().forEach(s -> m.addElement(s));
+        lstGlavniAlbumP.setModel(m);
     }
-    
-    
+
     private void ucitajClanove() {
-        //DefaultListModel<Clan> m = new DefaultListModel<>();
+        DefaultListModel<Clan> m = new DefaultListModel<>();
 
-        //obradaC.getPodaci(txtTrazi.getText()).forEach(s -> m.addElement(s));
+        obradaC.getPodaci(txtTraziClan.getText()).forEach(s -> m.addElement(s));
 
-        //lstTrazi.setModel(m);
+        lstTraziClan.setModel(m);
     }
-    
+
     private void ucitajPjesme() {
-       // DefaultListModel<Pjesma> m = new DefaultListModel<>();
+        DefaultListModel<Pjesma> m = new DefaultListModel<>();
 
-        //obradaC.getPodaci(txtTrazi.getText()).forEach(s -> m.addElement(s));
+        obradaP.getPodaci(txtTraziPjesma.getText()).forEach(s -> m.addElement(s));
 
-        //lstTrazi.setModel(m);
+        lstTraziPjesma.setModel(m);
     }
-    
+
     private void ucitajAlbume() {
-       // DefaultListModel<Album> m = new DefaultListModel<>();
+        DefaultListModel<Album> m = new DefaultListModel<>();
 
-        //obradaC.getPodaci(txtTrazi.getText()).forEach(s -> m.addElement(s));
+        obradaA.getPodaci(txtTraziAlbum.getText()).forEach(s -> m.addElement(s));
 
-        //lstTrazi.setModel(m);
+        lstTraziAlbum.setModel(m);
     }
-
 
 }
