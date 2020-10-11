@@ -43,7 +43,7 @@ public class ObradaPjesma extends Obrada<Pjesma> {
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-       
+       kontrolaIme();
     }
 
     @Override

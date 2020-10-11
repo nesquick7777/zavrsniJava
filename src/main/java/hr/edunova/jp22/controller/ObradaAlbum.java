@@ -30,14 +30,13 @@ public class ObradaAlbum extends Obrada<Album> {
 
     public List<Album> getPodaci(String uvjet) {
         return sesion.createQuery("from Album a "
-              + " where concat(a.ime, ' ') "
-              + " like :uvjet ")
-              .setParameter("uvjet", "%"+uvjet+"%")
-              .setMaxResults(20)
-              .list();
+                + " where concat(a.ime, ' ') "
+                + " like :uvjet ")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                .setMaxResults(20)
+                .list();
     }
-    
-    
+
     @Override
     protected void kontrolaCreate() throws EdunovaException {
         kontrolaIme();
@@ -46,7 +45,8 @@ public class ObradaAlbum extends Obrada<Album> {
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-
+        kontrolaIme();
+        kotrolaOcjena();
     }
 
     @Override

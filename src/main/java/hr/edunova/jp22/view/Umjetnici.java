@@ -5,6 +5,7 @@
  */
 package hr.edunova.jp22.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
 import hr.edunova.jp22.controller.ObradaUmjetnik;
 import hr.edunova.jp22.model.Umjetnik;
 import hr.edunova.jp22.utility.EdunovaException;
@@ -12,7 +13,9 @@ import javax.swing.DefaultListModel;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,6 +33,14 @@ public class Umjetnici extends javax.swing.JFrame {
      */
     public Umjetnici() {
         initComponents();
+
+        DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
+        DatePickerSettings dps1 = new DatePickerSettings(new Locale("hr", "HR"));
+        dps.setFormatForDatesCommonEra("yyyy-MM-dd");
+        dps1.setFormatForDatesCommonEra("yyyy-MM-dd");
+        dpiDatumP.setSettings(dps);
+        dpiDatumK.setSettings(dps1);
+
         lstUmjetnik.setCellRenderer(new UmjetniciCellRenderer());
         obrada = new ObradaUmjetnik();
         ucitajPodatke();
@@ -53,8 +64,6 @@ public class Umjetnici extends javax.swing.JFrame {
         txtZanr = new javax.swing.JTextField();
         txtPodzanr = new javax.swing.JTextField();
         txtMjesto = new javax.swing.JTextField();
-        txtDatumP = new javax.swing.JTextField();
-        txtDatumK = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -65,6 +74,8 @@ public class Umjetnici extends javax.swing.JFrame {
         btnDodaj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
+        dpiDatumP = new com.github.lgooddatepicker.components.DatePicker();
+        dpiDatumK = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Umjetnici");
@@ -72,10 +83,8 @@ public class Umjetnici extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
         jPanel2.setForeground(new java.awt.Color(51, 102, 255));
 
-        btnNazad.setBackground(new java.awt.Color(0, 0, 102));
-        btnNazad.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnNazad.setForeground(new java.awt.Color(255, 255, 255));
         btnNazad.setText("Idi nazad");
+        btnNazad.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnNazad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNazadActionPerformed(evt);
@@ -93,60 +102,61 @@ public class Umjetnici extends javax.swing.JFrame {
 
         jPanel.setBackground(new java.awt.Color(0, 0, 153));
 
+        jLabel1.setText("Podatci:");
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Podatci:");
 
+        jLabel2.setText("Ime:");
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Ime:");
 
+        jLabel3.setText("Žanr:");
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Žanr:");
 
+        jLabel4.setText("Podžanr:");
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Podžanr:");
 
+        jLabel5.setText("Mjesto:");
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Mjesto:");
 
+        jLabel6.setText("Datum kraja:");
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Datum kraja:");
 
+        jLabel7.setText("Datum početka:");
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Datum početka:");
 
-        btnDodaj.setBackground(new java.awt.Color(0, 0, 102));
-        btnDodaj.setForeground(new java.awt.Color(255, 255, 255));
         btnDodaj.setText("Dodaj");
+        btnDodaj.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDodajActionPerformed(evt);
             }
         });
 
-        btnPromjeni.setBackground(new java.awt.Color(0, 0, 102));
-        btnPromjeni.setForeground(new java.awt.Color(255, 255, 255));
         btnPromjeni.setText("Promjeni");
+        btnPromjeni.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnPromjeni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPromjeniActionPerformed(evt);
             }
         });
 
-        btnObrisi.setBackground(new java.awt.Color(0, 0, 102));
-        btnObrisi.setForeground(new java.awt.Color(255, 255, 255));
         btnObrisi.setText("Obriši");
+        btnObrisi.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnObrisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnObrisiActionPerformed(evt);
             }
         });
+
+        dpiDatumP.setBackground(new java.awt.Color(0, 0, 153));
+
+        dpiDatumK.setBackground(new java.awt.Color(0, 0, 153));
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
@@ -170,22 +180,21 @@ public class Umjetnici extends javax.swing.JFrame {
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDatumP)
+                            .addComponent(dpiDatumP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtMjesto)
                             .addComponent(txtPodzanr)
                             .addComponent(txtZanr)
                             .addComponent(txtIme)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(52, 52, 52))
-                            .addComponent(txtDatumK, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(dpiDatumK, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanelLayout.setVerticalGroup(
@@ -201,22 +210,22 @@ public class Umjetnici extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtZanr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(8, 8, 8)
                 .addComponent(txtPodzanr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMjesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDatumP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dpiDatumP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDatumK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dpiDatumK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDodaj)
@@ -278,13 +287,22 @@ public class Umjetnici extends javax.swing.JFrame {
             return;
         }
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (entitet.getDatumpocetka() != null) {
+            dpiDatumP.setDate(entitet.getDatumpocetka().toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate());
+        }
+
+        if (entitet.getDatumkraja() != null) {
+            dpiDatumK.setDate(entitet.getDatumkraja().toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate());
+        }
+
         txtIme.setText(entitet.getIme());
         txtZanr.setText(entitet.getZanr());
         txtPodzanr.setText(entitet.getPodzanr());
         txtMjesto.setText(entitet.getMjesto());
-        txtDatumP.setText(dateFormat.format(entitet.getDatumpocetka()));
-        txtDatumK.setText(dateFormat.format(entitet.getDatumkraja()));
     }//GEN-LAST:event_lstUmjetnikValueChanged
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
@@ -346,6 +364,8 @@ public class Umjetnici extends javax.swing.JFrame {
     private javax.swing.JButton btnNazad;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
+    private com.github.lgooddatepicker.components.DatePicker dpiDatumK;
+    private com.github.lgooddatepicker.components.DatePicker dpiDatumP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -357,8 +377,6 @@ public class Umjetnici extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Umjetnik> lstUmjetnik;
-    private javax.swing.JTextField txtDatumK;
-    private javax.swing.JTextField txtDatumP;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtMjesto;
     private javax.swing.JTextField txtPodzanr;
@@ -378,8 +396,8 @@ public class Umjetnici extends javax.swing.JFrame {
         txtZanr.setText("");
         txtPodzanr.setText("");
         txtMjesto.setText("");
-        txtDatumP.setText("0000-00-00 00:00:00");
-        txtDatumK.setText("0000-00-00 00:00:00");
+        dpiDatumP.setDateToToday();
+        dpiDatumK.setDateToToday();
     }
 
     private void postaviVrijednostiUEntitet() throws ParseException {
@@ -389,8 +407,16 @@ public class Umjetnici extends javax.swing.JFrame {
         entitet.setZanr(txtZanr.getText());
         entitet.setPodzanr(txtPodzanr.getText());
         entitet.setMjesto(txtMjesto.getText());
-        entitet.setDatumpocetka(dateFormat.parse(txtDatumP.getText()));
-        entitet.setDatumkraja(dateFormat.parse(txtDatumK.getText()));
+        if (dpiDatumP.getDate() != null) {
+            entitet.setDatumpocetka(Date.from(dpiDatumP.getDate().atStartOfDay()
+                    .atZone(ZoneId.systemDefault())
+                    .toInstant()));
+        }
+        if (dpiDatumK.getDate() != null) {
+            entitet.setDatumkraja(Date.from(dpiDatumK.getDate().atStartOfDay()
+                    .atZone(ZoneId.systemDefault())
+                    .toInstant()));
+        }
 
         obrada.setEntitet(entitet);
 

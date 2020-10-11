@@ -39,9 +39,6 @@ public class Albumi extends javax.swing.JFrame {
     public Albumi() {
         initComponents();
         
-//        Albumi albumi = new Albumi();
-        
-        
         lstAlbumi.setCellRenderer(new AlbumCellRenderer());
         DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
         dps.setFormatForDatesCommonEra("yyyy-MM-dd");
@@ -321,7 +318,6 @@ public class Albumi extends javax.swing.JFrame {
         
 
         txtIme.setText(entitet.getIme());
-     //   txtOcjena.setText(String.format("%d", entitet.getOcjena()));
         starRater1.setSelection(0);
         starRater1.setRating(entitet.getOcjena());
         txtZanr.setText(entitet.getZanr());

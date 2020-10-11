@@ -65,9 +65,7 @@ public class Pjesme extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
         jPanel2.setForeground(new java.awt.Color(51, 102, 255));
 
-        btnNazad.setBackground(new java.awt.Color(0, 0, 102));
         btnNazad.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnNazad.setForeground(new java.awt.Color(255, 255, 255));
         btnNazad.setText("Idi nazad");
         btnNazad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,8 +96,7 @@ public class Pjesme extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Trajanje:");
 
-        btnDodaj.setBackground(new java.awt.Color(0, 0, 102));
-        btnDodaj.setForeground(new java.awt.Color(255, 255, 255));
+        btnDodaj.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnDodaj.setText("Dodaj");
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,8 +104,7 @@ public class Pjesme extends javax.swing.JFrame {
             }
         });
 
-        btnPromjeni.setBackground(new java.awt.Color(0, 0, 102));
-        btnPromjeni.setForeground(new java.awt.Color(255, 255, 255));
+        btnPromjeni.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnPromjeni.setText("Promjeni");
         btnPromjeni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,8 +112,7 @@ public class Pjesme extends javax.swing.JFrame {
             }
         });
 
-        btnObrisi.setBackground(new java.awt.Color(0, 0, 102));
-        btnObrisi.setForeground(new java.awt.Color(255, 255, 255));
+        btnObrisi.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnObrisi.setText("Obriši");
         btnObrisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,14 +140,13 @@ public class Pjesme extends javax.swing.JFrame {
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtIme)
+                    .addComponent(txtTrajanje)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(145, 145, 145))
-                    .addComponent(txtIme)
-                    .addComponent(txtTrajanje)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
