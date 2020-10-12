@@ -116,8 +116,10 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         jScrollPane15 = new javax.swing.JScrollPane();
         lstGlavniAlbumP = new javax.swing.JList<>();
         jSeparator15 = new javax.swing.JSeparator();
+        brnNazad = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Spajanje Entiteta");
 
         pnlGlavni.setBackground(new java.awt.Color(0, 0, 153));
         pnlGlavni.setPreferredSize(new java.awt.Dimension(875, 661));
@@ -254,10 +256,9 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
                             .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(pnlUCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-                            .addComponent(jScrollPane9)
-                            .addComponent(jScrollPane7))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                            .addComponent(jScrollPane8)
+                            .addComponent(jScrollPane9)))))
         );
 
         tabSpajanje.addTab("Umjetnik_Član", pnlUC);
@@ -389,10 +390,9 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
                             .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(pnlUALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                             .addComponent(jScrollPane11)
-                            .addComponent(jScrollPane10))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane10)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
         tabSpajanje.addTab("Umjetnik_Album", pnlUA);
@@ -524,34 +524,46 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
                             .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(pnlAPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-                            .addComponent(jScrollPane14)
-                            .addComponent(jScrollPane13))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                            .addComponent(jScrollPane13)
+                            .addComponent(jScrollPane15)))))
         );
 
         tabSpajanje.addTab("Album_Pjesma", pnlAP);
+
+        brnNazad.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        brnNazad.setText("Idi nazad");
+        brnNazad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brnNazadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlGlavniLayout = new javax.swing.GroupLayout(pnlGlavni);
         pnlGlavni.setLayout(pnlGlavniLayout);
         pnlGlavniLayout.setHorizontalGroup(
             pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 868, Short.MAX_VALUE)
+            .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(brnNazad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         pnlGlavniLayout.setVerticalGroup(
             pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 536, Short.MAX_VALUE)
+            .addGroup(pnlGlavniLayout.createSequentialGroup()
+                .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(brnNazad)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
+            .addComponent(pnlGlavni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 878, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+            .addComponent(pnlGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
         );
 
         pack();
@@ -851,6 +863,13 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         lstPridruzenClan.repaint();
     }//GEN-LAST:event_btnPridruziClanActionPerformed
 
+    private void brnNazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnNazadActionPerformed
+        Izbornik izbornik = new Izbornik();
+        izbornik.setLocationRelativeTo(null);
+        izbornik.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_brnNazadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -887,6 +906,7 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton brnNazad;
     private javax.swing.JButton btnPridruziAlbum;
     private javax.swing.JButton btnPridruziClan;
     private javax.swing.JButton btnPridruziPjesma;
