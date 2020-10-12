@@ -66,7 +66,7 @@ public class PocetniInsert {
             clan.setBiljeske(faker.music().instrument());
             session.save(clan);
 
-            if (i < 5) {
+            if (i <= 5) {
                 clanovi1.add(clan);
             }
             if (i > 5 && i < 10) {
@@ -92,7 +92,7 @@ public class PocetniInsert {
             pjesma.setTrajanje("0" + br1 + ":" + br2 + br1);
             session.save(pjesma);
 
-            if (i < 5) {
+            if (i <= 5) {
                 pjesme1.add(pjesma);
                 zbrojS1 += (br1 * 60) + (br2 * 10) + br1;
             }

@@ -14,6 +14,7 @@ import hr.edunova.jp22.model.Clan;
 import hr.edunova.jp22.model.Pjesma;
 import hr.edunova.jp22.model.Umjetnik;
 import hr.edunova.jp22.utility.EdunovaException;
+import static hr.edunova.jp22.utility.PocetniInsert.duzina;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -588,16 +589,28 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
 
     private void btnPrimjeniAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniAPActionPerformed
         entitetA = lstGlavniAlbumP.getSelectedValue();
+        entitetP = lstPridruzenPjesma.get
         if (entitetA == null) {
             return;
         }
 
         entitetA.setPjesme(new ArrayList<>());
-
+        int zbrojS1 = 0;
         DefaultListModel<Pjesma> m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
         for (int i = 0; i < m.size(); i++) {
+            int br1 = ;
+            int br2 = faker.number().numberBetween(1, 6);
+            zbrojS1 += (br1 * 60) + (br2 * 10) + br1;
             entitetA.getPjesme().add(m.getElementAt(i));
         }
+
+        int p1 = zbrojS1 % 60;
+        int p2 = zbrojS1 / 60;
+        int p3 = p2 % 60;
+        p2 = p2 / 60;
+        String duzinaT = duzina(p2, p3, p1);
+
+        entitetA.setTrajanje(duzinaT);
         obradaA.setEntitet(entitetA);
         try {
             obradaA.update();
