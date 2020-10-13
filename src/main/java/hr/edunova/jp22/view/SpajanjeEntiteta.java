@@ -32,6 +32,7 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     private ObradaPjesma obradaP;
     private Umjetnik entitetU;
     private Album entitetA;
+    private Pjesma entitetP;
 
     /**
      * Creates new form SpajanjeEntiteta
@@ -589,20 +590,28 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
 
     private void btnPrimjeniAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniAPActionPerformed
         entitetA = lstGlavniAlbumP.getSelectedValue();
-        entitetP = lstPridruzenPjesma.get
         if (entitetA == null) {
             return;
         }
-
+        
         entitetA.setPjesme(new ArrayList<>());
         int zbrojS1 = 0;
         DefaultListModel<Pjesma> m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
         for (int i = 0; i < m.size(); i++) {
-            int br1 = ;
-            int br2 = faker.number().numberBetween(1, 6);
-            zbrojS1 += (br1 * 60) + (br2 * 10) + br1;
+            entitetP = m.getElementAt(i);
+            String brojevi = entitetP.getTrajanje();
+            brojevi = brojevi.replaceAll("\\D+","");
+            
+            
+            int br = Integer.parseInt(brojevi);
+            
+            int br1 = br / 100;
+            int br2 = (br % 100) / 10;
+            int br3 = br % 10;
+            zbrojS1 += (br1 * 60) + (br2 * 10) + br3;
             entitetA.getPjesme().add(m.getElementAt(i));
         }
+        
 
         int p1 = zbrojS1 % 60;
         int p2 = zbrojS1 / 60;

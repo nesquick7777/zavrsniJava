@@ -86,19 +86,20 @@ public class PocetniInsert {
         for (int i = 0; i < 15; i++) {
             int br1 = faker.number().numberBetween(1, 9);
             int br2 = faker.number().numberBetween(1, 6);
+            int br3 = faker.number().numberBetween(1, 9);
 
             Pjesma pjesma = new Pjesma();
             pjesma.setIme(faker.ancient().hero());
-            pjesma.setTrajanje("0" + br1 + ":" + br2 + br1);
+            pjesma.setTrajanje("0" + br1 + ":" + br2 + br3);
             session.save(pjesma);
 
             if (i <= 5) {
                 pjesme1.add(pjesma);
-                zbrojS1 += (br1 * 60) + (br2 * 10) + br1;
+                zbrojS1 += (br1 * 60) + (br2 * 10) + br3;
             }
             if (i > 5 && i < 15) {
                 pjesme2.add(pjesma);
-                zbrojS2 += (br1 * 60) + (br2 * 10) + br1;
+                zbrojS2 += (br1 * 60) + (br2 * 10) + br3;
             }
 
         }
