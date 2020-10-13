@@ -166,6 +166,8 @@ public class Albumi extends javax.swing.JFrame {
             }
         });
 
+        txtTrajanje.setEditable(false);
+
         jLabel9.setText("Trajanje:");
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
