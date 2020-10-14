@@ -83,6 +83,8 @@ public class Albumi extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         dpiDatumA = new com.github.lgooddatepicker.components.DatePicker();
         starRater1 = new hr.edunova.jp22.utility.StarRater();
+        txtTrajanje1 = new javax.swing.JTextField();
+        txtTrajanje2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Albumi");
@@ -174,6 +176,10 @@ public class Albumi extends javax.swing.JFrame {
 
         dpiDatumA.setBackground(new java.awt.Color(0, 0, 153));
 
+        txtTrajanje1.setEditable(false);
+
+        txtTrajanje2.setEditable(false);
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
@@ -200,7 +206,6 @@ public class Albumi extends javax.swing.JFrame {
                     .addComponent(txtPodzanr)
                     .addComponent(txtIzdavackaK)
                     .addComponent(txtVrsta)
-                    .addComponent(txtTrajanje)
                     .addComponent(dpiDatumA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +216,13 @@ public class Albumi extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addComponent(txtTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTrajanje1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTrajanje2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelLayout.setVerticalGroup(
@@ -250,7 +261,10 @@ public class Albumi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTrajanje1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTrajanje2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDodaj)
@@ -326,7 +340,9 @@ public class Albumi extends javax.swing.JFrame {
         txtPodzanr.setText(entitet.getPodzanr());
         txtIzdavackaK.setText(entitet.getIzdavackakuca());
         txtVrsta.setText(entitet.getVrsta());
-        txtTrajanje.setText(entitet.getTrajanje());
+        txtTrajanje.setText(entitet.getTrajanje().substring(0, 2));
+        txtTrajanje1.setText(entitet.getTrajanje().substring(3, 5));
+        txtTrajanje2.setText(entitet.getTrajanje().substring(6, 8));
 
 
     }//GEN-LAST:event_lstAlbumiValueChanged
@@ -409,6 +425,8 @@ public class Albumi extends javax.swing.JFrame {
     private javax.swing.JTextField txtIzdavackaK;
     private javax.swing.JTextField txtPodzanr;
     private javax.swing.JTextField txtTrajanje;
+    private javax.swing.JTextField txtTrajanje1;
+    private javax.swing.JTextField txtTrajanje2;
     private javax.swing.JTextField txtVrsta;
     private javax.swing.JTextField txtZanr;
     // End of variables declaration//GEN-END:variables

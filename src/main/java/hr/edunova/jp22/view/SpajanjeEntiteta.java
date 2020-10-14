@@ -599,16 +599,20 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         DefaultListModel<Pjesma> m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
         for (int i = 0; i < m.size(); i++) {
             entitetP = m.getElementAt(i);
-            String brojevi = entitetP.getTrajanje();
-            brojevi = brojevi.replaceAll("\\D+","");
             
+            String broj1 = entitetP.getTrajanje().substring(0, 2);
+            String broj2 = entitetP.getTrajanje().substring(3, 5);
+            String broj3 = entitetP.getTrajanje().substring(6, 8);
+                     
+            int br1 = Integer.parseInt(broj1);
+            int br2 = Integer.parseInt(broj2);
+            int br3 = Integer.parseInt(broj3);
             
-            int br = Integer.parseInt(brojevi);
-            
-            int br1 = br / 100;
-            int br2 = (br % 100) / 10;
-            int br3 = br % 10;
-            zbrojS1 += (br1 * 60) + (br2 * 10) + br3;
+            int br4 = br1;
+            br1 = br2;
+            br2 = br3/10;
+            br3 = br3 % 10;
+            zbrojS1 +=(br4* 60*60) + (br1 * 60) + (br2 * 10) + br3;
             entitetA.getPjesme().add(m.getElementAt(i));
         }
         

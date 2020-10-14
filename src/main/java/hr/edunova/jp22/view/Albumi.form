@@ -147,7 +147,6 @@
                           <Component id="txtPodzanr" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtIzdavackaK" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtVrsta" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtTrajanje" alignment="0" max="32767" attributes="0"/>
                           <Component id="dpiDatumA" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -159,6 +158,13 @@
                                   <Component id="jLabel7" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
                                   <Component id="jLabel8" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtTrajanje" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtTrajanje1" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtTrajanje2" min="-2" pref="27" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -202,7 +208,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtTrajanje" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtTrajanje" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTrajanje1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTrajanje2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace pref="43" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnDodaj" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -375,6 +385,16 @@
                 <Property name="useNullLayout" type="boolean" value="true"/>
               </Layout>
             </Container>
+            <Component class="javax.swing.JTextField" name="txtTrajanje1">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtTrajanje2">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

@@ -8,6 +8,7 @@ package hr.edunova.jp22.view;
 import hr.edunova.jp22.controller.ObradaPjesma;
 import hr.edunova.jp22.model.Pjesma;
 import hr.edunova.jp22.utility.EdunovaException;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -99,6 +100,11 @@ public class Pjesme extends javax.swing.JFrame {
                 txtTrajanjeActionPerformed(evt);
             }
         });
+        txtTrajanje.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTrajanjeKeyTyped(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,10 +147,20 @@ public class Pjesme extends javax.swing.JFrame {
                 txtTrajanje2ActionPerformed(evt);
             }
         });
+        txtTrajanje2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTrajanje2KeyTyped(evt);
+            }
+        });
 
         txtTrajanje1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTrajanje1ActionPerformed(evt);
+            }
+        });
+        txtTrajanje1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTrajanje1KeyTyped(evt);
             }
         });
 
@@ -333,8 +349,32 @@ public class Pjesme extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTrajanje2ActionPerformed
 
     private void txtTrajanje1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrajanje1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtTrajanje1ActionPerformed
+
+    private void txtTrajanjeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrajanjeKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||c==KeyEvent.VK_DELETE )){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTrajanjeKeyTyped
+
+    private void txtTrajanje1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrajanje1KeyTyped
+         char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||c==KeyEvent.VK_DELETE )){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTrajanje1KeyTyped
+
+    private void txtTrajanje2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrajanje2KeyTyped
+         char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||c==KeyEvent.VK_DELETE )){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTrajanje2KeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
@@ -373,8 +413,13 @@ public class Pjesme extends javax.swing.JFrame {
 
     private void postaviVrijednostiUEntitet() {
         entitet.setIme(txtIme.getText());
+        if(txtTrajanje.getText().length() == 2 && txtTrajanje1.getText().length() == 2 && txtTrajanje2.getText().length() == 2){
         entitet.setTrajanje(txtTrajanje.getText() + ":" + txtTrajanje1.getText() + ":" + txtTrajanje2.getText());
-        
+        }
+        else{
+            System.out.println("Morate unijeti 2 broja u svaki kvadratic!");
+            return;
+        }
         
         obrada.setEntitet(entitet);
 
