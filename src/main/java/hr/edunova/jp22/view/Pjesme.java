@@ -35,9 +35,10 @@ public class Pjesme extends javax.swing.JFrame {
         lstPjesme.setCellRenderer(new PjesmaCellRenderer());
         obrada = new ObradaPjesma();
         ucitajPodatke();
+        txtIme.setDocument(new JTextFieldLimit(50));
         txtTrajanje.setDocument(new JTextFieldLimit(2));
-        txtTrajanje1.setDocument(new JTextFieldLimit(2));
         txtTrajanje2.setDocument(new JTextFieldLimit(2));
+        txtTrajanje1.setDocument(new JTextFieldLimit(2));
         
     }
 
@@ -63,8 +64,8 @@ public class Pjesme extends javax.swing.JFrame {
         btnDodaj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
-        txtTrajanje1 = new javax.swing.JTextField();
         txtTrajanje2 = new javax.swing.JTextField();
+        txtTrajanje1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -135,15 +136,15 @@ public class Pjesme extends javax.swing.JFrame {
             }
         });
 
-        txtTrajanje1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTrajanje1ActionPerformed(evt);
-            }
-        });
-
         txtTrajanje2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTrajanje2ActionPerformed(evt);
+            }
+        });
+
+        txtTrajanje1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTrajanje1ActionPerformed(evt);
             }
         });
 
@@ -185,11 +186,11 @@ public class Pjesme extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTrajanje2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTrajanje1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTrajanje1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtTrajanje2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelLayout.setVerticalGroup(
@@ -206,9 +207,9 @@ public class Pjesme extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTrajanje1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
                     .addComponent(txtTrajanje2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtTrajanje1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -271,7 +272,9 @@ public class Pjesme extends javax.swing.JFrame {
             return;
         }
         txtIme.setText(entitet.getIme());
-        txtTrajanje.setText(entitet.getTrajanje());
+        txtTrajanje.setText(entitet.getTrajanje().substring(0, 2));
+        txtTrajanje1.setText(entitet.getTrajanje().substring(3, 5));
+        txtTrajanje2.setText(entitet.getTrajanje().substring(6, 8));
     }//GEN-LAST:event_lstPjesmeValueChanged
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
@@ -325,13 +328,13 @@ public class Pjesme extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTrajanjeActionPerformed
 
-    private void txtTrajanje1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrajanje1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTrajanje1ActionPerformed
-
     private void txtTrajanje2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrajanje2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTrajanje2ActionPerformed
+
+    private void txtTrajanje1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrajanje1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTrajanje1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
@@ -364,11 +367,13 @@ public class Pjesme extends javax.swing.JFrame {
     private void ocistiPolja() {
         txtIme.setText("");
         txtTrajanje.setText("");
+        txtTrajanje1.setText("");
+        txtTrajanje2.setText("");
     }
 
     private void postaviVrijednostiUEntitet() {
         entitet.setIme(txtIme.getText());
-        entitet.setTrajanje(txtTrajanje.getText());
+        entitet.setTrajanje(txtTrajanje.getText() + ":" + txtTrajanje1.getText() + ":" + txtTrajanje2.getText());
         
         
         obrada.setEntitet(entitet);

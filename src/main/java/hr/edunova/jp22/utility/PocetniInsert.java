@@ -90,7 +90,7 @@ public class PocetniInsert {
 
             Pjesma pjesma = new Pjesma();
             pjesma.setIme(faker.ancient().hero());
-            pjesma.setTrajanje("0" + br1 + ":" + br2 + br3);
+            pjesma.setTrajanje( "00:0" + br1 + ":" + br2 + br3);
             session.save(pjesma);
 
             if (i <= 5) {
