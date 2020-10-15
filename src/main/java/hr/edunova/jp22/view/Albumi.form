@@ -143,10 +143,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="starRater1" max="32767" attributes="0"/>
                           <Component id="txtIme" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtZanr" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtPodzanr" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtIzdavackaK" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtVrsta" alignment="0" max="32767" attributes="0"/>
                           <Component id="dpiDatumA" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -168,6 +165,9 @@
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="cmbZanr" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmbPodzanr" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmbVrsta" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -192,11 +192,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtZanr" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbZanr" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtPodzanr" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbPodzanr" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -204,7 +204,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtVrsta" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbVrsta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -227,13 +227,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="txtIme">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtZanr">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtPodzanr">
-            </Component>
             <Component class="javax.swing.JTextField" name="txtIzdavackaK">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtVrsta">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
@@ -394,6 +388,66 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cmbZanr">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="14">
+                    <StringItem index="0" value="Blues"/>
+                    <StringItem index="1" value="Metal"/>
+                    <StringItem index="2" value="Hip Hop"/>
+                    <StringItem index="3" value="Folk"/>
+                    <StringItem index="4" value="Jazz"/>
+                    <StringItem index="5" value="Industrial Music"/>
+                    <StringItem index="6" value="Pop"/>
+                    <StringItem index="7" value="Punk"/>
+                    <StringItem index="8" value="Rock"/>
+                    <StringItem index="9" value="Electronic"/>
+                    <StringItem index="10" value="Country"/>
+                    <StringItem index="11" value="Dance"/>
+                    <StringItem index="12" value="Classical Music"/>
+                    <StringItem index="13" value="Ambient"/>
+                  </StringArray>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cmbPodzanr">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="7">
+                    <StringItem index="0" value="Experimental"/>
+                    <StringItem index="1" value="Noise"/>
+                    <StringItem index="2" value="Futurism"/>
+                    <StringItem index="3" value="Drone"/>
+                    <StringItem index="4" value="Abstract"/>
+                    <StringItem index="5" value="Fusion"/>
+                    <StringItem index="6" value=" "/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cmbVrsta">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="LP"/>
+                    <StringItem index="1" value="EP"/>
+                    <StringItem index="2" value="Mixtape"/>
+                    <StringItem index="3" value="Kompilacija"/>
+                    <StringItem index="4" value="Singl"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

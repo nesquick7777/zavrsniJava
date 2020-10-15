@@ -6,10 +6,13 @@
 package hr.edunova.jp22.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
+import com.sun.source.tree.SwitchExpressionTree;
 import hr.edunova.jp22.controller.ObradaAlbum;
 import hr.edunova.jp22.model.Album;
 import hr.edunova.jp22.utility.EdunovaException;
 import hr.edunova.jp22.utility.StarRater;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -21,6 +24,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -47,6 +51,24 @@ public class Albumi extends javax.swing.JFrame {
         obrada = new ObradaAlbum();
        
         ucitajPodatke();
+        
+        cmbZanr.addActionListener (new ActionListener () {
+    public void actionPerformed(ActionEvent e) {
+        switch(cmbZanr.getItemCount()){
+        case 0:
+            cmbPodzanr.DefaultComboBoxModel = ("");
+             
+            cmbPodzanr.set;
+            break;
+        case 1:
+            
+            break;
+        default:
+            break;
+    }
+    }
+});
+        
     }
 
     /**
@@ -64,10 +86,7 @@ public class Albumi extends javax.swing.JFrame {
         lstAlbumi = new javax.swing.JList<>();
         jPanel = new javax.swing.JPanel();
         txtIme = new javax.swing.JTextField();
-        txtZanr = new javax.swing.JTextField();
-        txtPodzanr = new javax.swing.JTextField();
         txtIzdavackaK = new javax.swing.JTextField();
-        txtVrsta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -85,6 +104,9 @@ public class Albumi extends javax.swing.JFrame {
         starRater1 = new hr.edunova.jp22.utility.StarRater();
         txtTrajanje1 = new javax.swing.JTextField();
         txtTrajanje2 = new javax.swing.JTextField();
+        cmbZanr = new javax.swing.JComboBox<>();
+        cmbPodzanr = new javax.swing.JComboBox<>();
+        cmbVrsta = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Albumi");
@@ -180,6 +202,13 @@ public class Albumi extends javax.swing.JFrame {
 
         txtTrajanje2.setEditable(false);
 
+        cmbZanr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blues", "Metal", "Hip Hop", "Folk", "Jazz", "Industrial Music", "Pop", "Punk", "Rock", "Electronic", "Country", "Dance", "Classical Music", "Ambient" }));
+        cmbZanr.setToolTipText("");
+
+        cmbPodzanr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Experimental", "Noise", "Futurism", "Drone", "Abstract", "Fusion", " " }));
+
+        cmbVrsta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LP", "EP", "Mixtape", "Kompilacija", "Singl" }));
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
@@ -202,10 +231,7 @@ public class Albumi extends javax.swing.JFrame {
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(starRater1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtIme)
-                    .addComponent(txtZanr)
-                    .addComponent(txtPodzanr)
                     .addComponent(txtIzdavackaK)
-                    .addComponent(txtVrsta)
                     .addComponent(dpiDatumA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +249,10 @@ public class Albumi extends javax.swing.JFrame {
                                 .addComponent(txtTrajanje1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtTrajanje2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(cmbZanr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbPodzanr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbVrsta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,11 +274,11 @@ public class Albumi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtZanr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbZanr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPodzanr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbPodzanr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -257,7 +286,7 @@ public class Albumi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -336,10 +365,10 @@ public class Albumi extends javax.swing.JFrame {
         txtIme.setText(entitet.getIme());
         starRater1.setSelection(0);
         starRater1.setRating(entitet.getOcjena());
-        txtZanr.setText(entitet.getZanr());
-        txtPodzanr.setText(entitet.getPodzanr());
+        cmbZanr.setSelectedItem(entitet.getZanr());
+        cmbPodzanr.setSelectedItem(entitet.getPodzanr());
         txtIzdavackaK.setText(entitet.getIzdavackakuca());
-        txtVrsta.setText(entitet.getVrsta());
+        cmbVrsta.setSelectedItem(entitet.getVrsta());
         txtTrajanje.setText(entitet.getTrajanje().substring(0, 2));
         txtTrajanje1.setText(entitet.getTrajanje().substring(3, 5));
         txtTrajanje2.setText(entitet.getTrajanje().substring(6, 8));
@@ -406,6 +435,9 @@ public class Albumi extends javax.swing.JFrame {
     private javax.swing.JButton btnNazad;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
+    private javax.swing.JComboBox<String> cmbPodzanr;
+    private javax.swing.JComboBox<String> cmbVrsta;
+    private javax.swing.JComboBox<String> cmbZanr;
     private com.github.lgooddatepicker.components.DatePicker dpiDatumA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -423,12 +455,9 @@ public class Albumi extends javax.swing.JFrame {
     private hr.edunova.jp22.utility.StarRater starRater1;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtIzdavackaK;
-    private javax.swing.JTextField txtPodzanr;
     private javax.swing.JTextField txtTrajanje;
     private javax.swing.JTextField txtTrajanje1;
     private javax.swing.JTextField txtTrajanje2;
-    private javax.swing.JTextField txtVrsta;
-    private javax.swing.JTextField txtZanr;
     // End of variables declaration//GEN-END:variables
 
     private void ucitajPodatke() {
@@ -444,10 +473,10 @@ public class Albumi extends javax.swing.JFrame {
         starRater1.setRating(0);
         starRater1.setSelection(0);
         dpiDatumA.setDateToToday();
-        txtZanr.setText("");
-        txtPodzanr.setText("");
+        cmbZanr.setSelectedIndex(0);
+        cmbPodzanr.setSelectedIndex(0);
         txtIzdavackaK.setText("");
-        txtVrsta.setText("");
+        cmbVrsta.setSelectedIndex(0);
         txtTrajanje.setText("");
         txtTrajanje1.setText("");
         txtTrajanje2.setText("");
@@ -469,10 +498,10 @@ public class Albumi extends javax.swing.JFrame {
                     .atZone(ZoneId.systemDefault())
                     .toInstant()));
         }
-        entitet.setZanr(txtZanr.getText());
-        entitet.setPodzanr(txtPodzanr.getText());
+        entitet.setZanr((String)cmbZanr.getSelectedItem());
+        entitet.setPodzanr((String)cmbPodzanr.getSelectedItem());
         entitet.setIzdavackakuca(txtIzdavackaK.getText());
-        entitet.setVrsta(txtVrsta.getText());
+        entitet.setVrsta((String)cmbVrsta.getSelectedItem());
 
         obrada.setEntitet(entitet);
 
