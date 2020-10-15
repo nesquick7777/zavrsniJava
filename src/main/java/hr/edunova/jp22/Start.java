@@ -20,13 +20,12 @@ import javax.swing.JPanel;
 public class Start {
 
     public static void main(String[] args) {
-      //  PocetniInsert.izvedi();
-      // PocetniInsert.adminOperater();
+        PocetniInsert.izvedi();
+        PocetniInsert.adminOperater();
         // HibernateUtil.getSessionFactory().openSession();
-        Autorizacija autorizacija = new Autorizacija();
-        autorizacija.setLocationRelativeTo(null);
+        // Autorizacija autorizacija = new Autorizacija();
+        // autorizacija.setLocationRelativeTo(null);
 
-        autorizacija.setVisible(true);
-
+        // autorizacija.setVisible(true);
     }
 }

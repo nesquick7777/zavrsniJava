@@ -449,13 +449,21 @@ public class Albumi extends javax.swing.JFrame {
         txtIzdavackaK.setText("");
         txtVrsta.setText("");
         txtTrajanje.setText("");
+        txtTrajanje1.setText("");
+        txtTrajanje2.setText("");
     }
 
     private void postaviVrijednostiUEntitet() throws ParseException {
  
 
         entitet.setIme(txtIme.getText());
-        entitet.setOcjena(starRater1.getSelection());
+        
+        if(starRater1.getSelection() == 0){
+          entitet.setOcjena(entitet.getOcjena());  
+        }
+        else{
+            entitet.setOcjena(starRater1.getSelection());
+        }
         if (dpiDatumA.getDate() != null) {
             entitet.setDatumalbuma(Date.from(dpiDatumA.getDate().atStartOfDay()
                     .atZone(ZoneId.systemDefault())
@@ -465,7 +473,6 @@ public class Albumi extends javax.swing.JFrame {
         entitet.setPodzanr(txtPodzanr.getText());
         entitet.setIzdavackakuca(txtIzdavackaK.getText());
         entitet.setVrsta(txtVrsta.getText());
-        entitet.setTrajanje(txtTrajanje.getText());
 
         obrada.setEntitet(entitet);
 

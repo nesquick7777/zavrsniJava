@@ -214,7 +214,34 @@ public class PocetniInsert {
         // Tell Java to use your special stream
         System.setOut(ps);
         // Print some output: goes to your special stream
-        System.out.printf("%d:%d:%d", br1, br2, br3);
+        String bro1=Integer.toString(br1);
+        String bro2=Integer.toString(br2);
+        String bro3=Integer.toString(br3);
+        
+        if(bro1.length() == 1){
+            bro1="0" + bro1;
+        }
+        else{
+            bro1=bro1;
+        }
+        if(bro2.length() == 1){
+            bro2="0" + bro2;
+        }
+        else{
+            bro2=bro2;
+        }
+        if(bro3.length() == 1){
+            bro3="0" + bro3;
+        }
+        else{
+            bro3=bro3;
+        }
+        
+        if(bro1.length() > 2){
+            bro1 = "99";
+        }
+        
+        System.out.printf(bro1 + ":" + bro2 + ":" + bro3);
         // Put things back
         System.out.flush();
         System.setOut(old);

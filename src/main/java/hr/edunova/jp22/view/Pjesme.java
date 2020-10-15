@@ -8,6 +8,7 @@ package hr.edunova.jp22.view;
 import hr.edunova.jp22.controller.ObradaPjesma;
 import hr.edunova.jp22.model.Pjesma;
 import hr.edunova.jp22.utility.EdunovaException;
+import static hr.edunova.jp22.utility.PocetniInsert.duzina;
 import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 import java.text.DateFormat;
@@ -40,7 +41,7 @@ public class Pjesme extends javax.swing.JFrame {
         txtTrajanje.setDocument(new JTextFieldLimit(2));
         txtTrajanje2.setDocument(new JTextFieldLimit(2));
         txtTrajanje1.setDocument(new JTextFieldLimit(2));
-        
+
     }
 
     /**
@@ -354,23 +355,23 @@ public class Pjesme extends javax.swing.JFrame {
 
     private void txtTrajanjeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrajanjeKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||c==KeyEvent.VK_DELETE )){
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
             getToolkit().beep();
             evt.consume();
         }
     }//GEN-LAST:event_txtTrajanjeKeyTyped
 
     private void txtTrajanje1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrajanje1KeyTyped
-         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||c==KeyEvent.VK_DELETE )){
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
             getToolkit().beep();
             evt.consume();
         }
     }//GEN-LAST:event_txtTrajanje1KeyTyped
 
     private void txtTrajanje2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrajanje2KeyTyped
-         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||c==KeyEvent.VK_DELETE )){
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
             getToolkit().beep();
             evt.consume();
         }
@@ -413,14 +414,29 @@ public class Pjesme extends javax.swing.JFrame {
 
     private void postaviVrijednostiUEntitet() {
         entitet.setIme(txtIme.getText());
-        if(txtTrajanje.getText().length() == 2 && txtTrajanje1.getText().length() == 2 && txtTrajanje2.getText().length() == 2){
-        entitet.setTrajanje(txtTrajanje.getText() + ":" + txtTrajanje1.getText() + ":" + txtTrajanje2.getText());
-        }
-        else{
-            System.out.println("Morate unijeti 2 broja u svaki kvadratic!");
-            return;
-        }
-        
+
+        String broj1 = txtTrajanje.getText();
+        String broj2 = txtTrajanje1.getText();
+        String broj3 = txtTrajanje2.getText();
+
+        int zbrojS1 = 0;
+        int br1 = Integer.parseInt(broj1);
+        int br2 = Integer.parseInt(broj2);
+        int br3 = Integer.parseInt(broj3);
+
+        int br4 = br1;
+        br1 = br2;
+        br2 = br3 / 10;
+        br3 = br3 % 10;
+        zbrojS1 += (br4 * 60 * 60) + (br1 * 60) + (br2 * 10) + br3;
+
+        int p1 = zbrojS1 % 60;
+        int p2 = zbrojS1 / 60;
+        int p3 = p2 % 60;
+        p2 = p2 / 60;
+        String duzinaT = duzina(p2, p3, p1);
+
+        entitet.setTrajanje(duzinaT);
         obrada.setEntitet(entitet);
 
     }
