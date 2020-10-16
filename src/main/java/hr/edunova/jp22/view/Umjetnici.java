@@ -44,6 +44,8 @@ public class Umjetnici extends javax.swing.JFrame {
         lstUmjetnik.setCellRenderer(new UmjetniciCellRenderer());
         obrada = new ObradaUmjetnik();
         ucitajPodatke();
+        txtIme.setDocument(new JTextFieldLimit(50));
+        txtMjesto.setDocument(new JTextFieldLimit(50));
     }
 
     /**
@@ -74,8 +76,8 @@ public class Umjetnici extends javax.swing.JFrame {
         btnObrisi = new javax.swing.JButton();
         dpiDatumP = new com.github.lgooddatepicker.components.DatePicker();
         dpiDatumK = new com.github.lgooddatepicker.components.DatePicker();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbZanr = new javax.swing.JComboBox<>();
+        cmbPodzanr = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Umjetnici");
@@ -158,9 +160,7 @@ public class Umjetnici extends javax.swing.JFrame {
 
         dpiDatumK.setBackground(new java.awt.Color(0, 0, 153));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbZanr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blues", "Metal", "Hip Hop", "Folk", "Jazz", "Pop", "Punk", "Rock", "EDM", "Country", "Classical Music" }));
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
@@ -184,8 +184,8 @@ public class Umjetnici extends javax.swing.JFrame {
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbPodzanr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbZanr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(dpiDatumP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtMjesto)
                             .addComponent(txtIme)
@@ -213,11 +213,11 @@ public class Umjetnici extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbZanr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbPodzanr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addComponent(jLabel5)
                 .addGap(7, 7, 7)
@@ -304,8 +304,8 @@ public class Umjetnici extends javax.swing.JFrame {
         }
 
         txtIme.setText(entitet.getIme());
-        txtZanr.setText(entitet.getZanr());
-        txtPodzanr.setText(entitet.getPodzanr());
+        //txtZanr.setText(entitet.getZanr());
+        //txtPodzanr.setText(entitet.getPodzanr());
         txtMjesto.setText(entitet.getMjesto());
     }//GEN-LAST:event_lstUmjetnikValueChanged
 
@@ -368,10 +368,10 @@ public class Umjetnici extends javax.swing.JFrame {
     private javax.swing.JButton btnNazad;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
+    private javax.swing.JComboBox<String> cmbPodzanr;
+    private javax.swing.JComboBox<String> cmbZanr;
     private com.github.lgooddatepicker.components.DatePicker dpiDatumK;
     private com.github.lgooddatepicker.components.DatePicker dpiDatumP;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -397,8 +397,8 @@ public class Umjetnici extends javax.swing.JFrame {
 
     private void ocistiPolja() {
         txtIme.setText("");
-        txtZanr.setText("");
-        txtPodzanr.setText("");
+        //txtZanr.setText("");
+        //txtPodzanr.setText("");
         txtMjesto.setText("");
         dpiDatumP.setDateToToday();
         dpiDatumK.setDateToToday();
@@ -408,8 +408,8 @@ public class Umjetnici extends javax.swing.JFrame {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         entitet.setIme(txtIme.getText());
-        entitet.setZanr(txtZanr.getText());
-        entitet.setPodzanr(txtPodzanr.getText());
+       // entitet.setZanr(txtZanr.getText());
+       // entitet.setPodzanr(txtPodzanr.getText());
         entitet.setMjesto(txtMjesto.getText());
         if (dpiDatumP.getDate() != null) {
             entitet.setDatumpocetka(Date.from(dpiDatumP.getDate().atStartOfDay()

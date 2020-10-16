@@ -34,16 +34,22 @@ public class Clanovi extends javax.swing.JFrame {
     public Clanovi() {
         initComponents();
         lstClanovi.setCellRenderer(new ClanCellRenderer());
-        
+
         DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
         DatePickerSettings dps1 = new DatePickerSettings(new Locale("hr", "HR"));
         dps.setFormatForDatesCommonEra("yyyy-MM-dd");
         dps1.setFormatForDatesCommonEra("yyyy-MM-dd");
         dpiDatumR.setSettings(dps);
         dpiDatumP.setSettings(dps1);
-        
+
         obrada = new ObradaClan();
         ucitajPodatke();
+        txtIme.setDocument(new JTextFieldLimit(50));
+        txtPrezime.setDocument(new JTextFieldLimit(50));
+        txtMjestoR.setDocument(new JTextFieldLimit(50));
+        txtMjestoP.setDocument(new JTextFieldLimit(50));
+        txtBiljeske.setDocument(new JTextFieldLimit(255));
+
     }
 
     /**
@@ -85,8 +91,8 @@ public class Clanovi extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
         jPanel2.setForeground(new java.awt.Color(51, 102, 255));
 
-        btnNazad.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnNazad.setText("Idi nazad");
+        btnNazad.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnNazad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNazadActionPerformed(evt);
@@ -104,56 +110,56 @@ public class Clanovi extends javax.swing.JFrame {
 
         jPanel.setBackground(new java.awt.Color(0, 0, 153));
 
+        jLabel1.setText("Podatci:");
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Podatci:");
 
+        jLabel2.setText("Ime:");
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Ime:");
 
+        jLabel3.setText("Prezime:");
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Prezime:");
 
+        jLabel4.setText("Mjesto rođenja:");
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Mjesto rođenja:");
 
+        jLabel5.setText("Mjesto preminuća:");
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Mjesto preminuća:");
 
+        jLabel6.setText("Datum preminuća:");
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Datum preminuća:");
 
+        jLabel7.setText("Datum rođenja:");
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Datum rođenja:");
 
+        jLabel8.setText("Bilješke(Opcionalno):");
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Bilješke:");
 
-        btnDodaj.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnDodaj.setText("Dodaj");
+        btnDodaj.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDodajActionPerformed(evt);
             }
         });
 
-        btnPromjeni.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnPromjeni.setText("Promjeni");
+        btnPromjeni.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnPromjeni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPromjeniActionPerformed(evt);
             }
         });
 
-        btnObrisi.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnObrisi.setText("Obriši");
+        btnObrisi.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnObrisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnObrisiActionPerformed(evt);
@@ -198,7 +204,7 @@ public class Clanovi extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(dpiDatumP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -290,24 +296,24 @@ public class Clanovi extends javax.swing.JFrame {
         if (evt.getValueIsAdjusting()) {
             return;
         }
-        
+
         entitet = lstClanovi.getSelectedValue();
         if (entitet == null) {
             return;
         }
 
-        if (entitet.getDatumr()!= null) {
+        if (entitet.getDatumr() != null) {
             dpiDatumR.setDate(entitet.getDatumr().toInstant()
                     .atZone(ZoneId.systemDefault())
                     .toLocalDate());
         }
-         
-         if (entitet.getDatump()!= null) {
+
+        if (entitet.getDatump() != null) {
             dpiDatumP.setDate(entitet.getDatump().toInstant()
                     .atZone(ZoneId.systemDefault())
                     .toLocalDate());
         }
-        
+
         txtIme.setText(entitet.getIme());
         txtPrezime.setText(entitet.getPrezime());
         txtMjestoR.setText(entitet.getMjestor());
