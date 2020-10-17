@@ -66,5 +66,7 @@ public class ObradaPjesma extends Obrada<Pjesma> {
             throw new EdunovaException(" Ime ne smije sadržavati više od 50 znakova. ");
         }
     }
+    
+    
 
 }

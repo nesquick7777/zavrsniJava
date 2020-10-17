@@ -47,8 +47,8 @@ public class PocetniInsert {
         }
         
         Faker faker = new Faker();
-        String[] zanr = {"Rock", "Pop", "Country", "Metal", "Blues", "EDM", "Punk", "Jazz", "Hip Hop", "Soul"};
-        String[] podZanr = {"Alternative", "Post", "Experimental", "Fusion", "Parody"};
+        String[] zanr = {"Rock", "Country", "Metal", "Pop"};
+        String[] podZanr = {"Progressive"};
 
         session.beginTransaction();   //START
 
@@ -221,15 +221,18 @@ public class PocetniInsert {
         if(bro1.length() == 1){
             bro1="0" + bro1;
         }
+        
         else{
             bro1=bro1;
         }
+        
         if(bro2.length() == 1){
             bro2="0" + bro2;
         }
         else{
             bro2=bro2;
         }
+        
         if(bro3.length() == 1){
             bro3="0" + bro3;
         }
@@ -239,6 +242,10 @@ public class PocetniInsert {
         
         if(bro1.length() > 2){
             bro1 = "99";
+        }
+        
+        if("00".equals(bro1) && "00".equals(bro2) && "00".equals(bro3)){
+            bro3="01";
         }
         
         System.out.printf(bro1 + ":" + bro2 + ":" + bro3);

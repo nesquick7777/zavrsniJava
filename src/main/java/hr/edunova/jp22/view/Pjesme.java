@@ -330,10 +330,10 @@ public class Pjesme extends javax.swing.JFrame {
 
         } catch (EdunovaException e) {
         }
-        
+
         List<Album> m = new ArrayList<Album>();
         obradaA.getPodaci().forEach(s -> m.add(s));
-        
+
         for (int i = 0; i < m.size(); i++) {
             entitetA = m.get(i);
             List<Pjesma> n = new ArrayList<Pjesma>();
@@ -463,11 +463,24 @@ public class Pjesme extends javax.swing.JFrame {
 
     private void postaviVrijednostiUEntitet() {
         entitet.setIme(txtIme.getText());
-
-        String broj1 = txtTrajanje.getText();
-        String broj2 = txtTrajanje1.getText();
-        String broj3 = txtTrajanje2.getText();
-
+        String broj1 = "0";
+        String broj2 = "0";
+        String broj3 = "0";
+        if (txtTrajanje.getText().isEmpty()) {
+            broj1 = "0";
+        } else {
+            broj1 = txtTrajanje.getText();
+        }
+        if (txtTrajanje1.getText().isEmpty()) {
+            broj2 = "0";
+        } else {
+            broj2 = txtTrajanje1.getText();
+        }
+        if (txtTrajanje2.getText().isEmpty()) {
+            broj3 = "0";
+        } else {
+            broj3 = txtTrajanje2.getText();
+        }
         int zbrojS1 = 0;
         int br1 = Integer.parseInt(broj1);
         int br2 = Integer.parseInt(broj2);
