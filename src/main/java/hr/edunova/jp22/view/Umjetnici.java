@@ -21,6 +21,7 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -325,7 +326,7 @@ public class Umjetnici extends javax.swing.JFrame {
             ucitajPodatke();
             ocistiPolja();
         } catch (EdunovaException ex) {
-
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
 
     }//GEN-LAST:event_btnDodajActionPerformed
@@ -347,7 +348,8 @@ public class Umjetnici extends javax.swing.JFrame {
             ucitajPodatke();
             ocistiPolja();
 
-        } catch (EdunovaException e) {
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
@@ -363,7 +365,8 @@ public class Umjetnici extends javax.swing.JFrame {
             obrada.delete();
             ucitajPodatke();
             ocistiPolja();
-        } catch (EdunovaException e) {
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
@@ -429,8 +432,7 @@ public class Umjetnici extends javax.swing.JFrame {
         obrada.setEntitet(entitet);
 
     }
-    
-    
+
     public void grananjePodzanra() {
 
         cmbZanr.addActionListener(new ActionListener() {
@@ -438,67 +440,67 @@ public class Umjetnici extends javax.swing.JFrame {
                 switch (cmbZanr.getItemAt(cmbZanr.getSelectedIndex())) {
                     case "Blues":
                         String[] array1 = {"Soul", "Piano", "Acoustic", "Boogie Woogie", "Vaudeville", "Jump", "Chicago",
-                                           "Swamp"};
+                            "Swamp"};
                         DefaultComboBoxModel model1 = new DefaultComboBoxModel(array1);
                         cmbPodzanr.setModel(model1);
                         break;
                     case "Metal":
-                        String[] array2 = {"Doom", "Heavy", "Industrial", "Power", "Stoner", "Sludge", "Grindcore", "Death", 
-                                           "Progressive", "Speed", "Symphonic", "Neoclassical", "Metalcore", "Drone"};
+                        String[] array2 = {"Doom", "Heavy", "Industrial", "Power", "Stoner", "Sludge", "Grindcore", "Death",
+                            "Progressive", "Speed", "Symphonic", "Neoclassical", "Metalcore", "Drone"};
                         DefaultComboBoxModel model2 = new DefaultComboBoxModel(array2);
                         cmbPodzanr.setModel(model2);
                         break;
                     case "Hip Hop":
                         String[] array3 = {"Abstract", "Trap", "East Coast", "Conscious", "Experimental", "Bounce", "Cloud Rap",
-                                            "Instrumental", "Southern", "West Coast", "Conscious", "UK", "Memphis Rap", "Hardcore"};
+                            "Instrumental", "Southern", "West Coast", "Conscious", "UK", "Memphis Rap", "Hardcore"};
                         DefaultComboBoxModel model3 = new DefaultComboBoxModel(array3);
                         cmbPodzanr.setModel(model3);
                         break;
                     case "Folk":
                         String[] array4 = {"Traditional", "Contemporary", "Bard Music", "Baroque", "American Primitivism", "Neofolk",
-                                            "Dark", "Throat Singing"};
+                            "Dark", "Throat Singing"};
                         DefaultComboBoxModel model4 = new DefaultComboBoxModel(array4);
                         cmbPodzanr.setModel(model4);
                         break;
                     case "Jazz":
                         String[] array5 = {"Acid", "Avant Garde", "Gypsy", "Fusion", "Swing", "Soul", "Post Bop", "Spiritual",
-                                           "Revival", "Free", "Flamenco"};
+                            "Revival", "Free", "Flamenco"};
                         DefaultComboBoxModel model5 = new DefaultComboBoxModel(array5);
                         cmbPodzanr.setModel(model5);
                         break;
                     case "Pop":
                         String[] array6 = {"Synthpop", "Psychedelic", "Progressive", "J Pop", "Indie", "Bubblegum", "Art", "Bitpop",
-                                            "Boy Band"};
+                            "Boy Band"};
                         DefaultComboBoxModel model6 = new DefaultComboBoxModel(array6);
                         cmbPodzanr.setModel(model6);
                         break;
                     case "Punk":
                         String[] array7 = {"Post Hardcore", "Emo", "Post", "Proto", "Art", "Digital Hardcore", "Screamo", "Coldwave",
-                                            "Ska", "Skate", "Riot Grrrl"};
+                            "Ska", "Skate", "Riot Grrrl"};
                         DefaultComboBoxModel model7 = new DefaultComboBoxModel(array7);
                         cmbPodzanr.setModel(model7);
                         break;
                     case "Rock":
                         String[] array8 = {"Alternative", "Comedy", "Emo", "Hard", "Glam", "Garage", "Math", "New Wave", "Indie",
-                                      "Noise", "Post", "Progressive", "Psychedelic", "Rap", "Opera", "Surf", "Symphonic", "Rock and Roll"};
+                            "Noise", "Post", "Progressive", "Psychedelic", "Rap", "Opera", "Surf", "Symphonic", "Rock and Roll"};
                         DefaultComboBoxModel model8 = new DefaultComboBoxModel(array8);
                         cmbPodzanr.setModel(model8);
                         break;
                     case "EDM":
                         String[] array9 = {"Electropop", "Glitch", "Grime", "IDM", "Disco", "Folktronica", "Nu Jazz", "Vaportrap",
-                                           "Wave", "Nightcore"};
+                            "Wave", "Nightcore"};
                         DefaultComboBoxModel model9 = new DefaultComboBoxModel(array9);
                         cmbPodzanr.setModel(model9);
                         break;
                     case "Country":
-                        String[] array10 = {"Americana", "Honky Tonk", "Western Swing", "Contemporary", "Traditional", 
-                                            "Alt", "Progressive"};
+                        String[] array10 = {"Americana", "Honky Tonk", "Western Swing", "Contemporary", "Traditional",
+                            "Alt", "Progressive"};
                         DefaultComboBoxModel model10 = new DefaultComboBoxModel(array10);
                         cmbPodzanr.setModel(model10);
                         break;
                     case "Classical Music":
-                        String[] array11 = {"Modern", "Pibroch", "Slashmaqam", "Cinematic", "Western", "Latin", "Brazilian", 
-                                            "Arabic", "Asian", "Persian"};
+                        String[] array11 = {"Modern", "Pibroch", "Slashmaqam", "Cinematic", "Western", "Latin", "Brazilian",
+                            "Arabic", "Asian", "Persian"};
                         DefaultComboBoxModel model11 = new DefaultComboBoxModel(array11);
                         cmbPodzanr.setModel(model11);
                         break;

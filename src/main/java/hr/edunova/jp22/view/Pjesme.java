@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 
@@ -311,7 +312,7 @@ public class Pjesme extends javax.swing.JFrame {
             ucitajPodatke();
             ocistiPolja();
         } catch (EdunovaException ex) {
-
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
 
     }//GEN-LAST:event_btnDodajActionPerformed
@@ -328,7 +329,8 @@ public class Pjesme extends javax.swing.JFrame {
             obrada.update();
             ucitajPodatke();
 
-        } catch (EdunovaException e) {
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
 
         List<Album> m = new ArrayList<Album>();
@@ -386,7 +388,8 @@ public class Pjesme extends javax.swing.JFrame {
             obrada.delete();
             ucitajPodatke();
             ocistiPolja();
-        } catch (EdunovaException e) {
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 

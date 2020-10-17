@@ -18,6 +18,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -242,10 +243,12 @@ public class PocetniInsert {
         
         if(bro1.length() > 2){
             bro1 = "99";
+            JOptionPane.showMessageDialog(null, " Prekoračili ste limit duzine trajanja albuma od 99 sata, postavljena maksimalna vrijednost. ");
         }
         
         if("00".equals(bro1) && "00".equals(bro2) && "00".equals(bro3)){
             bro3="01";
+            JOptionPane.showMessageDialog(null, "Niste unijeli duzinu trajanja pjesme, postavljena minimalna vrijednost.");
         }
         
         System.out.printf(bro1 + ":" + bro2 + ":" + bro3);

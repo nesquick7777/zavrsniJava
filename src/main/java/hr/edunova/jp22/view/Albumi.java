@@ -25,6 +25,7 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -366,7 +367,7 @@ public class Albumi extends javax.swing.JFrame {
             ucitajPodatke();
             ocistiPolja();
         } catch (EdunovaException ex) {
-
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
 
     }//GEN-LAST:event_btnDodajActionPerformed
@@ -388,7 +389,8 @@ public class Albumi extends javax.swing.JFrame {
             ucitajPodatke();
             ocistiPolja();
 
-        } catch (EdunovaException e) {
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
@@ -404,7 +406,8 @@ public class Albumi extends javax.swing.JFrame {
             obrada.delete();
             ucitajPodatke();
             ocistiPolja();
-        } catch (EdunovaException e) {
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 

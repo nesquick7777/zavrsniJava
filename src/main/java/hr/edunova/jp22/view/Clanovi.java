@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -333,7 +334,7 @@ public class Clanovi extends javax.swing.JFrame {
             ucitajPodatke();
             ocistiPolja();
         } catch (EdunovaException ex) {
-
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
 
     }//GEN-LAST:event_btnDodajActionPerformed
@@ -355,7 +356,8 @@ public class Clanovi extends javax.swing.JFrame {
             ucitajPodatke();
             ocistiPolja();
 
-        } catch (EdunovaException e) {
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
@@ -371,7 +373,8 @@ public class Clanovi extends javax.swing.JFrame {
             obrada.delete();
             ucitajPodatke();
             ocistiPolja();
-        } catch (EdunovaException e) {
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
