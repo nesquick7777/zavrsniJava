@@ -5,7 +5,9 @@
  */
 package hr.edunova.jp22.view;
 
+import hr.edunova.jp22.controller.ObradaAlbum;
 import hr.edunova.jp22.controller.ObradaPjesma;
+import hr.edunova.jp22.model.Album;
 import hr.edunova.jp22.model.Pjesma;
 import hr.edunova.jp22.utility.EdunovaException;
 import static hr.edunova.jp22.utility.PocetniInsert.duzina;
@@ -14,11 +16,14 @@ import javax.swing.DefaultListModel;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 
 /**
  *
@@ -27,7 +32,9 @@ import javax.swing.JTextField;
 public class Pjesme extends javax.swing.JFrame {
 
     private ObradaPjesma obrada;
+    private ObradaAlbum obradaA;
     private Pjesma entitet;
+    private Album entitetA;
 
     /**
      * Creates new form Pjesma
@@ -36,6 +43,7 @@ public class Pjesme extends javax.swing.JFrame {
         initComponents();
         lstPjesme.setCellRenderer(new PjesmaCellRenderer());
         obrada = new ObradaPjesma();
+        obradaA = new ObradaAlbum();
         ucitajPodatke();
         txtIme.setDocument(new JTextFieldLimit(50));
         txtTrajanje.setDocument(new JTextFieldLimit(2));
@@ -319,10 +327,51 @@ public class Pjesme extends javax.swing.JFrame {
         try {
             obrada.update();
             ucitajPodatke();
-            ocistiPolja();
 
         } catch (EdunovaException e) {
         }
+        
+        List<Album> m = new ArrayList<Album>();
+        obradaA.getPodaci().forEach(s -> m.add(s));
+        
+        for (int i = 0; i < m.size(); i++) {
+            entitetA = m.get(i);
+            List<Pjesma> n = new ArrayList<Pjesma>();
+            n = entitetA.getPjesme();
+            int zbrojS1 = 0;
+            for (int j = 0; j < entitetA.getPjesme().size(); j++) {
+                entitet = n.get(j);
+
+                String broj1 = entitet.getTrajanje().substring(0, 2);
+                String broj2 = entitet.getTrajanje().substring(3, 5);
+                String broj3 = entitet.getTrajanje().substring(6, 8);
+                int br1 = Integer.parseInt(broj1);
+                int br2 = Integer.parseInt(broj2);
+                int br3 = Integer.parseInt(broj3);
+
+                int br4 = br1;
+                br1 = br2;
+                br2 = br3 / 10;
+                br3 = br3 % 10;
+                zbrojS1 += (br4 * 60 * 60) + (br1 * 60) + (br2 * 10) + br3;
+            }
+
+            int p1 = zbrojS1 % 60;
+            int p2 = zbrojS1 / 60;
+            int p3 = p2 % 60;
+            p2 = p2 / 60;
+            String duzinaT = duzina(p2, p3, p1);
+            entitetA.setTrajanje(duzinaT);
+            obradaA.setEntitet(entitetA);
+
+            try {
+                obradaA.update();
+            } catch (EdunovaException e) {
+                System.out.println(e.getPoruka());
+            }
+        }
+        obradaA = new ObradaAlbum();
+        ocistiPolja();
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
@@ -434,9 +483,9 @@ public class Pjesme extends javax.swing.JFrame {
         int p2 = zbrojS1 / 60;
         int p3 = p2 % 60;
         p2 = p2 / 60;
-        String duzinaT = duzina(p2, p3, p1);
+        String duzinaTr = duzina(p2, p3, p1);
 
-        entitet.setTrajanje(duzinaT);
+        entitet.setTrajanje(duzinaTr);
         obrada.setEntitet(entitet);
 
     }

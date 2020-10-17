@@ -627,7 +627,7 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         obradaA.setEntitet(entitetA);
         try {
             obradaA.update();
-            ucitajPodatkeU();
+            ucitajPodatkeA();
 
         } catch (EdunovaException e) {
             System.out.println(e.getPoruka());
