@@ -41,12 +41,16 @@ public class ObradaClan extends Obrada<Clan> {
     protected void kontrolaCreate() throws EdunovaException {
         kontrolaIme();
         kontrolaPrezime();
+        kontrolaMjesto();
+        kontrolaBiljeske();
     }
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
         kontrolaIme();
         kontrolaPrezime();
+        kontrolaMjesto();
+        kontrolaBiljeske();
     }
 
     @Override
@@ -75,6 +79,34 @@ public class ObradaClan extends Obrada<Clan> {
         }
         if (entitet.getPrezime().length() > 50) {
             throw new EdunovaException(" Prezime ne smije sadržavati više od 50 znakova. ");
+        }
+    }
+    
+    
+    private void kontrolaMjesto() throws EdunovaException {
+        if (entitet.getMjestor()== null || entitet.getMjestop()== null) {
+            throw new EdunovaException(
+            entitet.getMjestor()== null ? " Mjesto rođenja nije definirano. " :
+                                          " Mjesto preminuća nije definirano.  ");
+        }
+        if (entitet.getMjestor().isEmpty() || entitet.getMjestop().isEmpty()) {
+            throw new EdunovaException(
+            entitet.getMjestor().isEmpty() ? " Mjesto rođenja ne smije biti prazno. " :
+                                             " Mjesto preminuća ne smije biti prazno. ");
+        }
+        if (entitet.getMjestor().length() > 50 || entitet.getMjestop().length() > 50) {
+            throw new EdunovaException(
+            entitet.getMjestor().length() > 50 ? " Mjesto rođenja ne smije sadržavati više od 50 znakova. " :
+                                                 " Mjesto preminuća ne smije sadržavati više od 50 znakova. ");
+        }
+    }
+    
+    private void kontrolaBiljeske() throws EdunovaException {
+        if (entitet.getBiljeske()== null) {
+            throw new EdunovaException(" Biljeske nisu definirane! ");
+        }
+        if (entitet.getBiljeske().length() > 255) {
+            throw new EdunovaException(" Biljeske ne smiju sadržavati više od 255 znakova. ");
         }
     }
 }

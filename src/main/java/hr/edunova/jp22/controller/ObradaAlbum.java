@@ -41,12 +41,14 @@ public class ObradaAlbum extends Obrada<Album> {
     protected void kontrolaCreate() throws EdunovaException {
         kontrolaIme();
         kotrolaOcjena();
+        kontrolaIzdavackaKuca();
     }
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
         kontrolaIme();
         kotrolaOcjena();
+        kontrolaIzdavackaKuca();
     }
 
     @Override
@@ -73,6 +75,18 @@ public class ObradaAlbum extends Obrada<Album> {
 
         if (entitet.getOcjena() > 10 && entitet.getOcjena() <= 0) {
             throw new EdunovaException(" Ocjena mora biti u rasponu od 1 do 10! ");
+        }
+    }
+    
+    private void kontrolaIzdavackaKuca() throws EdunovaException {
+        if (entitet.getIzdavackakuca()== null) {
+            throw new EdunovaException(" Izdavacka kuca nije definirana! ");
+        }
+        if (entitet.getIzdavackakuca().isEmpty()) {
+            throw new EdunovaException(" Morate unijeti izdavacku kucu! ");
+        }
+        if (entitet.getIzdavackakuca().length() > 50) {
+            throw new EdunovaException(" Izdavacka kuca ne smije sadržavati više od 50 znakova. ");
         }
     }
 }

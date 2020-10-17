@@ -31,11 +31,13 @@ public class ObradaUmjetnik extends Obrada<Umjetnik> {
     @Override
     protected void kontrolaCreate() throws EdunovaException {
         kontrolaIme();
+        kontrolaMjesto();
     }
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
          kontrolaIme();
+         kontrolaMjesto();
     }
 
     @Override
@@ -52,6 +54,18 @@ public class ObradaUmjetnik extends Obrada<Umjetnik> {
         }
         if (entitet.getIme().length() > 50) {
             throw new EdunovaException(" Ime ne smije sadržavati više od 50 znakova. ");
+        }
+    }
+    
+    private void kontrolaMjesto() throws EdunovaException {
+        if (entitet.getMjesto()== null) {
+            throw new EdunovaException(" Mjeesto nije definirano! ");
+        }
+        if (entitet.getMjesto().isEmpty()) {
+            throw new EdunovaException(" Morate unijeti mjesto! ");
+        }
+        if (entitet.getMjesto().length() > 50) {
+            throw new EdunovaException(" Mjesto ne smije sadržavati više od 50 znakova. ");
         }
     }
 }
