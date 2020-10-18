@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -545,8 +546,11 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         pnlGlavni.setLayout(pnlGlavniLayout);
         pnlGlavniLayout.setHorizontalGroup(
             pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(brnNazad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnlGlavniLayout.createSequentialGroup()
+                .addGroup(pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(brnNazad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         pnlGlavniLayout.setVerticalGroup(
             pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -554,18 +558,18 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
                 .addComponent(tabSpajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(brnNazad)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGlavni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 878, Short.MAX_VALUE)
+            .addComponent(pnlGlavni, javax.swing.GroupLayout.PREFERRED_SIZE, 869, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+            .addComponent(pnlGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
         );
 
         pack();
@@ -591,31 +595,31 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     private void btnPrimjeniAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniAPActionPerformed
         entitetA = lstGlavniAlbumP.getSelectedValue();
         if (entitetA == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali album.");
             return;
         }
-        
+
         entitetA.setPjesme(new ArrayList<>());
         int zbrojS1 = 0;
         DefaultListModel<Pjesma> m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
         for (int i = 0; i < m.size(); i++) {
             entitetP = m.getElementAt(i);
-            
+
             String broj1 = entitetP.getTrajanje().substring(0, 2);
             String broj2 = entitetP.getTrajanje().substring(3, 5);
             String broj3 = entitetP.getTrajanje().substring(6, 8);
-                     
+
             int br1 = Integer.parseInt(broj1);
             int br2 = Integer.parseInt(broj2);
             int br3 = Integer.parseInt(broj3);
-            
+
             int br4 = br1;
             br1 = br2;
-            br2 = br3/10;
+            br2 = br3 / 10;
             br3 = br3 % 10;
-            zbrojS1 +=(br4* 60*60) + (br1 * 60) + (br2 * 10) + br3;
+            zbrojS1 += (br4 * 60 * 60) + (br1 * 60) + (br2 * 10) + br3;
             entitetA.getPjesme().add(m.getElementAt(i));
         }
-        
 
         int p1 = zbrojS1 % 60;
         int p2 = zbrojS1 / 60;
@@ -687,6 +691,8 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
             }
             if (!postoji) {
                 m.addElement(p);
+            }else{
+                JOptionPane.showMessageDialog(null, "Pjesma je već pridružena.");
             }
 
         }
@@ -713,6 +719,7 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     private void btnPrimjeniUAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniUAActionPerformed
         entitetU = lstGlavniUmjetnikA.getSelectedValue();
         if (entitetU == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali umjetnika.");
             return;
         }
 
@@ -785,6 +792,8 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
             }
             if (!postoji) {
                 m.addElement(p);
+            }else{
+                JOptionPane.showMessageDialog(null, "Album je već pridružen.");
             }
 
         }
@@ -809,8 +818,10 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }//GEN-LAST:event_lstGlavniUmjetnikCValueChanged
 
     private void btnPrimjeniUCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimjeniUCActionPerformed
+
         entitetU = lstGlavniUmjetnikC.getSelectedValue();
         if (entitetU == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali umjetnika.");
             return;
         }
 
@@ -883,7 +894,10 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
             }
             if (!postoji) {
                 m.addElement(p);
+            }else{
+                JOptionPane.showMessageDialog(null, "Član je već pridružen.");
             }
+            
 
         }
         lstPridruzenClan.repaint();
@@ -1007,6 +1021,9 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         obradaC.getPodaci(txtTraziClan.getText()).forEach(s -> m.addElement(s));
 
         lstTraziClan.setModel(m);
+        if (lstTraziClan.getModel().getSize() == 0) {
+            JOptionPane.showMessageDialog(null, "Nije pronađen niti jedan član.");
+        }
     }
 
     private void ucitajPjesme() {
@@ -1015,6 +1032,9 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         obradaP.getPodaci(txtTraziPjesma.getText()).forEach(s -> m.addElement(s));
 
         lstTraziPjesma.setModel(m);
+        if (lstTraziPjesma.getModel().getSize() == 0) {
+            JOptionPane.showMessageDialog(null, "Nije pronađena niti jedna pjesma.");
+        }
     }
 
     private void ucitajAlbume() {
@@ -1023,6 +1043,9 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         obradaA.getPodaci(txtTraziAlbum.getText()).forEach(s -> m.addElement(s));
 
         lstTraziAlbum.setModel(m);
+        if (lstTraziAlbum.getModel().getSize() == 0) {
+            JOptionPane.showMessageDialog(null, "Nije pronađen niti jedan album.");
+        }
     }
 
 }

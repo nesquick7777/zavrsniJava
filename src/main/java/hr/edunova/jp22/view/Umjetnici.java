@@ -11,6 +11,7 @@ import hr.edunova.jp22.model.Umjetnik;
 import hr.edunova.jp22.utility.EdunovaException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -108,6 +109,12 @@ public class Umjetnici extends javax.swing.JFrame {
         jScrollPane1.setViewportView(lstUmjetnik);
 
         jPanel.setBackground(new java.awt.Color(0, 0, 153));
+
+        txtMjesto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMjestoKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("Podatci:");
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -334,6 +341,7 @@ public class Umjetnici extends javax.swing.JFrame {
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
         entitet = lstUmjetnik.getSelectedValue();
         if (entitet == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali umjetnika.");
             return;
         }
 
@@ -369,6 +377,14 @@ public class Umjetnici extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
+
+    private void txtMjestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMjestoKeyTyped
+         char c = evt.getKeyChar();
+        if (!(Character.isLetter(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMjestoKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
@@ -412,7 +428,6 @@ public class Umjetnici extends javax.swing.JFrame {
     }
 
     private void postaviVrijednostiUEntitet() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         entitet.setIme(txtIme.getText());
         entitet.setZanr((String) cmbZanr.getSelectedItem());

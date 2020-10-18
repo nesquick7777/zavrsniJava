@@ -320,6 +320,7 @@ public class Pjesme extends javax.swing.JFrame {
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
         entitet = lstPjesme.getSelectedValue();
         if (entitet == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali pjesmu.");
             return;
         }
 

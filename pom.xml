@@ -29,7 +29,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        hr.edunova.jp22.view.Autorizacija
+                                        hr.edunova.jp22.view.SplashScreen
                                     </mainClass>
                                 </manifest>
                             </archive>

@@ -9,6 +9,7 @@ import com.github.lgooddatepicker.components.DatePickerSettings;
 import hr.edunova.jp22.controller.ObradaClan;
 import hr.edunova.jp22.model.Clan;
 import hr.edunova.jp22.utility.EdunovaException;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -110,6 +111,33 @@ public class Clanovi extends javax.swing.JFrame {
         jScrollPane1.setViewportView(lstClanovi);
 
         jPanel.setBackground(new java.awt.Color(0, 0, 153));
+
+        txtIme.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtImeKeyTyped(evt);
+            }
+        });
+
+        txtPrezime.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrezimeKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrezimeKeyTyped(evt);
+            }
+        });
+
+        txtMjestoR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMjestoRKeyTyped(evt);
+            }
+        });
+
+        txtMjestoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMjestoPKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("Podatci:");
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -342,6 +370,7 @@ public class Clanovi extends javax.swing.JFrame {
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
         entitet = lstClanovi.getSelectedValue();
         if (entitet == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali člana.");
             return;
         }
 
@@ -377,6 +406,42 @@ public class Clanovi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
+
+    private void txtImeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImeKeyTyped
+        char c = evt.getKeyChar();
+        if (!(Character.isLetter(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtImeKeyTyped
+
+    private void txtPrezimeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrezimeKeyPressed
+
+    }//GEN-LAST:event_txtPrezimeKeyPressed
+
+    private void txtMjestoRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMjestoRKeyTyped
+         char c = evt.getKeyChar();
+        if (!(Character.isLetter(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMjestoRKeyTyped
+
+    private void txtPrezimeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrezimeKeyTyped
+        char c = evt.getKeyChar();
+        if (!(Character.isLetter(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrezimeKeyTyped
+
+    private void txtMjestoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMjestoPKeyTyped
+         char c = evt.getKeyChar();
+        if (!(Character.isLetter(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMjestoPKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;

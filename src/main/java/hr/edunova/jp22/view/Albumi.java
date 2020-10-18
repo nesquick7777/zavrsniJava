@@ -375,6 +375,7 @@ public class Albumi extends javax.swing.JFrame {
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
         entitet = lstAlbumi.getSelectedValue();
         if (entitet == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali album.");
             return;
         }
 

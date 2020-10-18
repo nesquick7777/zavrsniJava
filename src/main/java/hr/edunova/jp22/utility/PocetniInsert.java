@@ -247,8 +247,8 @@ public class PocetniInsert {
         }
         
         if("00".equals(bro1) && "00".equals(bro2) && "00".equals(bro3)){
-            bro3="01";
-            JOptionPane.showMessageDialog(null, "Niste unijeli duzinu trajanja pjesme, postavljena minimalna vrijednost.");
+            bro3 = "01";
+            JOptionPane.showMessageDialog(null, "Niste unijeli duzinu trajanja pjesme ili albuma. Postavljena minimalna vrijednost.");
         }
         
         System.out.printf(bro1 + ":" + bro2 + ":" + bro3);

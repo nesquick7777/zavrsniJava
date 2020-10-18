@@ -208,6 +208,9 @@
             <Component class="javax.swing.JTextField" name="txtIme">
             </Component>
             <Component class="javax.swing.JTextField" name="txtMjesto">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMjestoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
