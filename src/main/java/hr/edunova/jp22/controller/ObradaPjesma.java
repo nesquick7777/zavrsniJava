@@ -48,7 +48,9 @@ public class ObradaPjesma extends Obrada<Pjesma> {
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-    
+    if (entitet.getAlbumi().size() > 0) {
+            throw new EdunovaException("Pjesma se ne može obrisat, nalazi se u albumima.");
+        }
     }
     
     

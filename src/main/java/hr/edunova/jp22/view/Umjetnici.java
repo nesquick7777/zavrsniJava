@@ -364,6 +364,7 @@ public class Umjetnici extends javax.swing.JFrame {
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
         entitet = lstUmjetnik.getSelectedValue();
         if (entitet == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali umjetnika.");
             return;
         }
 

@@ -5,8 +5,11 @@
  */
 package hr.edunova.jp22.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -23,6 +26,17 @@ public class Clan extends Entitet {
     private String mjestop;
     private String biljeske;
 
+    @ManyToMany(mappedBy="clanovi")
+    private List<Umjetnik> umjetnici = new ArrayList<>();
+
+    public List<Umjetnik> getUmjetnici() {
+        return umjetnici;
+    }
+
+    public void setUmjetnici(List<Umjetnik> umjetnici) {
+        this.umjetnici = umjetnici;
+    }
+    
     public String getIme() {
         return ime;
     }

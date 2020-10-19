@@ -126,8 +126,8 @@ public class PocetniInsert {
 
         Album album = new Album();
         album.setIme(faker.superhero().power());
-        album.setZanr(zanr[getRandomIntegerBetweenRange(0, 9)]);
-        album.setPodzanr(podZanr[getRandomIntegerBetweenRange(0, 4)]);
+        album.setZanr(zanr[getRandomIntegerBetweenRange(0, 3)]);
+        album.setPodzanr(podZanr[getRandomIntegerBetweenRange(0, 0)]);
         album.setDatumalbuma(new Date());
         album.setIzdavackakuca(faker.company().name());
         album.setOcjena(faker.number().numberBetween(1, 10));
@@ -139,8 +139,8 @@ public class PocetniInsert {
 
         Album album2 = new Album();
         album2.setIme(faker.superhero().power());
-        album2.setZanr(zanr[getRandomIntegerBetweenRange(0, 9)]);
-        album2.setPodzanr(podZanr[getRandomIntegerBetweenRange(0, 4)]);
+        album2.setZanr(zanr[getRandomIntegerBetweenRange(0, 3)]);
+        album2.setPodzanr(podZanr[getRandomIntegerBetweenRange(0, 0)]);
         album2.setDatumalbuma(new Date());
         album2.setIzdavackakuca(faker.company().name());
         album2.setOcjena(faker.number().numberBetween(1, 10));
@@ -156,8 +156,8 @@ public class PocetniInsert {
 
         Umjetnik umjetnik1 = new Umjetnik();
         umjetnik1.setIme(faker.rockBand().name());
-        umjetnik1.setZanr(zanr[getRandomIntegerBetweenRange(0, 9)]);
-        umjetnik1.setPodzanr(podZanr[getRandomIntegerBetweenRange(0, 4)]);
+        umjetnik1.setZanr(zanr[getRandomIntegerBetweenRange(0, 3)]);
+        umjetnik1.setPodzanr(podZanr[getRandomIntegerBetweenRange(0, 0)]);
         umjetnik1.setMjesto(faker.country().capital());
         umjetnik1.setDatumpocetka(new Date());
         umjetnik1.setDatumkraja(new Date());
@@ -167,8 +167,8 @@ public class PocetniInsert {
 
         Umjetnik umjetnik2 = new Umjetnik();
         umjetnik2.setIme(faker.rockBand().name());
-        umjetnik2.setZanr(zanr[getRandomIntegerBetweenRange(0, 9)]);
-        umjetnik2.setPodzanr(podZanr[getRandomIntegerBetweenRange(0, 4)]);
+        umjetnik2.setZanr(zanr[getRandomIntegerBetweenRange(0, 3)]);
+        umjetnik2.setPodzanr(podZanr[getRandomIntegerBetweenRange(0, 0)]);
         umjetnik2.setMjesto(faker.country().capital());
         umjetnik2.setDatumpocetka(new Date());
         umjetnik2.setDatumkraja(new Date());

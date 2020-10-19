@@ -359,6 +359,8 @@ public class Albumi extends javax.swing.JFrame {
         entitet = new Album();
         try {
             postaviVrijednostiUEntitet();
+            entitet.setTrajanje("00:00:00");
+            
         } catch (ParseException ex) {
             Logger.getLogger(Albumi.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -398,6 +400,7 @@ public class Albumi extends javax.swing.JFrame {
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
         entitet = lstAlbumi.getSelectedValue();
         if (entitet == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali album.");
             return;
         }
 
@@ -482,7 +485,9 @@ public class Albumi extends javax.swing.JFrame {
         entitet.setPodzanr((String) cmbPodzanr.getSelectedItem());
         entitet.setIzdavackakuca(txtIzdavackaK.getText());
         entitet.setVrsta((String) cmbVrsta.getSelectedItem());
-
+        if(txtTrajanje.getText().isEmpty() && txtTrajanje1.getText().isEmpty() && txtTrajanje2.getText().isEmpty()){
+            entitet.setTrajanje("00:00:00");
+        }
         obrada.setEntitet(entitet);
 
     }

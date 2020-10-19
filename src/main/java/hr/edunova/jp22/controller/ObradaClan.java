@@ -25,16 +25,16 @@ public class ObradaClan extends Obrada<Clan> {
 
     @Override
     public List<Clan> getPodaci() {
-      return sesion.createQuery("from Clan").list();
+        return sesion.createQuery("from Clan").list();
     }
-    
+
     public List<Clan> getPodaci(String uvjet) {
         return sesion.createQuery("from Clan c "
-              + " where concat(c.ime, ' ', c.prezime, ' ') "
-              + " like :uvjet ")
-              .setParameter("uvjet", "%"+uvjet+"%")
-              .setMaxResults(20)
-              .list();
+                + " where concat(c.ime, ' ', c.prezime, ' ') "
+                + " like :uvjet ")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                .setMaxResults(20)
+                .list();
     }
 
     @Override
@@ -55,7 +55,9 @@ public class ObradaClan extends Obrada<Clan> {
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-
+        if (entitet.getUmjetnici().size() > 0) {
+            throw new EdunovaException("Clan se ne može obrisat, nalazi se u umjetnicima.");
+        }
     }
 
     private void kontrolaIme() throws EdunovaException {
@@ -81,28 +83,27 @@ public class ObradaClan extends Obrada<Clan> {
             throw new EdunovaException(" Prezime ne smije sadržavati više od 50 znakova. ");
         }
     }
-    
-    
+
     private void kontrolaMjesto() throws EdunovaException {
-        if (entitet.getMjestor()== null || entitet.getMjestop()== null) {
+        if (entitet.getMjestor() == null || entitet.getMjestop() == null) {
             throw new EdunovaException(
-            entitet.getMjestor()== null ? " Mjesto rođenja nije definirano. " :
-                                          " Mjesto preminuća nije definirano.  ");
+                    entitet.getMjestor() == null ? " Mjesto rođenja nije definirano. "
+                    : " Mjesto preminuća nije definirano.  ");
         }
         if (entitet.getMjestor().isEmpty() || entitet.getMjestop().isEmpty()) {
             throw new EdunovaException(
-            entitet.getMjestor().isEmpty() ? " Mjesto rođenja ne smije biti prazno. " :
-                                             " Mjesto preminuća ne smije biti prazno. ");
+                    entitet.getMjestor().isEmpty() ? " Mjesto rođenja ne smije biti prazno. "
+                    : " Mjesto preminuća ne smije biti prazno. ");
         }
         if (entitet.getMjestor().length() > 50 || entitet.getMjestop().length() > 50) {
             throw new EdunovaException(
-            entitet.getMjestor().length() > 50 ? " Mjesto rođenja ne smije sadržavati više od 50 znakova. " :
-                                                 " Mjesto preminuća ne smije sadržavati više od 50 znakova. ");
+                    entitet.getMjestor().length() > 50 ? " Mjesto rođenja ne smije sadržavati više od 50 znakova. "
+                    : " Mjesto preminuća ne smije sadržavati više od 50 znakova. ");
         }
     }
-    
+
     private void kontrolaBiljeske() throws EdunovaException {
-        if (entitet.getBiljeske()== null) {
+        if (entitet.getBiljeske() == null) {
             throw new EdunovaException(" Biljeske nisu definirane! ");
         }
         if (entitet.getBiljeske().length() > 255) {

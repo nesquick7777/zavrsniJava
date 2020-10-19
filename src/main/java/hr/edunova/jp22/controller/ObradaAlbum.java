@@ -53,7 +53,9 @@ public class ObradaAlbum extends Obrada<Album> {
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-
+ if (entitet.getUmjetnici().size() > 0) {
+            throw new EdunovaException("Album se ne može obrisat, nalazi se u umjetnicima.");
+        }
     }
 
     private void kontrolaIme() throws EdunovaException {

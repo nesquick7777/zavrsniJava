@@ -632,6 +632,17 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         try {
             obradaA.update();
             ucitajPodatkeA();
+            
+            try {
+                DefaultListModel listModel1 = (DefaultListModel) lstTraziPjesma.getModel();
+                listModel1.removeAllElements();
+            } catch (Exception e) {
+            }
+            try {
+                DefaultListModel listModel2 = (DefaultListModel) lstPridruzenPjesma.getModel();
+                listModel2.removeAllElements();
+            } catch (Exception e) {
+            }
 
         } catch (EdunovaException e) {
             System.out.println(e.getPoruka());
@@ -652,6 +663,17 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTraziPjesmaActionPerformed
 
     private void btnUkloniPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniPjesmaActionPerformed
+
+        entitetA = lstGlavniAlbumP.getSelectedValue();
+        if (entitetA == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali album.");
+            return;
+        }
+        if (lstPridruzenPjesma.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali pjesmu.");
+            return;
+        }
+
         DefaultListModel<Pjesma> m;
         try {
             m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
@@ -672,6 +694,16 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUkloniPjesmaActionPerformed
 
     private void btnPridruziPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziPjesmaActionPerformed
+        entitetA = lstGlavniAlbumP.getSelectedValue();
+        if (entitetA == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali album.");
+            return;
+        }
+        if (lstTraziPjesma.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali pjesmu.");
+            return;
+        }
+
         DefaultListModel<Pjesma> m;
         try {
             m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
@@ -691,7 +723,7 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
             }
             if (!postoji) {
                 m.addElement(p);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Pjesma je već pridružena.");
             }
 
@@ -733,6 +765,16 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         try {
             obradaU.update();
             ucitajPodatkeU();
+            try {
+                DefaultListModel listModel1 = (DefaultListModel) lstTraziAlbum.getModel();
+                listModel1.removeAllElements();
+            } catch (Exception e) {
+            }
+            try {
+                DefaultListModel listModel2 = (DefaultListModel) lstPridruzenAlbum.getModel();
+                listModel2.removeAllElements();
+            } catch (Exception e) {
+            }
 
         } catch (EdunovaException e) {
             System.out.println(e.getPoruka());
@@ -753,6 +795,16 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTraziAlbumActionPerformed
 
     private void btnUkloniAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniAlbumActionPerformed
+        entitetU = lstGlavniUmjetnikA.getSelectedValue();
+        if (entitetU == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali umjetnika.");
+            return;
+        }
+        if (lstPridruzenAlbum.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali album.");
+            return;
+        }
+
         DefaultListModel<Album> m;
         try {
             m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
@@ -773,6 +825,17 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUkloniAlbumActionPerformed
 
     private void btnPridruziAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziAlbumActionPerformed
+        entitetU = lstGlavniUmjetnikA.getSelectedValue();
+
+        if (entitetU == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali umjetnika.");
+            return;
+        }
+        if (lstTraziAlbum.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali album.");
+            return;
+        }
+
         DefaultListModel<Album> m;
         try {
             m = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
@@ -792,7 +855,7 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
             }
             if (!postoji) {
                 m.addElement(p);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Album je već pridružen.");
             }
 
@@ -835,6 +898,16 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         try {
             obradaU.update();
             ucitajPodatkeU();
+            try {
+                DefaultListModel listModel1 = (DefaultListModel) lstTraziClan.getModel();
+                listModel1.removeAllElements();
+            } catch (Exception e) {
+            }
+            try {
+                DefaultListModel listModel2 = (DefaultListModel) lstPridruzenClan.getModel();
+                listModel2.removeAllElements();
+            } catch (Exception e) {
+            }
 
         } catch (EdunovaException e) {
             System.out.println(e.getPoruka());
@@ -855,6 +928,16 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTraziClanActionPerformed
 
     private void btnUkloniClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniClanActionPerformed
+        entitetU = lstGlavniUmjetnikC.getSelectedValue();
+        if (entitetU == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali umjetnika.");
+            return;
+        }
+        if (lstPridruzenClan.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali člana.");
+            return;
+        }
+
         DefaultListModel<Clan> m;
         try {
             m = (DefaultListModel<Clan>) lstPridruzenClan.getModel();
@@ -875,6 +958,16 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUkloniClanActionPerformed
 
     private void btnPridruziClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziClanActionPerformed
+        entitetU = lstGlavniUmjetnikC.getSelectedValue();
+        if (entitetU == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali umjetnika.");
+            return;
+        }
+        if (lstTraziClan.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali člana.");
+            return;
+        }
+
         DefaultListModel<Clan> m;
         try {
             m = (DefaultListModel<Clan>) lstPridruzenClan.getModel();
@@ -894,10 +987,9 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
             }
             if (!postoji) {
                 m.addElement(p);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Član je već pridružen.");
             }
-            
 
         }
         lstPridruzenClan.repaint();
