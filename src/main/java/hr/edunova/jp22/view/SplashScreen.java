@@ -59,7 +59,6 @@ public class SplashScreen extends javax.swing.JFrame {
         setType(java.awt.Window.Type.UTILITY);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cute-dog-biting-boombox_79416-26.jpg"))); // NOI18N
-        jLabel2.setPreferredSize(new java.awt.Dimension(626, 626));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

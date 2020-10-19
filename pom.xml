@@ -29,7 +29,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        hr.edunova.jp22.view.SplashScreen
+                                        hr.edunova.jp22.Start
                                     </mainClass>
                                 </manifest>
                             </archive>
