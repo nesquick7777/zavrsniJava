@@ -12,14 +12,14 @@ import hr.edunova.jp22.model.Operater;
  * @author Korisnik
  */
 public class Aplikacija {
-    
+
     public static Operater operater;
-    
-    public static boolean isAdmin(){
-        if(operater==null || operater.getUloga()==null){
+
+    public static boolean isAdmin() {
+        if (operater == null || operater.getUloga() == null) {
             return false;
         }
         return operater.getUloga().equals("admin");
     }
-    
+
 }

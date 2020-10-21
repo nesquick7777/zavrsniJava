@@ -360,7 +360,7 @@ public class Albumi extends javax.swing.JFrame {
         try {
             postaviVrijednostiUEntitet();
             entitet.setTrajanje("00:00:00");
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(Albumi.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -485,7 +485,7 @@ public class Albumi extends javax.swing.JFrame {
         entitet.setPodzanr((String) cmbPodzanr.getSelectedItem());
         entitet.setIzdavackakuca(txtIzdavackaK.getText());
         entitet.setVrsta((String) cmbVrsta.getSelectedItem());
-        if(txtTrajanje.getText().isEmpty() && txtTrajanje1.getText().isEmpty() && txtTrajanje2.getText().isEmpty()){
+        if (txtTrajanje.getText().isEmpty() && txtTrajanje1.getText().isEmpty() && txtTrajanje2.getText().isEmpty()) {
             entitet.setTrajanje("00:00:00");
         }
         obrada.setEntitet(entitet);

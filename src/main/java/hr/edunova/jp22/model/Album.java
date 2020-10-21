@@ -51,7 +51,7 @@ public class Album extends Entitet {
         this.vrsta = vrsta;
     }
 
-    @ManyToMany (mappedBy="albumi")
+    @ManyToMany(mappedBy = "albumi")
     private List<Umjetnik> umjetnici = new ArrayList<>();
 
     public List<Umjetnik> getUmjetnici() {
@@ -61,7 +61,7 @@ public class Album extends Entitet {
     public void setUmjetnici(List<Umjetnik> umjetnici) {
         this.umjetnici = umjetnici;
     }
-    
+
     public String getIme() {
         return ime;
     }

@@ -53,7 +53,7 @@ public class ObradaAlbum extends Obrada<Album> {
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
- if (entitet.getUmjetnici().size() > 0) {
+        if (entitet.getUmjetnici().size() > 0) {
             throw new EdunovaException("Album se ne može obrisat, nalazi se u umjetnicima.");
         }
     }
@@ -79,9 +79,9 @@ public class ObradaAlbum extends Obrada<Album> {
             throw new EdunovaException(" Ocjena mora biti u rasponu od 1 do 10! ");
         }
     }
-    
+
     private void kontrolaIzdavackaKuca() throws EdunovaException {
-        if (entitet.getIzdavackakuca()== null) {
+        if (entitet.getIzdavackakuca() == null) {
             throw new EdunovaException(" Izdavacka kuca nije definirana! ");
         }
         if (entitet.getIzdavackakuca().isEmpty()) {

@@ -19,8 +19,8 @@ public class Pjesma extends Entitet {
 
     private String ime;
     private String trajanje;
-    
-@ManyToMany (mappedBy="pjesme")
+
+    @ManyToMany(mappedBy = "pjesme")
     private List<Album> albumi = new ArrayList<>();
 
     public List<Album> getAlbumi() {

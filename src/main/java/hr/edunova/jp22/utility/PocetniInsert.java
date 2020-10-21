@@ -38,7 +38,7 @@ public class PocetniInsert {
         operater.setUloga("oper");
         operater.setEmail("nesquick7777@gmail.com");
         operater.setLozinka(BCrypt.hashpw("n", BCrypt.gensalt()));
-        
+
         ObradaOperater oo = new ObradaOperater();
         oo.setEntitet(operater);
         try {
@@ -46,7 +46,7 @@ public class PocetniInsert {
         } catch (EdunovaException ex) {
             ex.printStackTrace();
         }
-        
+
         Faker faker = new Faker();
         String[] zanr = {"Rock", "Country", "Metal", "Pop"};
         String[] podZanr = {"Progressive"};
@@ -91,7 +91,7 @@ public class PocetniInsert {
 
             Pjesma pjesma = new Pjesma();
             pjesma.setIme(faker.ancient().hero());
-            pjesma.setTrajanje( "00:0" + br1 + ":" + br2 + br3);
+            pjesma.setTrajanje("00:0" + br1 + ":" + br2 + br3);
             session.save(pjesma);
 
             if (i <= 5) {
@@ -180,15 +180,16 @@ public class PocetniInsert {
 
     }
 //    session.beginTransaction();   //START
-     public static void adminOperater(){
-       
+
+    public static void adminOperater() {
+
         Operater operater = new Operater();
         operater.setIme("Moja");
         operater.setPrezime("Diskografija");
         operater.setUloga("admin");
         operater.setEmail("mDiskografija@mDiskografija.hr");
         operater.setLozinka(BCrypt.hashpw("z", BCrypt.gensalt()));
-        
+
         ObradaOperater oo = new ObradaOperater();
         oo.setEntitet(operater);
         try {
@@ -198,9 +199,8 @@ public class PocetniInsert {
         }
 
     }
-     
-//     session.getTransaction().commit();    //END
 
+//     session.getTransaction().commit();    //END
     public static int getRandomIntegerBetweenRange(int min, int max) {
         int x = (int) (Math.random() * ((max - min) + 1)) + min;
         return x;
@@ -215,42 +215,38 @@ public class PocetniInsert {
         // Tell Java to use your special stream
         System.setOut(ps);
         // Print some output: goes to your special stream
-        String bro1=Integer.toString(br1);
-        String bro2=Integer.toString(br2);
-        String bro3=Integer.toString(br3);
-        
-        if(bro1.length() == 1){
-            bro1="0" + bro1;
+        String bro1 = Integer.toString(br1);
+        String bro2 = Integer.toString(br2);
+        String bro3 = Integer.toString(br3);
+
+        if (bro1.length() == 1) {
+            bro1 = "0" + bro1;
+        } else {
+            bro1 = bro1;
         }
-        
-        else{
-            bro1=bro1;
+
+        if (bro2.length() == 1) {
+            bro2 = "0" + bro2;
+        } else {
+            bro2 = bro2;
         }
-        
-        if(bro2.length() == 1){
-            bro2="0" + bro2;
+
+        if (bro3.length() == 1) {
+            bro3 = "0" + bro3;
+        } else {
+            bro3 = bro3;
         }
-        else{
-            bro2=bro2;
-        }
-        
-        if(bro3.length() == 1){
-            bro3="0" + bro3;
-        }
-        else{
-            bro3=bro3;
-        }
-        
-        if(bro1.length() > 2){
+
+        if (bro1.length() > 2) {
             bro1 = "99";
             JOptionPane.showMessageDialog(null, " Prekoračili ste limit duzine trajanja albuma od 99 sata, postavljena maksimalna vrijednost. ");
         }
-        
-        if("00".equals(bro1) && "00".equals(bro2) && "00".equals(bro3)){
+
+        if ("00".equals(bro1) && "00".equals(bro2) && "00".equals(bro3)) {
             bro3 = "01";
             JOptionPane.showMessageDialog(null, "Niste unijeli duzinu trajanja pjesme ili albuma. Postavljena minimalna vrijednost.");
         }
-        
+
         System.out.printf(bro1 + ":" + bro2 + ":" + bro3);
         // Put things back
         System.out.flush();
@@ -269,6 +265,5 @@ public class PocetniInsert {
             return "LP";
         }
     }
-    
-    
+
 }

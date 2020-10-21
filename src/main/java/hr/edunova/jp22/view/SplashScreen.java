@@ -23,20 +23,20 @@ public class SplashScreen extends javax.swing.JFrame {
         Ucitanje ucitanje = new Ucitanje();
         ucitanje.start();
     }
-    
-    private class Ucitanje extends Thread{
+
+    private class Ucitanje extends Thread {
 
         @Override
         public void run() {
             Session s = HibernateUtil.getSessionFactory().openSession();
-            if(s.getMetamodel().getEntities().size()>0){
+            if (s.getMetamodel().getEntities().size() > 0) {
                 Autorizacija autorizacija = new Autorizacija();
                 autorizacija.setLocationRelativeTo(null);
                 autorizacija.setVisible(true);
                 dispose();
             }
         }
-        
+
     }
 
     /**
@@ -79,7 +79,7 @@ public class SplashScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-  public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

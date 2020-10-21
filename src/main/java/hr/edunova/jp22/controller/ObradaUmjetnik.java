@@ -36,8 +36,8 @@ public class ObradaUmjetnik extends Obrada<Umjetnik> {
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-         kontrolaIme();
-         kontrolaMjesto();
+        kontrolaIme();
+        kontrolaMjesto();
     }
 
     @Override
@@ -56,9 +56,9 @@ public class ObradaUmjetnik extends Obrada<Umjetnik> {
             throw new EdunovaException(" Ime ne smije sadržavati više od 50 znakova. ");
         }
     }
-    
+
     private void kontrolaMjesto() throws EdunovaException {
-        if (entitet.getMjesto()== null) {
+        if (entitet.getMjesto() == null) {
             throw new EdunovaException(" Mjeesto nije definirano! ");
         }
         if (entitet.getMjesto().isEmpty()) {

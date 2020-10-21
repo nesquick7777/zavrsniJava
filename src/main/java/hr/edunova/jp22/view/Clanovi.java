@@ -421,7 +421,7 @@ public class Clanovi extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrezimeKeyPressed
 
     private void txtMjestoRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMjestoRKeyTyped
-         char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (!(Character.isLetter(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
             getToolkit().beep();
             evt.consume();
@@ -437,7 +437,7 @@ public class Clanovi extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrezimeKeyTyped
 
     private void txtMjestoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMjestoPKeyTyped
-         char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (!(Character.isLetter(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
             getToolkit().beep();
             evt.consume();

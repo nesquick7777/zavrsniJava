@@ -18,21 +18,21 @@ public class ObradaOperater extends Obrada<Operater> {
 
     public ObradaOperater() {
     }
-    
-        public Operater autoriziraj(String email, char[] lozinka){
-        
+
+    public Operater autoriziraj(String email, char[] lozinka) {
+
         Operater operater = (Operater) sesion.createQuery(
                 " from Operater o where o.email=:email")
                 .setParameter("email", email).getSingleResult();
-        
-        if(operater==null){
+
+        if (operater == null) {
             return null;
         }
-        
-        return BCrypt.checkpw(new String(lozinka), operater.getLozinka()) 
+
+        return BCrypt.checkpw(new String(lozinka), operater.getLozinka())
                 ? operater : null;
     }
-    
+
     @Override
     public List<Operater> getPodaci() {
         return sesion.createQuery("from Operater").list();
@@ -54,8 +54,8 @@ public class ObradaOperater extends Obrada<Operater> {
     protected void kontrolaDelete() throws EdunovaException {
 
     }
-    
-     private void kontrolaIme() throws EdunovaException {
+
+    private void kontrolaIme() throws EdunovaException {
         if (entitet.getIme() == null) {
             throw new EdunovaException(" Ime nije definirano! ");
         }

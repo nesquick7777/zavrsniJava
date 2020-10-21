@@ -632,7 +632,7 @@ public class SpajanjeEntiteta extends javax.swing.JFrame {
         try {
             obradaA.update();
             ucitajPodatkeA();
-            
+
             try {
                 DefaultListModel listModel1 = (DefaultListModel) lstTraziPjesma.getModel();
                 listModel1.removeAllElements();

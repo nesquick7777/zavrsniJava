@@ -27,7 +27,7 @@ public class Start {
         // Autorizacija autorizacija = new Autorizacija();
         // autorizacija.setLocationRelativeTo(null);
         // autorizacija.setVisible(true);
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

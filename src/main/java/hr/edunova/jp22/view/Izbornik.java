@@ -234,9 +234,9 @@ public class Izbornik extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUmjetniciActionPerformed
 
     private void btnAlbumiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumiActionPerformed
-        
+
         Albumi albumi = new Albumi();
-        
+
         albumi.setLocationRelativeTo(null);
         albumi.setVisible(true);
         dispose();

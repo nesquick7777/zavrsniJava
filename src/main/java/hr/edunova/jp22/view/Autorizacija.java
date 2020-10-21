@@ -226,12 +226,12 @@ public class Autorizacija extends javax.swing.JFrame {
         //siguran si da su vrijednosti unesene i možeš na kontroler
         ObradaOperater oo = new ObradaOperater();
         Operater operater = oo.autoriziraj(txtEmail.getText(), pswLozinka.getPassword());
-        if(operater==null){
-           JOptionPane.showMessageDialog(rootPane, "Ne ispravna kombinacija email i lozinka");
-            return; 
+        if (operater == null) {
+            JOptionPane.showMessageDialog(rootPane, "Ne ispravna kombinacija email i lozinka");
+            return;
         }
-        
-        Aplikacija.operater=operater;
+
+        Aplikacija.operater = operater;
         Izbornik izbornik = new Izbornik();
         izbornik.setLocationRelativeTo(null);
         izbornik.setVisible(true);

@@ -380,7 +380,7 @@ public class Umjetnici extends javax.swing.JFrame {
     }//GEN-LAST:event_btnObrisiActionPerformed
 
     private void txtMjestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMjestoKeyTyped
-         char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (!(Character.isLetter(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
             getToolkit().beep();
             evt.consume();

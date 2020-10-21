@@ -26,7 +26,7 @@ public class Clan extends Entitet {
     private String mjestop;
     private String biljeske;
 
-    @ManyToMany(mappedBy="clanovi")
+    @ManyToMany(mappedBy = "clanovi")
     private List<Umjetnik> umjetnici = new ArrayList<>();
 
     public List<Umjetnik> getUmjetnici() {
@@ -36,7 +36,7 @@ public class Clan extends Entitet {
     public void setUmjetnici(List<Umjetnik> umjetnici) {
         this.umjetnici = umjetnici;
     }
-    
+
     public String getIme() {
         return ime;
     }
