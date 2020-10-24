@@ -5,12 +5,16 @@
  */
 package hr.edunova.jp22;
 
+import com.github.javafaker.File;
 import hr.edunova.jp22.utility.HibernateUtil;
 import hr.edunova.jp22.utility.PocetniInsert;
 import hr.edunova.jp22.utility.StarRater;
 import hr.edunova.jp22.view.Autorizacija;
 import hr.edunova.jp22.view.Izbornik;
 import hr.edunova.jp22.view.SplashScreen;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -20,13 +24,14 @@ import javax.swing.JPanel;
  */
 public class Start {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        Process process = Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqld.exe");
+        if(process == null){
+            System.exit(0);
+        }
 //         PocetniInsert.izvedi();
 //         PocetniInsert.adminOperater();
         // HibernateUtil.getSessionFactory().openSession();
-        // Autorizacija autorizacija = new Autorizacija();
-        // autorizacija.setLocationRelativeTo(null);
-        // autorizacija.setVisible(true);
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -47,5 +52,20 @@ public class Start {
         SplashScreen sC = new SplashScreen();
         sC.setLocationRelativeTo(null);
         sC.setVisible(true);
+        
+        
+         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+        public void run() {
+        System.out.println("In shutdown hook");
+            try {
+                Process process1= Runtime.getRuntime().exec("taskkill /F /PID 7536");
+            } catch (IOException ex) {
+                Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }, "Shutdown-thread"));
+         
     }
+    
+    
 }
