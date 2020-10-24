@@ -58,7 +58,7 @@ public class Start {
         public void run() {
         System.out.println("In shutdown hook");
             try {
-                Process process1= Runtime.getRuntime().exec("taskkill /F /PID 7536");
+                Process process1= Runtime.getRuntime().exec("taskkill /F /IM  mysqld.exe");
             } catch (IOException ex) {
                 Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
             }
