@@ -86,6 +86,15 @@ public class Umjetnici extends javax.swing.JFrame {
         cmbPodzanr = new javax.swing.JComboBox<>();
         tabGlavni = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        btnTraziClan = new javax.swing.JButton();
+        btnPridruziClan = new javax.swing.JButton();
+        btnUkloniClan = new javax.swing.JButton();
+        txtTraziClan = new javax.swing.JTextField();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        lstTraziClan = new javax.swing.JList<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        lstPridruzenClan = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -258,15 +267,94 @@ public class Umjetnici extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Pridruženi članovi");
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnTraziClan.setText("¤");
+        btnTraziClan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnTraziClan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziClanActionPerformed(evt);
+            }
+        });
+
+        btnPridruziClan.setText("<");
+        btnPridruziClan.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnPridruziClan.setForeground(new java.awt.Color(0, 0, 102));
+        btnPridruziClan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPridruziClanActionPerformed(evt);
+            }
+        });
+
+        btnUkloniClan.setText(">");
+        btnUkloniClan.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnUkloniClan.setForeground(new java.awt.Color(0, 0, 102));
+        btnUkloniClan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUkloniClanActionPerformed(evt);
+            }
+        });
+
+        lstTraziClan.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstTraziClanValueChanged(evt);
+            }
+        });
+        jScrollPane9.setViewportView(lstTraziClan);
+
+        lstPridruzenClan.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstPridruzenClanValueChanged(evt);
+            }
+        });
+        jScrollPane7.setViewportView(lstPridruzenClan);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtTraziClan, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTraziClan))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnPridruziClan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUkloniClan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(btnTraziClan)
+                    .addComponent(txtTraziClan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(btnPridruziClan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(btnUkloniClan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
 
         tabGlavni.addTab("Članovi", jPanel1);
@@ -277,11 +365,11 @@ public class Umjetnici extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGap(0, 441, Short.MAX_VALUE)
         );
 
         tabGlavni.addTab("Albumi", jPanel3);
@@ -307,7 +395,7 @@ public class Umjetnici extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabGlavni, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+            .addComponent(tabGlavni)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -425,11 +513,95 @@ public class Umjetnici extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtMjestoKeyTyped
 
+    private void btnTraziClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziClanActionPerformed
+        ucitajClanove();
+        lstTraziClan.setCellRenderer(new ClanCellRenderer());
+    }//GEN-LAST:event_btnTraziClanActionPerformed
+
+    private void btnPridruziClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziClanActionPerformed
+        entitetU = lstGlavniUmjetnikC.getSelectedValue();
+        if (entitetU == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali umjetnika.");
+            return;
+        }
+        if (lstTraziClan.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali člana.");
+            return;
+        }
+
+        DefaultListModel<Clan> m;
+        try {
+            m = (DefaultListModel<Clan>) lstPridruzenClan.getModel();
+            m.get(0).toString();
+        } catch (Exception e) {
+            m = new DefaultListModel<>();
+            lstPridruzenClan.setModel(m);
+        }
+        boolean postoji;
+        for (Clan p : lstTraziClan.getSelectedValuesList()) {
+            postoji = false;
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.get(i).getId())) {
+                    postoji = true;
+                    break;
+                }
+            }
+            if (!postoji) {
+                m.addElement(p);
+            } else {
+                JOptionPane.showMessageDialog(null, "Član je već pridružen.");
+            }
+
+        }
+        lstPridruzenClan.repaint();
+    }//GEN-LAST:event_btnPridruziClanActionPerformed
+
+    private void btnUkloniClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniClanActionPerformed
+        entitetU = lstGlavniUmjetnikC.getSelectedValue();
+        if (entitetU == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali umjetnika.");
+            return;
+        }
+        if (lstPridruzenClan.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali člana.");
+            return;
+        }
+
+        DefaultListModel<Clan> m;
+        try {
+            m = (DefaultListModel<Clan>) lstPridruzenClan.getModel();
+        } catch (Exception e) {
+            return;
+        }
+
+        for (Clan p : lstPridruzenClan.getSelectedValuesList()) {
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.getElementAt(i).getId())) {
+                    m.removeElementAt(i);
+                    break;
+                }
+            }
+        }
+
+        lstPridruzenClan.repaint();
+    }//GEN-LAST:event_btnUkloniClanActionPerformed
+
+    private void lstTraziClanValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTraziClanValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstTraziClanValueChanged
+
+    private void lstPridruzenClanValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPridruzenClanValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstPridruzenClanValueChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnNazad;
     private javax.swing.JButton btnObrisi;
+    private javax.swing.JButton btnPridruziClan;
     private javax.swing.JButton btnPromjeni;
+    private javax.swing.JButton btnTraziClan;
+    private javax.swing.JButton btnUkloniClan;
     private javax.swing.JComboBox<String> cmbPodzanr;
     private javax.swing.JComboBox<String> cmbZanr;
     private com.github.lgooddatepicker.components.DatePicker dpiDatumK;
@@ -441,15 +613,21 @@ public class Umjetnici extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JList<Clan> lstPridruzenClan;
+    private javax.swing.JList<Clan> lstTraziClan;
     private javax.swing.JList<Umjetnik> lstUmjetnik;
     private javax.swing.JTabbedPane tabGlavni;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtMjesto;
+    private javax.swing.JTextField txtTraziClan;
     // End of variables declaration//GEN-END:variables
 
     private void ucitajPodatke() {
