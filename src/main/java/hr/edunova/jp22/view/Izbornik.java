@@ -35,7 +35,6 @@ public class Izbornik extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnAlbumi = new javax.swing.JButton();
         btnUmjetniciPjesme = new javax.swing.JButton();
-        btnSpajanje = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -116,16 +115,6 @@ public class Izbornik extends javax.swing.JFrame {
             }
         });
 
-        btnSpajanje.setBackground(new java.awt.Color(0, 0, 102));
-        btnSpajanje.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnSpajanje.setForeground(new java.awt.Color(255, 255, 255));
-        btnSpajanje.setText("Spajanje");
-        btnSpajanje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSpajanjeActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -136,7 +125,6 @@ public class Izbornik extends javax.swing.JFrame {
             .addComponent(btnOdjava, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnAlbumi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnUmjetniciPjesme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnSpajanje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,14 +134,12 @@ public class Izbornik extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(btnClanovi)
                 .addGap(18, 18, 18)
-                .addComponent(btnUmjetnici)
+                .addComponent(btnUmjetniciPjesme)
                 .addGap(18, 18, 18)
                 .addComponent(btnAlbumi)
                 .addGap(18, 18, 18)
-                .addComponent(btnUmjetniciPjesme)
-                .addGap(18, 18, 18)
-                .addComponent(btnSpajanje)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(btnUmjetnici)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addComponent(btnOdjava)
                 .addGap(38, 38, 38))
         );
@@ -249,13 +235,6 @@ public class Izbornik extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnUmjetniciPjesmeActionPerformed
 
-    private void btnSpajanjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSpajanjeActionPerformed
-        SpajanjeEntiteta spajanjeEntiteta = new SpajanjeEntiteta();
-        spajanjeEntiteta.setLocationRelativeTo(null);
-        spajanjeEntiteta.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnSpajanjeActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -295,7 +274,6 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JButton btnAlbumi;
     private javax.swing.JButton btnClanovi;
     private javax.swing.JButton btnOdjava;
-    private javax.swing.JButton btnSpajanje;
     private javax.swing.JButton btnUmjetnici;
     private javax.swing.JButton btnUmjetniciPjesme;
     private javax.swing.JLabel jLabel1;
