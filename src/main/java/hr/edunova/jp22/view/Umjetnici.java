@@ -21,6 +21,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -38,8 +39,6 @@ public class Umjetnici extends javax.swing.JFrame {
     private Umjetnik entitet;
     private ObradaClan obradaC;
     private ObradaAlbum obradaA;
-    
-    
 
     /**
      * Creates new form Umjetnici
@@ -50,7 +49,7 @@ public class Umjetnici extends javax.swing.JFrame {
         obradaA = new ObradaAlbum();
         lstPridruzenClan.setCellRenderer(new ClanCellRenderer());
         lstPridruzenAlbum.setCellRenderer(new AlbumCellRenderer());
-        
+
         DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
         DatePickerSettings dps1 = new DatePickerSettings(new Locale("hr", "HR"));
         dps.setFormatForDatesCommonEra("yyyy-MM-dd");
@@ -531,18 +530,18 @@ public class Umjetnici extends javax.swing.JFrame {
         cmbZanr.setSelectedItem(entitet.getZanr());
         cmbPodzanr.setSelectedItem(entitet.getPodzanr());
         txtMjesto.setText(entitet.getMjesto());
-        
+
         DefaultListModel<Clan> m = new DefaultListModel<>();
         for (Clan p : entitet.getClanovi()) {
             m.addElement(p);
         }
         lstPridruzenClan.setModel(m);
-        
+
         DefaultListModel<Album> n = new DefaultListModel<>();
         for (Album o : entitet.getAlbumi()) {
             n.addElement(o);
         }
-        lstPridruzenAlbum.setModel(n); 
+        lstPridruzenAlbum.setModel(n);
     }//GEN-LAST:event_lstUmjetnikValueChanged
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
@@ -600,6 +599,27 @@ public class Umjetnici extends javax.swing.JFrame {
             ocistiPolja();
         } catch (EdunovaException ex) {
             JOptionPane.showMessageDialog(null, ex.getPoruka());
+        }
+
+        try {
+            DefaultListModel listModel1 = (DefaultListModel) lstTraziClan.getModel();
+            listModel1.removeAllElements();
+        } catch (Exception e) {
+        }
+        try {
+            DefaultListModel listModel2 = (DefaultListModel) lstPridruzenClan.getModel();
+            listModel2.removeAllElements();
+        } catch (Exception e) {
+        }
+        try {
+            DefaultListModel listModel1 = (DefaultListModel) lstTraziAlbum.getModel();
+            listModel1.removeAllElements();
+        } catch (Exception e) {
+        }
+        try {
+            DefaultListModel listModel2 = (DefaultListModel) lstPridruzenAlbum.getModel();
+            listModel2.removeAllElements();
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
@@ -829,6 +849,20 @@ public class Umjetnici extends javax.swing.JFrame {
 
     private void postaviVrijednostiUEntitet() throws ParseException {
 
+        entitet.setClanovi(new ArrayList<>());
+
+        DefaultListModel<Clan> m = (DefaultListModel<Clan>) lstPridruzenClan.getModel();
+        for (int i = 0; i < m.size(); i++) {
+            entitet.getClanovi().add(m.getElementAt(i));
+        }
+
+        entitet.setAlbumi(new ArrayList<>());
+
+        DefaultListModel<Album> n = (DefaultListModel<Album>) lstPridruzenAlbum.getModel();
+        for (int j = 0; j < n.size(); j++) {
+            entitet.getAlbumi().add(n.getElementAt(j));
+        }
+
         entitet.setIme(txtIme.getText());
         entitet.setZanr((String) cmbZanr.getSelectedItem());
         entitet.setPodzanr((String) cmbPodzanr.getSelectedItem());
@@ -845,7 +879,26 @@ public class Umjetnici extends javax.swing.JFrame {
         }
 
         obrada.setEntitet(entitet);
-
+        try {
+            DefaultListModel listModel1 = (DefaultListModel) lstTraziClan.getModel();
+            listModel1.removeAllElements();
+        } catch (Exception e) {
+        }
+        try {
+            DefaultListModel listModel2 = (DefaultListModel) lstPridruzenClan.getModel();
+            listModel2.removeAllElements();
+        } catch (Exception e) {
+        }
+        try {
+            DefaultListModel listModel1 = (DefaultListModel) lstTraziAlbum.getModel();
+            listModel1.removeAllElements();
+        } catch (Exception e) {
+        }
+        try {
+            DefaultListModel listModel2 = (DefaultListModel) lstPridruzenAlbum.getModel();
+            listModel2.removeAllElements();
+        } catch (Exception e) {
+        }
     }
 
     public void grananjePodzanra() {
@@ -928,7 +981,8 @@ public class Umjetnici extends javax.swing.JFrame {
             }
         });
     }
-private void ucitajClanove() {
+
+    private void ucitajClanove() {
         DefaultListModel<Clan> m = new DefaultListModel<>();
 
         obradaC.getPodaci(txtTraziClan.getText()).forEach(s -> m.addElement(s));
@@ -939,7 +993,7 @@ private void ucitajClanove() {
         }
     }
 
-private void ucitajAlbume() {
+    private void ucitajAlbume() {
         DefaultListModel<Album> m = new DefaultListModel<>();
 
         obradaA.getPodaci(txtTraziAlbum.getText()).forEach(s -> m.addElement(s));

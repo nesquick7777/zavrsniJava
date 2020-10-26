@@ -40,7 +40,7 @@ public class Albumi extends javax.swing.JFrame {
     private ObradaAlbum obrada;
     private Album entitet;
     private ObradaPjesma obradaP;
-    private Pjesme entitetP;
+    private Pjesma entitetP;
 
     /**
      * Creates new form Albumi
@@ -104,8 +104,8 @@ public class Albumi extends javax.swing.JFrame {
         lstPridruzenPjesma = new javax.swing.JList<>();
         txtTraziPjesma = new javax.swing.JTextField();
         btnTraziPjesma = new javax.swing.JButton();
-        btnPridruziPjesma = new javax.swing.JButton();
         btnUkloniPjesma = new javax.swing.JButton();
+        btnPridruziPjesma = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Albumi");
@@ -321,16 +321,21 @@ public class Albumi extends javax.swing.JFrame {
             }
         });
 
-        btnPridruziPjesma.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnPridruziPjesma.setForeground(new java.awt.Color(0, 0, 102));
-        btnPridruziPjesma.setText("->");
-
         btnUkloniPjesma.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnUkloniPjesma.setForeground(new java.awt.Color(0, 0, 102));
         btnUkloniPjesma.setText("<-");
         btnUkloniPjesma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUkloniPjesmaActionPerformed(evt);
+            }
+        });
+
+        btnPridruziPjesma.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnPridruziPjesma.setForeground(new java.awt.Color(0, 0, 102));
+        btnPridruziPjesma.setText("->");
+        btnPridruziPjesma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPridruziPjesmaActionPerformed(evt);
             }
         });
 
@@ -348,11 +353,15 @@ public class Albumi extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPridruziPjesma, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnUkloniPjesma, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                                .addComponent(btnUkloniPjesma)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btnPridruziPjesma)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtTraziPjesma, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,9 +390,9 @@ public class Albumi extends javax.swing.JFrame {
                             .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                             .addComponent(jScrollPane13)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(btnPridruziPjesma, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(126, 126, 126)
+                        .addComponent(btnPridruziPjesma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
                         .addComponent(btnUkloniPjesma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -448,8 +457,6 @@ public class Albumi extends javax.swing.JFrame {
         entitet = new Album();
         try {
             postaviVrijednostiUEntitet();
-            entitet.setTrajanje("00:00:00");
-
         } catch (ParseException ex) {
             Logger.getLogger(Albumi.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -457,6 +464,16 @@ public class Albumi extends javax.swing.JFrame {
             obrada.create();
             ucitajPodatke();
             ocistiPolja();
+            try {
+                DefaultListModel listModel1 = (DefaultListModel) lstTraziPjesma.getModel();
+                listModel1.removeAllElements();
+            } catch (Exception e) {
+            }
+            try {
+                DefaultListModel listModel2 = (DefaultListModel) lstPridruzenPjesma.getModel();
+                listModel2.removeAllElements();
+            } catch (Exception e) {
+            }
         } catch (EdunovaException ex) {
             JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
@@ -476,12 +493,20 @@ public class Albumi extends javax.swing.JFrame {
             Logger.getLogger(Albumi.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-       
         try {
             obrada.update();
             ucitajPodatke();
             ocistiPolja();
-
+            try {
+                DefaultListModel listModel1 = (DefaultListModel) lstTraziPjesma.getModel();
+                listModel1.removeAllElements();
+            } catch (Exception e) {
+            }
+            try {
+                DefaultListModel listModel2 = (DefaultListModel) lstPridruzenPjesma.getModel();
+                listModel2.removeAllElements();
+            } catch (Exception e) {
+            }
         } catch (EdunovaException ex) {
             JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
@@ -500,6 +525,16 @@ public class Albumi extends javax.swing.JFrame {
             obrada.delete();
             ucitajPodatke();
             ocistiPolja();
+            try {
+                DefaultListModel listModel1 = (DefaultListModel) lstTraziPjesma.getModel();
+                listModel1.removeAllElements();
+            } catch (Exception e) {
+            }
+            try {
+                DefaultListModel listModel2 = (DefaultListModel) lstPridruzenPjesma.getModel();
+                listModel2.removeAllElements();
+            } catch (Exception e) {
+            }
         } catch (EdunovaException ex) {
             JOptionPane.showMessageDialog(null, ex.getPoruka());
         }
@@ -548,6 +583,44 @@ public class Albumi extends javax.swing.JFrame {
 
         lstPridruzenPjesma.repaint();
     }//GEN-LAST:event_btnUkloniPjesmaActionPerformed
+
+    private void btnPridruziPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPridruziPjesmaActionPerformed
+        entitet = lstAlbumi.getSelectedValue();
+        if (entitet == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali album.");
+            return;
+        }
+        if (lstTraziPjesma.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali pjesmu.");
+            return;
+        }
+
+        DefaultListModel<Pjesma> m;
+        try {
+            m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
+            m.get(0).toString();
+        } catch (Exception e) {
+            m = new DefaultListModel<>();
+            lstPridruzenPjesma.setModel(m);
+        }
+        boolean postoji;
+        for (Pjesma p : lstTraziPjesma.getSelectedValuesList()) {
+            postoji = false;
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.get(i).getId())) {
+                    postoji = true;
+                    break;
+                }
+            }
+            if (!postoji) {
+                m.addElement(p);
+            } else {
+                JOptionPane.showMessageDialog(null, "Pjesma je već pridružena.");
+            }
+
+        }
+        lstPridruzenPjesma.repaint();
+    }//GEN-LAST:event_btnPridruziPjesmaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
@@ -608,7 +681,7 @@ public class Albumi extends javax.swing.JFrame {
         txtTrajanje1.setText("");
         txtTrajanje2.setText("");
     }
-    
+
     private void ucitajPjesme() {
         DefaultListModel<Pjesma> m = new DefaultListModel<>();
 
@@ -621,10 +694,12 @@ public class Albumi extends javax.swing.JFrame {
     }
 
     private void postaviVrijednostiUEntitet() throws ParseException {
+
         entitet.setPjesme(new ArrayList<>());
         int zbrojS1 = 0;
         DefaultListModel<Pjesma> m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
         for (int i = 0; i < m.size(); i++) {
+            entitet.getPjesme().add(m.getElementAt(i));
             entitetP = m.getElementAt(i);
 
             String broj1 = entitetP.getTrajanje().substring(0, 2);
@@ -640,7 +715,6 @@ public class Albumi extends javax.swing.JFrame {
             br2 = br3 / 10;
             br3 = br3 % 10;
             zbrojS1 += (br4 * 60 * 60) + (br1 * 60) + (br2 * 10) + br3;
-            entitet.getPjesme().add(m.getElementAt(i));
         }
 
         int p1 = zbrojS1 % 60;
@@ -650,8 +724,6 @@ public class Albumi extends javax.swing.JFrame {
         String duzinaT = duzina(p2, p3, p1);
 
         entitet.setTrajanje(duzinaT);
-        obrada.setEntitet(entitet);
-        
         entitet.setIme(txtIme.getText());
         if (starRater1.getSelection() == 0) {
             entitet.setOcjena(entitet.getOcjena());
