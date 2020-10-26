@@ -8,8 +8,11 @@ package hr.edunova.jp22.view;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.sun.source.tree.SwitchExpressionTree;
 import hr.edunova.jp22.controller.ObradaAlbum;
+import hr.edunova.jp22.controller.ObradaPjesma;
 import hr.edunova.jp22.model.Album;
+import hr.edunova.jp22.model.Pjesma;
 import hr.edunova.jp22.utility.EdunovaException;
+import static hr.edunova.jp22.utility.PocetniInsert.duzina;
 import hr.edunova.jp22.utility.StarRater;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import static java.time.temporal.TemporalQueries.localDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -35,6 +39,8 @@ public class Albumi extends javax.swing.JFrame {
 
     private ObradaAlbum obrada;
     private Album entitet;
+    private ObradaPjesma obradaP;
+    private Pjesme entitetP;
 
     /**
      * Creates new form Albumi
@@ -47,7 +53,10 @@ public class Albumi extends javax.swing.JFrame {
         dps.setFormatForDatesCommonEra("yyyy-MM-dd");
         dpiDatumA.setSettings(dps);
         obrada = new ObradaAlbum();
+        obradaP = new ObradaPjesma();
         ucitajPodatke();
+
+        lstPridruzenPjesma.setCellRenderer(new PjesmaCellRenderer());
         txtIme.setDocument(new JTextFieldLimit(50));
         txtIzdavackaK.setDocument(new JTextFieldLimit(50));
         grananjePodzanra();
@@ -89,6 +98,14 @@ public class Albumi extends javax.swing.JFrame {
         cmbZanr = new javax.swing.JComboBox<>();
         cmbPodzanr = new javax.swing.JComboBox<>();
         cmbVrsta = new javax.swing.JComboBox<>();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        lstTraziPjesma = new javax.swing.JList<>();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        lstPridruzenPjesma = new javax.swing.JList<>();
+        txtTraziPjesma = new javax.swing.JTextField();
+        btnTraziPjesma = new javax.swing.JButton();
+        btnPridruziPjesma = new javax.swing.JButton();
+        btnUkloniPjesma = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Albumi");
@@ -282,6 +299,41 @@ public class Albumi extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
+        lstTraziPjesma.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstTraziPjesmaValueChanged(evt);
+            }
+        });
+        jScrollPane14.setViewportView(lstTraziPjesma);
+
+        lstPridruzenPjesma.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstPridruzenPjesmaValueChanged(evt);
+            }
+        });
+        jScrollPane13.setViewportView(lstPridruzenPjesma);
+
+        btnTraziPjesma.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnTraziPjesma.setText("¤");
+        btnTraziPjesma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziPjesmaActionPerformed(evt);
+            }
+        });
+
+        btnPridruziPjesma.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnPridruziPjesma.setForeground(new java.awt.Color(0, 0, 102));
+        btnPridruziPjesma.setText("->");
+
+        btnUkloniPjesma.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnUkloniPjesma.setForeground(new java.awt.Color(0, 0, 102));
+        btnUkloniPjesma.setText("<-");
+        btnUkloniPjesma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUkloniPjesmaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -292,16 +344,48 @@ public class Albumi extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPridruziPjesma, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnUkloniPjesma, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtTraziPjesma, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTraziPjesma)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNazad)
                 .addGap(19, 19, 19))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTraziPjesma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTraziPjesma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                            .addComponent(jScrollPane13)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(btnPridruziPjesma, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnUkloniPjesma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -352,6 +436,11 @@ public class Albumi extends javax.swing.JFrame {
         txtTrajanje1.setText(entitet.getTrajanje().substring(3, 5));
         txtTrajanje2.setText(entitet.getTrajanje().substring(6, 8));
 
+        DefaultListModel<Pjesma> m = new DefaultListModel<>();
+        for (Pjesma p : entitet.getPjesme()) {
+            m.addElement(p);
+        }
+        lstPridruzenPjesma.setModel(m);
 
     }//GEN-LAST:event_lstAlbumiValueChanged
 
@@ -387,6 +476,7 @@ public class Albumi extends javax.swing.JFrame {
             Logger.getLogger(Albumi.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+       
         try {
             obrada.update();
             ucitajPodatke();
@@ -415,11 +505,58 @@ public class Albumi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
+    private void lstTraziPjesmaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTraziPjesmaValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstTraziPjesmaValueChanged
+
+    private void lstPridruzenPjesmaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPridruzenPjesmaValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstPridruzenPjesmaValueChanged
+
+    private void btnTraziPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziPjesmaActionPerformed
+        ucitajPjesme();
+        lstTraziPjesma.setCellRenderer(new PjesmaCellRenderer());
+    }//GEN-LAST:event_btnTraziPjesmaActionPerformed
+
+    private void btnUkloniPjesmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniPjesmaActionPerformed
+
+        entitet = lstAlbumi.getSelectedValue();
+        if (entitet == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali album.");
+            return;
+        }
+        if (lstPridruzenPjesma.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(null, "Niste izabrali pjesmu.");
+            return;
+        }
+
+        DefaultListModel<Pjesma> m;
+        try {
+            m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
+        } catch (Exception e) {
+            return;
+        }
+
+        for (Pjesma p : lstPridruzenPjesma.getSelectedValuesList()) {
+            for (int i = 0; i < m.size(); i++) {
+                if (p.getId().equals(m.getElementAt(i).getId())) {
+                    m.removeElementAt(i);
+                    break;
+                }
+            }
+        }
+
+        lstPridruzenPjesma.repaint();
+    }//GEN-LAST:event_btnUkloniPjesmaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnNazad;
     private javax.swing.JButton btnObrisi;
+    private javax.swing.JButton btnPridruziPjesma;
     private javax.swing.JButton btnPromjeni;
+    private javax.swing.JButton btnTraziPjesma;
+    private javax.swing.JButton btnUkloniPjesma;
     private javax.swing.JComboBox<String> cmbPodzanr;
     private javax.swing.JComboBox<String> cmbVrsta;
     private javax.swing.JComboBox<String> cmbZanr;
@@ -436,13 +573,18 @@ public class Albumi extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JList<Album> lstAlbumi;
+    private javax.swing.JList<Pjesma> lstPridruzenPjesma;
+    private javax.swing.JList<Pjesma> lstTraziPjesma;
     private hr.edunova.jp22.utility.StarRater starRater1;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtIzdavackaK;
     private javax.swing.JTextField txtTrajanje;
     private javax.swing.JTextField txtTrajanje1;
     private javax.swing.JTextField txtTrajanje2;
+    private javax.swing.JTextField txtTraziPjesma;
     // End of variables declaration//GEN-END:variables
 
     private void ucitajPodatke() {
@@ -466,11 +608,51 @@ public class Albumi extends javax.swing.JFrame {
         txtTrajanje1.setText("");
         txtTrajanje2.setText("");
     }
+    
+    private void ucitajPjesme() {
+        DefaultListModel<Pjesma> m = new DefaultListModel<>();
+
+        obradaP.getPodaci(txtTraziPjesma.getText()).forEach(s -> m.addElement(s));
+
+        lstTraziPjesma.setModel(m);
+        if (lstTraziPjesma.getModel().getSize() == 0) {
+            JOptionPane.showMessageDialog(null, "Nije pronađena niti jedna pjesma.");
+        }
+    }
 
     private void postaviVrijednostiUEntitet() throws ParseException {
+        entitet.setPjesme(new ArrayList<>());
+        int zbrojS1 = 0;
+        DefaultListModel<Pjesma> m = (DefaultListModel<Pjesma>) lstPridruzenPjesma.getModel();
+        for (int i = 0; i < m.size(); i++) {
+            entitetP = m.getElementAt(i);
 
+            String broj1 = entitetP.getTrajanje().substring(0, 2);
+            String broj2 = entitetP.getTrajanje().substring(3, 5);
+            String broj3 = entitetP.getTrajanje().substring(6, 8);
+
+            int br1 = Integer.parseInt(broj1);
+            int br2 = Integer.parseInt(broj2);
+            int br3 = Integer.parseInt(broj3);
+
+            int br4 = br1;
+            br1 = br2;
+            br2 = br3 / 10;
+            br3 = br3 % 10;
+            zbrojS1 += (br4 * 60 * 60) + (br1 * 60) + (br2 * 10) + br3;
+            entitet.getPjesme().add(m.getElementAt(i));
+        }
+
+        int p1 = zbrojS1 % 60;
+        int p2 = zbrojS1 / 60;
+        int p3 = p2 % 60;
+        p2 = p2 / 60;
+        String duzinaT = duzina(p2, p3, p1);
+
+        entitet.setTrajanje(duzinaT);
+        obrada.setEntitet(entitet);
+        
         entitet.setIme(txtIme.getText());
-
         if (starRater1.getSelection() == 0) {
             entitet.setOcjena(entitet.getOcjena());
         } else {
