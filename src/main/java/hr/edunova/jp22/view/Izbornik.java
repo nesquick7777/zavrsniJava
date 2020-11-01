@@ -43,8 +43,10 @@ public class Izbornik extends javax.swing.JFrame {
         pnlBtnClanovi = new javax.swing.JPanel();
         pnlBtnUmjetnici = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
 
@@ -80,11 +82,10 @@ public class Izbornik extends javax.swing.JFrame {
         });
         jPanel3.add(btnClanovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 159, 30));
 
-        btnUmjetnici.setBackground(new java.awt.Color(0, 0, 102));
+        btnUmjetnici.setBackground(new java.awt.Color(41, 57, 80));
         btnUmjetnici.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnUmjetnici.setForeground(new java.awt.Color(255, 255, 255));
         btnUmjetnici.setText("Umjetnici");
-        btnUmjetnici.setContentAreaFilled(false);
         btnUmjetnici.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnUmjetniciMouseEntered(evt);
@@ -158,7 +159,7 @@ public class Izbornik extends javax.swing.JFrame {
         });
         jPanel3.add(btnAlbumi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 159, 30));
 
-        btnPjesme.setBackground(new java.awt.Color(0, 0, 102));
+        btnPjesme.setBackground(new java.awt.Color(41, 57, 80));
         btnPjesme.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnPjesme.setForeground(new java.awt.Color(255, 255, 255));
         btnPjesme.setText("Pjesme");
@@ -265,20 +266,37 @@ public class Izbornik extends javax.swing.JFrame {
         jLabel1.setText(" Moja Diskografija");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
-        jPanel4.setBackground(new java.awt.Color(71, 120, 197));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_logout_rounded_left_32px_1.png"))); // NOI18N
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 30, 30));
+
+        jPanel4.setBackground(new java.awt.Color(90, 88, 222));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 838, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 35, Short.MAX_VALUE)
         );
 
-        jPanel2.setBackground(new java.awt.Color(71, 120, 197));
+        jPanel2.setBackground(new java.awt.Color(71, 120, 252));
+
+        jPanel1.setBackground(new java.awt.Color(90, 88, 252));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 295, Short.MAX_VALUE)
+        );
 
         jPanel5.setBackground(new java.awt.Color(120, 168, 252));
 
@@ -286,11 +304,11 @@ public class Izbornik extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 55, Short.MAX_VALUE)
+            .addGap(0, 65, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -298,12 +316,14 @@ public class Izbornik extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         setJMenuBar(jMenuBar1);
@@ -317,13 +337,12 @@ public class Izbornik extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 447, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -373,12 +392,15 @@ public class Izbornik extends javax.swing.JFrame {
 
     private void btnUmjetniciMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUmjetniciMouseEntered
         Color color = new Color(240, 240, 240);
+        Color colorBtn = new Color(41,57,80);
         pnlBtnUmjetnici.setBackground(color);
+        btnPjesme.setBackground(colorBtn);
     }//GEN-LAST:event_btnUmjetniciMouseEntered
 
     private void btnUmjetniciMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUmjetniciMouseExited
         Color color = new Color(25, 35, 51);
         pnlBtnUmjetnici.setBackground(color);
+        btnPjesme.setBackground(color);
     }//GEN-LAST:event_btnUmjetniciMouseExited
 
     private void btnUmjetniciMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUmjetniciMousePressed
@@ -513,7 +535,9 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JButton btnPjesme;
     private javax.swing.JButton btnUmjetnici;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
