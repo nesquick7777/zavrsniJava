@@ -80,12 +80,13 @@ public class Izbornik extends javax.swing.JFrame {
                 btnClanoviActionPerformed(evt);
             }
         });
-        jPanel3.add(btnClanovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 159, 30));
+        jPanel3.add(btnClanovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 159, 30));
 
         btnUmjetnici.setBackground(new java.awt.Color(41, 57, 80));
         btnUmjetnici.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnUmjetnici.setForeground(new java.awt.Color(255, 255, 255));
         btnUmjetnici.setText("Umjetnici");
+        btnUmjetnici.setContentAreaFilled(false);
         btnUmjetnici.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnUmjetniciMouseEntered(evt);
@@ -105,7 +106,7 @@ public class Izbornik extends javax.swing.JFrame {
                 btnUmjetniciActionPerformed(evt);
             }
         });
-        jPanel3.add(btnUmjetnici, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 159, 30));
+        jPanel3.add(btnUmjetnici, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 159, 30));
 
         btnOdjava.setBackground(new java.awt.Color(0, 0, 102));
         btnOdjava.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -131,7 +132,7 @@ public class Izbornik extends javax.swing.JFrame {
                 btnOdjavaActionPerformed(evt);
             }
         });
-        jPanel3.add(btnOdjava, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 159, 30));
+        jPanel3.add(btnOdjava, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 159, 30));
 
         btnAlbumi.setBackground(new java.awt.Color(0, 0, 102));
         btnAlbumi.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -157,7 +158,7 @@ public class Izbornik extends javax.swing.JFrame {
                 btnAlbumiActionPerformed(evt);
             }
         });
-        jPanel3.add(btnAlbumi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 159, 30));
+        jPanel3.add(btnAlbumi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 159, 30));
 
         btnPjesme.setBackground(new java.awt.Color(41, 57, 80));
         btnPjesme.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -183,7 +184,7 @@ public class Izbornik extends javax.swing.JFrame {
                 btnPjesmeActionPerformed(evt);
             }
         });
-        jPanel3.add(btnPjesme, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 159, 30));
+        jPanel3.add(btnPjesme, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 159, 30));
 
         pnlBtnAlbumi.setBackground(new java.awt.Color(25, 35, 51));
 
@@ -268,7 +269,7 @@ public class Izbornik extends javax.swing.JFrame {
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_logout_rounded_left_32px_1.png"))); // NOI18N
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 30, 30));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 60, 40));
 
         jPanel4.setBackground(new java.awt.Color(90, 88, 222));
 
