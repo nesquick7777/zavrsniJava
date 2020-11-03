@@ -13,9 +13,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import static javax.sound.sampled.AudioSystem.getAudioInputStream;
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
+import javax.sound.sampled.DataLine;
+
+
 
 public class AudioFilePlayer {
- 
+  
     public static void main(String[] args) {
         final AudioFilePlayer player = new AudioFilePlayer ();
         player.play("D:/Downloads/Jeff Rosenstock FOX IN THE SNOW.mp3");
@@ -54,6 +57,35 @@ public class AudioFilePlayer {
         final float rate = inFormat.getSampleRate();
         return new AudioFormat(PCM_SIGNED, rate, 16, ch, ch * 2, rate, false);
     }
+    
+    
+    public void stop(String filePath) {
+        final File file = new File(filePath);
+ 
+        try (final AudioInputStream in = getAudioInputStream(file)) {
+             
+            final AudioFormat outFormat = getOutFormat(in.getFormat());
+            final Info info = new Info(SourceDataLine.class, outFormat);
+ 
+            try (final SourceDataLine line =
+                     (SourceDataLine) AudioSystem.getLine(info)) {
+ 
+                if (line != null) {
+                    line.open(outFormat);
+                    line.start();
+                    //stream(getAudioInputStream(outFormat, in), line);
+                    line.drain();
+                    line.stop();
+                }
+            }
+ 
+        } catch (UnsupportedAudioFileException 
+               | LineUnavailableException 
+               | IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+    
  
     private void stream(AudioInputStream in, SourceDataLine line) 
         throws IOException {

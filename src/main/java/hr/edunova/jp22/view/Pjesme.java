@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package hr.edunova.jp22.view;
+
 import hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer;
-import java.io.File;
 import hr.edunova.jp22.controller.ObradaAlbum;
 import hr.edunova.jp22.controller.ObradaPjesma;
 import hr.edunova.jp22.model.Album;
@@ -13,29 +13,11 @@ import hr.edunova.jp22.model.Pjesma;
 import hr.edunova.jp22.utility.EdunovaException;
 import static hr.edunova.jp22.utility.PocetniInsert.duzina;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.lang.ProcessHandle.Info;
 import javax.swing.DefaultListModel;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.sound.sampled.AudioFormat;
-import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import static javax.sound.sampled.AudioSystem.getAudioInputStream;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.ListModel;
+
 
 /**
  *
@@ -478,11 +460,8 @@ public class Pjesme extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        try {
-            player.wait();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Pjesme.class.getName()).log(Level.SEVERE, null, ex);
-        }
+     player.stop("D:/Downloads/Jeff Rosenstock FOX IN THE SNOW.mp3");
+     
     }//GEN-LAST:event_jLabel7MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
