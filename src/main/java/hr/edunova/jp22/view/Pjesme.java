@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class Pjesme extends javax.swing.JFrame {
 
+    public static boolean test=true;
     private ObradaPjesma obrada;
     private ObradaAlbum obradaA;
     private Pjesma entitet;
@@ -76,8 +77,8 @@ public class Pjesme extends javax.swing.JFrame {
         txtTrajanje1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblPokreni = new javax.swing.JLabel();
+        lblPauza = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pjesme");
@@ -181,19 +182,19 @@ public class Pjesme extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText(":");
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Start");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblPokreni.setForeground(new java.awt.Color(255, 255, 255));
+        lblPokreni.setText("Start");
+        lblPokreni.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                lblPokreniMouseClicked(evt);
             }
         });
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Stop");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblPauza.setForeground(new java.awt.Color(255, 255, 255));
+        lblPauza.setText("Stop");
+        lblPauza.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+                lblPauzaMouseClicked(evt);
             }
         });
 
@@ -220,7 +221,7 @@ public class Pjesme extends javax.swing.JFrame {
                     .addComponent(txtIme)
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPokreni, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +236,7 @@ public class Pjesme extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtTrajanje2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPauza, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelLayout.setVerticalGroup(
@@ -258,8 +259,8 @@ public class Pjesme extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(lblPokreni)
+                    .addComponent(lblPauza))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDodaj)
@@ -454,15 +455,25 @@ public class Pjesme extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtTrajanje2KeyTyped
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        player.play("D:/Downloads/Jeff Rosenstock FOX IN THE SNOW.mp3");
+    private void lblPokreniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPokreniMouseClicked
+        
+        while(test){
+            if (test == false){
+                break;
+            }
+                //player.play("D:/Downloads/Jeff Rosenstock FOX IN THE SNOW.mp3");
+                System.out.println("1");
+            }
+        
  
-    }//GEN-LAST:event_jLabel6MouseClicked
+    }//GEN-LAST:event_lblPokreniMouseClicked
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-     player.stop("D:/Downloads/Jeff Rosenstock FOX IN THE SNOW.mp3");
+    private void lblPauzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPauzaMouseClicked
      
-    }//GEN-LAST:event_jLabel7MouseClicked
+        test = false;
+     player.;
+
+    }//GEN-LAST:event_lblPauzaMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
@@ -474,11 +485,11 @@ public class Pjesme extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblPauza;
+    private javax.swing.JLabel lblPokreni;
     private javax.swing.JList<Pjesma> lstPjesme;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtTrajanje;
