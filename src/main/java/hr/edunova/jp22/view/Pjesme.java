@@ -6,6 +6,8 @@
 package hr.edunova.jp22.view;
 
 import hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer;
+import hr.edunova.jp22.AudioFilePlayer.Tuna;
+import hr.edunova.jp22.AudioFilePlayer.Unpaused;
 import hr.edunova.jp22.controller.ObradaAlbum;
 import hr.edunova.jp22.controller.ObradaPjesma;
 import hr.edunova.jp22.model.Album;
@@ -457,22 +459,18 @@ public class Pjesme extends javax.swing.JFrame {
 
     private void lblPokreniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPokreniMouseClicked
         
-        while(test){
-            if (test == false){
-                break;
-            }
-                //player.play("D:/Downloads/Jeff Rosenstock FOX IN THE SNOW.mp3");
-                System.out.println("1");
-            }
+        Thread t1 = new Thread(new AudioFilePlayer());
+        Thread unpause=new Thread (new Unpaused());
+        unpause.start();
+        t1.start();
         
  
     }//GEN-LAST:event_lblPokreniMouseClicked
 
     private void lblPauzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPauzaMouseClicked
      
-        test = false;
-     player.;
-
+        Thread t1 = new Thread(new Tuna());
+        t1.start();
     }//GEN-LAST:event_lblPauzaMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
