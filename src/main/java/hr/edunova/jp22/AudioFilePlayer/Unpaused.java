@@ -20,7 +20,6 @@ public class Unpaused implements Runnable{
     @Override
     public void run(){
         try{
-            System.out.println("poyy");
             getStart();
         }catch(Exception e){
             System.out.println("Greska");
