@@ -8,6 +8,8 @@ import static java.lang.Math.log;
 import static java.lang.StrictMath.log;
 import static java.rmi.server.LogStream.log;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -21,9 +23,10 @@ import static javax.sound.sampled.AudioSystem.getAudioInputStream;
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 import javax.sound.sampled.DataLine;
 
-public class AudioFilePlayer implements Runnable{
+public class AudioFilePlayer implements Runnable {
 
     public static boolean pauza = false;
+    public static boolean stop = false;
 
     public static void main(String[] args) {
         final AudioFilePlayer player = new AudioFilePlayer();
@@ -45,15 +48,21 @@ public class AudioFilePlayer implements Runnable{
                 if (line != null) {
                     line.open(outFormat);
                     line.start();
-                    
+
                     //STREAM
-                    int n= 0;
+                    int n = 0;
                     final byte[] buffer = new byte[4096];
-                    AudioInputStream inp= getAudioInputStream(outFormat, in);
-                    
+                    AudioInputStream inp = getAudioInputStream(outFormat, in);
+
                     while (n != -1) {
-                        if(pauza==true){
+                        if (pauza == true) {
                             break;
+                        }
+                        if (stop == true) {
+                            synchronized (this) {
+                                this.wait();
+                            }
+
                         }
                         n = inp.read(buffer, 0, buffer.length);
                         if (n != -1) {
@@ -61,10 +70,12 @@ public class AudioFilePlayer implements Runnable{
                         }
                     }
                     //STREAM
-                    
+
                     line.drain();
                     line.stop();
                 }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AudioFilePlayer.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } catch (UnsupportedAudioFileException
@@ -84,11 +95,19 @@ public class AudioFilePlayer implements Runnable{
     public static boolean getStart() {
         return pauza = false;
     }
-    
-    public static boolean getPauza() {
+
+    public static boolean getStop() {
         return pauza = true;
     }
-    
+
+    public static boolean getPause() {
+        return stop = true;
+    }
+
+    public static boolean getUnpause() {
+        return stop = false;
+    }
+
 
 //    private void stream(AudioInputStream in, SourceDataLine line)
 //            throws IOException {
