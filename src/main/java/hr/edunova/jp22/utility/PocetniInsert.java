@@ -92,6 +92,7 @@ public class PocetniInsert {
             Pjesma pjesma = new Pjesma();
             pjesma.setIme(faker.ancient().hero());
             pjesma.setTrajanje("00:0" + br1 + ":" + br2 + br3);
+            pjesma.setPutDoPjesme("D:\\Downloads\\Jeff Rosenstock FOX IN THE SNOW.mp3");
             session.save(pjesma);
 
             if (i <= 5) {

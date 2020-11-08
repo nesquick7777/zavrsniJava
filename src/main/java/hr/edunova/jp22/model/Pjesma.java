@@ -17,8 +17,11 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Pjesma extends Entitet {
 
+    
+
     private String ime;
     private String trajanje;
+    private String putDoPjesme;
 
     @ManyToMany(mappedBy = "pjesme")
     private List<Album> albumi = new ArrayList<>();
@@ -34,9 +37,18 @@ public class Pjesma extends Entitet {
     public Pjesma() {
     }
 
-    public Pjesma(String ime, String trajanje) {
+    public Pjesma(String ime, String trajanje, String putDoPjesme) {
         this.ime = ime;
         this.trajanje = trajanje;
+        this.putDoPjesme = putDoPjesme;
+    }
+    
+    public String getPutDoPjesme() {
+        return putDoPjesme;
+    }
+
+    public void setPutDoPjesme(String putDoPjesme) {
+        this.putDoPjesme = putDoPjesme;
     }
 
     public String getIme() {

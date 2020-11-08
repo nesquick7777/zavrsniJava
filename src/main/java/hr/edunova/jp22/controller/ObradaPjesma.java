@@ -40,11 +40,13 @@ public class ObradaPjesma extends Obrada<Pjesma> {
     @Override
     protected void kontrolaCreate() throws EdunovaException {
         kontrolaIme();
+        kontrolaPut();
     }
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
         kontrolaIme();
+        kontrolaPut();
     }
 
     @Override
@@ -63,6 +65,15 @@ public class ObradaPjesma extends Obrada<Pjesma> {
         }
         if (entitet.getIme().length() > 50) {
             throw new EdunovaException(" Ime ne smije sadržavati više od 50 znakova. ");
+        }
+    }
+    
+    private void kontrolaPut() throws EdunovaException{
+        if(entitet.getPutDoPjesme().isEmpty()){
+           throw new EdunovaException(" Morate unijeti put do pjesme! ");
+        }
+        if(!(entitet.getPutDoPjesme().endsWith(".mp3"))){
+           throw new EdunovaException(" Krivi format pjesme! ");
         }
     }
 

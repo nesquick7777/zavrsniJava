@@ -1,16 +1,8 @@
 package hr.edunova.jp22.AudioFilePlayer;
 
-import static com.sun.activation.registries.LogSupport.log;
-import java.awt.event.KeyEvent;
+import static hr.edunova.jp22.view.Pjesme.Finished;
 import java.io.File;
 import java.io.IOException;
-import static java.lang.Math.log;
-import static java.lang.StrictMath.log;
-import static java.rmi.server.LogStream.log;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -18,16 +10,15 @@ import javax.sound.sampled.DataLine.Info;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import static javax.sound.sampled.AudioSystem.getAudioInputStream;
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
-import javax.sound.sampled.DataLine;
 
 public class AudioFilePlayer implements Runnable {
 
     public static boolean pauza = false;
     public static boolean stop = false;
     public static final Object LOCK = new Object();
+    public static String filePath;
 
     public static void main(String[] args) {
         final AudioFilePlayer player = new AudioFilePlayer();
@@ -35,9 +26,7 @@ public class AudioFilePlayer implements Runnable {
     }
 
     public void run() {
-        String filePath = "D:/Downloads/Jeff Rosenstock FOX IN THE SNOW.mp3";
-        final File file = new File(filePath);
-
+        final File file= new File(filePath);
         try (final AudioInputStream in = getAudioInputStream(file)) {
 
             final AudioFormat outFormat = getOutFormat(in.getFormat());
@@ -74,6 +63,7 @@ public class AudioFilePlayer implements Runnable {
 
                     line.drain();
                     line.stop();
+                    Finished();
                 }
             } catch (InterruptedException ex) {
 
@@ -113,6 +103,11 @@ public class AudioFilePlayer implements Runnable {
 
     }
 
+    public static String getPut(String put) {
+        filePath=put;
+        return filePath;
+    }
+    
 //    private void stream(AudioInputStream in, SourceDataLine line)
 //            throws IOException {
 //        final byte[] buffer = new byte[4096];
