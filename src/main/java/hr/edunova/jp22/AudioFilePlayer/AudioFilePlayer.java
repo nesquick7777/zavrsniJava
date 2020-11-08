@@ -27,6 +27,7 @@ public class AudioFilePlayer implements Runnable {
 
     public static boolean pauza = false;
     public static boolean stop = false;
+    public static final Object LOCK = new Object();
 
     public static void main(String[] args) {
         final AudioFilePlayer player = new AudioFilePlayer();
@@ -59,8 +60,8 @@ public class AudioFilePlayer implements Runnable {
                             break;
                         }
                         if (stop == true) {
-                            synchronized (this) {
-                                this.wait();
+                            synchronized (LOCK) {
+                                LOCK.wait();
                             }
 
                         }
@@ -75,7 +76,7 @@ public class AudioFilePlayer implements Runnable {
                     line.stop();
                 }
             } catch (InterruptedException ex) {
-                Logger.getLogger(AudioFilePlayer.class.getName()).log(Level.SEVERE, null, ex);
+
             }
 
         } catch (UnsupportedAudioFileException
@@ -105,9 +106,12 @@ public class AudioFilePlayer implements Runnable {
     }
 
     public static boolean getUnpause() {
+        synchronized (LOCK) {
+            LOCK.notify();
+        }
         return stop = false;
-    }
 
+    }
 
 //    private void stream(AudioInputStream in, SourceDataLine line)
 //            throws IOException {

@@ -34,6 +34,7 @@ public class Pjesme extends javax.swing.JFrame {
     private Album entitetA;
     public static boolean isPlaying = false;
     AudioFilePlayer player = new AudioFilePlayer();
+    Thread t1;
 
     /**
      * Creates new form Pjesma
@@ -473,13 +474,10 @@ public class Pjesme extends javax.swing.JFrame {
         Thread unpause = new Thread(new Unpaused());
         unpause.start();
         if (!isPlaying) {
-            Thread t1 = new Thread(new AudioFilePlayer());
+            t1 = new Thread(new AudioFilePlayer());
             t1.start();
             isPlaying = true;
         }
-        
-
-
     }//GEN-LAST:event_lblPokreniMouseClicked
 
     private void lblStopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblStopMouseClicked
