@@ -355,7 +355,6 @@ public class Pjesme extends javax.swing.JFrame {
         if (evt.getValueIsAdjusting()) {
             return;
         }
-
         entitet = lstPjesme.getSelectedValue();
         if (entitet == null) {
             return;
@@ -377,7 +376,7 @@ public class Pjesme extends javax.swing.JFrame {
             ocistiPolja();
         } catch (EdunovaException ex) {
             JOptionPane.showMessageDialog(null, ex.getPoruka());
-        }
+        }   
 
     }//GEN-LAST:event_btnDodajActionPerformed
 
