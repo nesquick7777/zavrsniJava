@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 public class Start {
 
     public static void main(String[] args) throws IOException {
+        
         Process process = Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqld.exe");
         if(process == null){
             System.exit(0);

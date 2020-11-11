@@ -12,6 +12,8 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import static javax.sound.sampled.AudioSystem.getAudioInputStream;
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 public class AudioFilePlayer implements Runnable {
 
@@ -19,6 +21,7 @@ public class AudioFilePlayer implements Runnable {
     public static boolean stop = false;
     public static final Object LOCK = new Object();
     public static String filePath;
+    public static SourceDataLine lineMain;
 
     public static void main(String[] args) {
         final AudioFilePlayer player = new AudioFilePlayer();
@@ -26,15 +29,14 @@ public class AudioFilePlayer implements Runnable {
     }
 
     public void run() {
-        final File file= new File(filePath);
-        try (final AudioInputStream in = getAudioInputStream(file)) {
-
+        final File file = new File(filePath);
+        try (final AudioInputStream in = AudioSystem.getAudioInputStream(file)) {
             final AudioFormat outFormat = getOutFormat(in.getFormat());
             final Info info = new Info(SourceDataLine.class, outFormat);
 
             try (final SourceDataLine line
                     = (SourceDataLine) AudioSystem.getLine(info)) {
-
+                getLine(line);
                 if (line != null) {
                     line.open(outFormat);
                     line.start();
@@ -76,6 +78,18 @@ public class AudioFilePlayer implements Runnable {
         }
     }
 
+    private void getLine(SourceDataLine line1) {
+        lineMain = line1;
+    }
+
+    public static void setVolumeDown() {
+        FloatControl volume = (FloatControl) lineMain.getControl(FloatControl.Type.MASTER_GAIN);
+        double gain = 0.25;
+        float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+        volume.setValue(dB);
+
+    }
+
     private AudioFormat getOutFormat(AudioFormat inFormat) {
         final int ch = inFormat.getChannels();
 
@@ -104,10 +118,10 @@ public class AudioFilePlayer implements Runnable {
     }
 
     public static String getPut(String put) {
-        filePath=put;
+        filePath = put;
         return filePath;
     }
-    
+
 //    private void stream(AudioInputStream in, SourceDataLine line)
 //            throws IOException {
 //        final byte[] buffer = new byte[4096];

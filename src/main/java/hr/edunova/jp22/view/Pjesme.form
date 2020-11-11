@@ -135,7 +135,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblPokreni" min="-2" pref="69" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblStop" min="-2" pref="31" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblVolumeDown" min="-2" pref="31" max="-2" attributes="0"/>
+                                          <Component id="lblStop" min="-2" pref="31" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -198,12 +201,14 @@
                           <Component id="txtTrajanje1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace pref="13" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnDodajPjesmu" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtDodajPath" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblVolumeDown" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblPokreni" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblStop" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -374,6 +379,20 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblVolumeDown">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="------"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblVolumeDownMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
