@@ -11,15 +11,16 @@ import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.getStop;
  *
  * @author Bole
  */
-public class Tuna implements Runnable{
+public class Tuna implements Runnable {
+
     @Override
-    public void run(){
-        try{
+    public void run() {
+        try {
             getStop();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Greska");
         }
-        
+
     }
-    
+
 }

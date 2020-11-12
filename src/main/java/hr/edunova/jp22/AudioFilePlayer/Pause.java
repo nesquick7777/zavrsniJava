@@ -11,15 +11,16 @@ import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.getPause;
  *
  * @author Bole
  */
-public class Pause implements Runnable{
+public class Pause implements Runnable {
+
     @Override
-    public void run(){
-        try{
+    public void run() {
+        try {
             getPause();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Greska");
         }
-        
+
     }
-    
+
 }

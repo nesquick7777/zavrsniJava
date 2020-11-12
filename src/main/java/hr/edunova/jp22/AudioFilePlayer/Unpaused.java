@@ -12,17 +12,17 @@ import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.getUnpause;
  *
  * @author Bole
  */
-public class Unpaused implements Runnable{
-   
+public class Unpaused implements Runnable {
+
     @Override
-    public void run(){
-        try{
-                getStart();
+    public void run() {
+        try {
+            getStart();
             getUnpause();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Greska");
         }
-        
+
     }
-    
+
 }
