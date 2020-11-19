@@ -24,8 +24,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.getPut;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.setVolumeDown;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -91,6 +89,7 @@ public class Pjesme extends javax.swing.JFrame {
         btnDodajPjesmu = new javax.swing.JButton();
         txtDodajPath = new javax.swing.JTextField();
         lblVolumeDown = new javax.swing.JLabel();
+        sliderGlasnoca = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pjesme");
@@ -117,11 +116,6 @@ public class Pjesme extends javax.swing.JFrame {
 
         jPanel.setBackground(new java.awt.Color(0, 0, 153));
 
-        txtTrajanje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTrajanjeActionPerformed(evt);
-            }
-        });
         txtTrajanje.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTrajanjeKeyTyped(evt);
@@ -164,22 +158,12 @@ public class Pjesme extends javax.swing.JFrame {
             }
         });
 
-        txtTrajanje2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTrajanje2ActionPerformed(evt);
-            }
-        });
         txtTrajanje2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTrajanje2KeyTyped(evt);
             }
         });
 
-        txtTrajanje1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTrajanje1ActionPerformed(evt);
-            }
-        });
         txtTrajanje1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTrajanje1KeyTyped(evt);
@@ -236,6 +220,20 @@ public class Pjesme extends javax.swing.JFrame {
             }
         });
 
+        sliderGlasnoca.setMaximum(16);
+        sliderGlasnoca.setPaintTicks(true);
+        sliderGlasnoca.setValue(1);
+        sliderGlasnoca.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliderGlasnocaStateChanged(evt);
+            }
+        });
+        sliderGlasnoca.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                sliderGlasnocaMouseWheelMoved(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
@@ -255,9 +253,7 @@ public class Pjesme extends javax.swing.JFrame {
                             .addGroup(jPanelLayout.createSequentialGroup()
                                 .addComponent(lblPokreni, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblVolumeDown, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblStop, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lblStop, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPause, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,26 +263,29 @@ public class Pjesme extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtIme)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addComponent(txtTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTrajanje1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTrajanje2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblVolumeDown, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDodajPath))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDodajPjesmu))
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addComponent(txtTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTrajanje1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTrajanje2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                        .addComponent(txtDodajPath)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDodajPjesmu))))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sliderGlasnoca, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(65, 65, 65))))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,14 +304,15 @@ public class Pjesme extends javax.swing.JFrame {
                     .addComponent(txtTrajanje2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(txtTrajanje1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblVolumeDown))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDodajPjesmu)
                     .addComponent(txtDodajPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(sliderGlasnoca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblVolumeDown)
-                .addGap(19, 19, 19)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPokreni)
                     .addComponent(lblStop)
@@ -474,18 +474,6 @@ public class Pjesme extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
-    private void txtTrajanjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrajanjeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTrajanjeActionPerformed
-
-    private void txtTrajanje2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrajanje2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTrajanje2ActionPerformed
-
-    private void txtTrajanje1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrajanje1ActionPerformed
-
-    }//GEN-LAST:event_txtTrajanje1ActionPerformed
-
     private void txtTrajanjeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrajanjeKeyTyped
         char c = evt.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
@@ -529,7 +517,6 @@ public class Pjesme extends javax.swing.JFrame {
             t1 = new Thread(new AudioFilePlayer());
             getPut(txtDodajPath.getText());
             t1.start();
-
             isPlaying = true;
         }
     }//GEN-LAST:event_lblPokreniMouseClicked
@@ -560,8 +547,26 @@ public class Pjesme extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDodajPjesmuActionPerformed
 
     private void lblVolumeDownMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolumeDownMouseClicked
-        setVolumeDown();
+
+        setVolumeDown(2);
     }//GEN-LAST:event_lblVolumeDownMouseClicked
+
+    private void sliderGlasnocaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderGlasnocaStateChanged
+        if (isPlaying == false) {
+            return;
+        }
+        setVolumeDown(sliderGlasnoca.getValue());
+    }//GEN-LAST:event_sliderGlasnocaStateChanged
+
+    private void sliderGlasnocaMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_sliderGlasnocaMouseWheelMoved
+        int notches = evt.getWheelRotation();
+
+        if (notches < 0) {
+            sliderGlasnoca.setValue(sliderGlasnoca.getValue() + 1);
+        } else if (notches > 0) {
+            sliderGlasnoca.setValue(sliderGlasnoca.getValue() - 1);
+        }
+    }//GEN-LAST:event_sliderGlasnocaMouseWheelMoved
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
@@ -582,6 +587,7 @@ public class Pjesme extends javax.swing.JFrame {
     private javax.swing.JLabel lblStop;
     private javax.swing.JLabel lblVolumeDown;
     private javax.swing.JList<Pjesma> lstPjesme;
+    public static javax.swing.JSlider sliderGlasnoca;
     private javax.swing.JTextField txtDodajPath;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtTrajanje;

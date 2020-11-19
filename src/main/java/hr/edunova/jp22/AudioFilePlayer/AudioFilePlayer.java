@@ -1,6 +1,7 @@
 package hr.edunova.jp22.AudioFilePlayer;
 
 import static hr.edunova.jp22.view.Pjesme.Finished;
+import static hr.edunova.jp22.view.Pjesme.sliderGlasnoca;
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.AudioFormat;
@@ -40,7 +41,7 @@ public class AudioFilePlayer implements Runnable {
                 if (line != null) {
                     line.open(outFormat);
                     line.start();
-
+                    setVolumeDown(sliderGlasnoca.getValue());
                     //STREAM
                     int n = 0;
                     final byte[] buffer = new byte[4096];
@@ -82,12 +83,69 @@ public class AudioFilePlayer implements Runnable {
         lineMain = line1;
     }
 
-    public static void setVolumeDown() {
+    public static void setVolumeDown(int mjerac) {
         FloatControl volume = (FloatControl) lineMain.getControl(FloatControl.Type.MASTER_GAIN);
-        double gain = 0.25;
+        double gain = 0;
+        
+        switch (mjerac) {
+            case 0:
+                gain = 0;
+                break;
+            case 1:
+                gain=0.125;
+                break;
+            case 2:
+                gain=0.25;
+                break;
+            case 3:
+                gain=0.375;
+                break;
+            case 4:
+                gain=0.5;
+                break;
+            case 5:
+                gain=0.625;
+                break;
+            case 6:
+                gain=0.75;
+                break;
+            case 7:
+                gain=0.875;
+                break;
+            case 8:
+                gain=1;
+                break;
+            case 9:
+                gain=1.125;
+                break;
+            case 10:
+                gain=1.25;
+                break;
+            case 11:
+                gain=1.375;
+                break;
+            case 12:
+                gain=1.5;
+                break;
+            case 13:
+                gain=1.675;
+                break;
+            case 14:
+                gain=1.75;
+                break;
+            case 15:
+                gain=1.875;
+                break;
+            case 16:
+                gain=2;
+                break;
+            default:
+                break;
+        }
+        
+        
         float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
         volume.setValue(dB);
-
     }
 
     private AudioFormat getOutFormat(AudioFormat inFormat) {
