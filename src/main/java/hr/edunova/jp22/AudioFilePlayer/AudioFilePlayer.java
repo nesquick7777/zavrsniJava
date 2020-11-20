@@ -44,6 +44,8 @@ public class AudioFilePlayer implements Runnable {
                     line.open(outFormat);
                     line.start();
                     long seconds;
+                    long minutes;
+                    long millis;
                     
                     setVolumeDown(sliderGlasnoca.getValue());
                     //STREAM
@@ -65,8 +67,11 @@ public class AudioFilePlayer implements Runnable {
                         if (n != -1) {
                             line.write(buffer, 0, n);
                         }
-                        seconds=TimeUnit.MICROSECONDS.toSeconds(line.getMicrosecondPosition());
-                        System.out.println(seconds + " " +line.getLongFramePosition());
+                        millis=TimeUnit.MICROSECONDS.toMillis(line.getMicrosecondPosition());
+                        minutes=(millis/1000)/60;
+                        seconds=((millis / 1000) % 60);
+
+                        System.out.println(minutes + ":" +seconds+ " " +line.getLongFramePosition());
                     }
                     //STREAM
 
