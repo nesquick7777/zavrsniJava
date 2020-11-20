@@ -4,6 +4,7 @@ import static hr.edunova.jp22.view.Pjesme.Finished;
 import static hr.edunova.jp22.view.Pjesme.sliderGlasnoca;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -38,9 +39,12 @@ public class AudioFilePlayer implements Runnable {
             try (final SourceDataLine line
                     = (SourceDataLine) AudioSystem.getLine(info)) {
                 getLine(line);
+                line.getMicrosecondPosition();
                 if (line != null) {
                     line.open(outFormat);
                     line.start();
+                    long seconds;
+                    
                     setVolumeDown(sliderGlasnoca.getValue());
                     //STREAM
                     int n = 0;
@@ -61,6 +65,8 @@ public class AudioFilePlayer implements Runnable {
                         if (n != -1) {
                             line.write(buffer, 0, n);
                         }
+                        seconds=TimeUnit.MICROSECONDS.toSeconds(line.getMicrosecondPosition());
+                        System.out.println(seconds + " " +line.getLongFramePosition());
                     }
                     //STREAM
 
