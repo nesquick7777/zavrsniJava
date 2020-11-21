@@ -4,7 +4,9 @@ import static hr.edunova.jp22.view.Pjesme.Finished;
 import static hr.edunova.jp22.view.Pjesme.sliderGlasnoca;
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -16,6 +18,7 @@ import static javax.sound.sampled.AudioSystem.getAudioInputStream;
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import org.tritonus.share.sampled.file.TAudioFileFormat;
 
 public class AudioFilePlayer implements Runnable {
 
@@ -46,7 +49,16 @@ public class AudioFilePlayer implements Runnable {
                     long seconds;
                     long minutes;
                     long millis;
-                    
+                    AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(file);
+                    Map<?, ?> properties = ((TAudioFileFormat) fileFormat).properties();
+        String key = "duration";
+        String title = "title";
+        Long microseconds = (Long) properties.get(key);
+        String title1 = (String) properties.get(title);
+        int mili = (int) (microseconds / 1000);
+        int sec = (mili / 1000) % 60;
+        int min = (mili / 1000) / 60;
+        
                     setVolumeDown(sliderGlasnoca.getValue());
                     //STREAM
                     int n = 0;
@@ -71,7 +83,7 @@ public class AudioFilePlayer implements Runnable {
                         minutes=(millis/1000)/60;
                         seconds=((millis / 1000) % 60);
 
-                        System.out.println(minutes + ":" +seconds+ " " +line.getLongFramePosition());
+                        System.out.println(minutes + ":" +seconds+ " "+"time = " + min + ":" + sec+ " "+title1);
                     }
                     //STREAM
 
