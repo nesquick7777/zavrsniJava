@@ -46,19 +46,20 @@ public class AudioFilePlayer implements Runnable {
                 if (line != null) {
                     line.open(outFormat);
                     line.start();
+                    
                     long seconds;
                     long minutes;
                     long millis;
                     AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(file);
                     Map<?, ?> properties = ((TAudioFileFormat) fileFormat).properties();
-        String key = "duration";
-        String title = "title";
-        Long microseconds = (Long) properties.get(key);
-        String title1 = (String) properties.get(title);
-        int mili = (int) (microseconds / 1000);
-        int sec = (mili / 1000) % 60;
-        int min = (mili / 1000) / 60;
-        
+                    String key = "duration";
+                    String title = "title";
+                    Long microseconds = (Long) properties.get(key);
+                    String title1 = (String) properties.get(title);
+                    int mili = (int) (microseconds / 1000);
+                    int sec = (mili / 1000) % 60;
+                    int min = (mili / 1000) / 60;
+
                     setVolumeDown(sliderGlasnoca.getValue());
                     //STREAM
                     int n = 0;
@@ -79,14 +80,13 @@ public class AudioFilePlayer implements Runnable {
                         if (n != -1) {
                             line.write(buffer, 0, n);
                         }
-                        millis=TimeUnit.MICROSECONDS.toMillis(line.getMicrosecondPosition());
-                        minutes=(millis/1000)/60;
-                        seconds=((millis / 1000) % 60);
+                        millis = TimeUnit.MICROSECONDS.toMillis(line.getMicrosecondPosition());
+                        minutes = (millis / 1000) / 60;
+                        seconds = ((millis / 1000) % 60);
 
-                        System.out.println(minutes + ":" +seconds+ " "+"time = " + min + ":" + sec+ " "+title1);
+                        System.out.println(minutes + ":" + seconds + " " + "time = " + min + ":" + sec + " " + title1);
                     }
                     //STREAM
-
                     line.drain();
                     line.stop();
                     Finished();
@@ -109,66 +109,69 @@ public class AudioFilePlayer implements Runnable {
     public static void setVolumeDown(int mjerac) {
         FloatControl volume = (FloatControl) lineMain.getControl(FloatControl.Type.MASTER_GAIN);
         double gain = 0;
-        
+
         switch (mjerac) {
             case 0:
                 gain = 0;
                 break;
             case 1:
-                gain=0.125;
+                gain = 0.125;
                 break;
             case 2:
-                gain=0.25;
+                gain = 0.25;
                 break;
             case 3:
-                gain=0.375;
+                gain = 0.375;
                 break;
             case 4:
-                gain=0.5;
+                gain = 0.5;
                 break;
             case 5:
-                gain=0.625;
+                gain = 0.625;
                 break;
             case 6:
-                gain=0.75;
+                gain = 0.75;
                 break;
             case 7:
-                gain=0.875;
+                gain = 0.875;
                 break;
             case 8:
-                gain=1;
+                gain = 1;
                 break;
             case 9:
-                gain=1.125;
+                gain = 1.125;
                 break;
             case 10:
-                gain=1.25;
+                gain = 1.25;
                 break;
             case 11:
-                gain=1.375;
+                gain = 1.375;
                 break;
             case 12:
-                gain=1.5;
+                gain = 1.5;
                 break;
             case 13:
-                gain=1.675;
+                gain = 1.675;
                 break;
             case 14:
-                gain=1.75;
+                gain = 1.75;
                 break;
             case 15:
-                gain=1.875;
+                gain = 1.875;
                 break;
             case 16:
-                gain=2;
+                gain = 2;
                 break;
             default:
                 break;
         }
-        
-        
+
         float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
         volume.setValue(dB);
+    }
+
+    public void rewind() {
+
     }
 
     private AudioFormat getOutFormat(AudioFormat inFormat) {
