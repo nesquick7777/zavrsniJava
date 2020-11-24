@@ -561,7 +561,7 @@ public class Pjesme extends javax.swing.JFrame {
         }
         try {
             synchronized (LOCK) {
-            LOCK.wait(100);
+            LOCK.wait(1000);
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(Pjesme.class.getName()).log(Level.SEVERE, null, ex);
