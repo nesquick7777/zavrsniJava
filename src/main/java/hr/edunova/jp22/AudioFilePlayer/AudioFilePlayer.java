@@ -27,6 +27,13 @@ public class AudioFilePlayer implements Runnable {
     public static final Object LOCK = new Object();
     public static String filePath;
     public static SourceDataLine lineMain;
+    public static long seconds;
+    public static long minutes;
+    public static int sec;
+    public static int min;
+    public static String title1;
+    public static int trajanjeSekunde;
+    public static int maksimumSekunde;
 
     public static void main(String[] args) {
         final AudioFilePlayer player = new AudioFilePlayer();
@@ -46,19 +53,18 @@ public class AudioFilePlayer implements Runnable {
                 if (line != null) {
                     line.open(outFormat);
                     line.start();
-                    
-                    long seconds;
-                    long minutes;
+
                     long millis;
                     AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(file);
                     Map<?, ?> properties = ((TAudioFileFormat) fileFormat).properties();
                     String key = "duration";
                     String title = "title";
                     Long microseconds = (Long) properties.get(key);
-                    String title1 = (String) properties.get(title);
+                    maksimumSekunde = (int)TimeUnit.MICROSECONDS.toSeconds(microseconds);
+                    title1 = (String) properties.get(title);
                     int mili = (int) (microseconds / 1000);
-                    int sec = (mili / 1000) % 60;
-                    int min = (mili / 1000) / 60;
+                    sec = (mili / 1000) % 60;
+                    min = (mili / 1000) / 60;
 
                     setVolumeDown(sliderGlasnoca.getValue());
                     //STREAM
@@ -81,10 +87,11 @@ public class AudioFilePlayer implements Runnable {
                             line.write(buffer, 0, n);
                         }
                         millis = TimeUnit.MICROSECONDS.toMillis(line.getMicrosecondPosition());
+                        trajanjeSekunde = (int)TimeUnit.MICROSECONDS.toSeconds(line.getMicrosecondPosition());
                         minutes = (millis / 1000) / 60;
                         seconds = ((millis / 1000) % 60);
 
-                        System.out.println(minutes + ":" + seconds + " " + "time = " + min + ":" + sec + " " + title1);
+                        //System.out.println(minutes + ":" + seconds + " " + "time = " + min + ":" + sec + " " + title1);
                     }
                     //STREAM
                     line.drain();
