@@ -264,11 +264,9 @@ public class Pjesme extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtDodajPath)
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUkupnoVrijeme, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPause, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblUkupnoVrijeme, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblPause, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -550,6 +548,7 @@ public class Pjesme extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Krivi format");
             return;
         }
+            
         Thread unpause = new Thread(new Unpaused());
         unpause.start();
 
@@ -559,18 +558,8 @@ public class Pjesme extends javax.swing.JFrame {
             t1.start();
             isPlaying = true;
         }
-        try {
-            synchronized (LOCK) {
-            LOCK.wait(1000);
-            }
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Pjesme.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (isPlaying) {
-            timer1 = new trajanjePjesme();
-            timer1.start();
-        }
-        
+        timer1 = new trajanjePjesme();
+        timer1.start();
     }//GEN-LAST:event_lblPokreniMouseClicked
 
     private void lblStopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblStopMouseClicked
@@ -652,6 +641,13 @@ public class Pjesme extends javax.swing.JFrame {
             pBarTrajanjePjesme.setMinimum(0);
             pBarTrajanjePjesme.setMaximum(maksimumSekunde);
             pBarTrajanjePjesme.setValue(0);
+            synchronized(LOCK){
+                try {
+                    LOCK.wait(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Pjesme.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             for (int i = trajanjeSekunde; i < maksimumSekunde;) {
                 lblUkupnoVrijeme.setText(min + ":" + sec);
                 lblImePjesme.setText(title1);
