@@ -400,6 +400,9 @@ public class Pjesme extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNazadActionPerformed
+        Thread t = new Thread(new Tuna());
+        t.start();
+        isPlaying = false;        
         Izbornik izbornik = new Izbornik();
         izbornik.setLocationRelativeTo(null);
         izbornik.setVisible(true);

@@ -43,7 +43,6 @@ public class Izbornik extends javax.swing.JFrame {
         pnlBtnClanovi = new javax.swing.JPanel();
         pnlBtnUmjetnici = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -199,7 +198,7 @@ public class Izbornik extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel3.add(pnlBtnAlbumi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 10, 30));
+        jPanel3.add(pnlBtnAlbumi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 10, 30));
 
         pnlBtnOdjava.setBackground(new java.awt.Color(25, 35, 51));
 
@@ -214,7 +213,7 @@ public class Izbornik extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel3.add(pnlBtnOdjava, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 10, 30));
+        jPanel3.add(pnlBtnOdjava, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 10, 30));
 
         pnlBtnPjesme.setBackground(new java.awt.Color(25, 35, 51));
 
@@ -229,7 +228,7 @@ public class Izbornik extends javax.swing.JFrame {
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        jPanel3.add(pnlBtnPjesme, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, 30));
+        jPanel3.add(pnlBtnPjesme, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, -1, 30));
 
         pnlBtnClanovi.setBackground(new java.awt.Color(25, 35, 51));
 
@@ -244,7 +243,7 @@ public class Izbornik extends javax.swing.JFrame {
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        jPanel3.add(pnlBtnClanovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 30));
+        jPanel3.add(pnlBtnClanovi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, -1, 30));
 
         pnlBtnUmjetnici.setBackground(new java.awt.Color(25, 35, 51));
 
@@ -259,17 +258,13 @@ public class Izbornik extends javax.swing.JFrame {
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        jPanel3.add(pnlBtnUmjetnici, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, 30));
+        jPanel3.add(pnlBtnUmjetnici, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, -1, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText(" Moja Diskografija");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_logout_rounded_left_32px_1.png"))); // NOI18N
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 60, 40));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 30));
 
         jPanel4.setBackground(new java.awt.Color(90, 88, 222));
 
@@ -536,7 +531,6 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JButton btnPjesme;
     private javax.swing.JButton btnUmjetnici;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
