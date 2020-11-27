@@ -16,7 +16,6 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import static javax.sound.sampled.AudioSystem.getAudioInputStream;
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
-import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import org.tritonus.share.sampled.file.TAudioFileFormat;
 
@@ -60,7 +59,7 @@ public class AudioFilePlayer implements Runnable {
                     String key = "duration";
                     String title = "title";
                     Long microseconds = (Long) properties.get(key);
-                    maksimumSekunde = (int)TimeUnit.MICROSECONDS.toSeconds(microseconds);
+                    maksimumSekunde = (int) TimeUnit.MICROSECONDS.toSeconds(microseconds);
                     title1 = (String) properties.get(title);
                     int mili = (int) (microseconds / 1000);
                     sec = (mili / 1000) % 60;
@@ -87,7 +86,7 @@ public class AudioFilePlayer implements Runnable {
                             line.write(buffer, 0, n);
                         }
                         millis = TimeUnit.MICROSECONDS.toMillis(line.getMicrosecondPosition());
-                        trajanjeSekunde = (int)TimeUnit.MICROSECONDS.toSeconds(line.getMicrosecondPosition());
+                        trajanjeSekunde = (int) TimeUnit.MICROSECONDS.toSeconds(line.getMicrosecondPosition());
                         minutes = (millis / 1000) / 60;
                         seconds = ((millis / 1000) % 60);
 
@@ -172,7 +171,6 @@ public class AudioFilePlayer implements Runnable {
             default:
                 break;
         }
-
         float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
         volume.setValue(dB);
     }
