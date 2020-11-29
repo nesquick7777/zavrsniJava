@@ -33,6 +33,8 @@ public class AudioFilePlayer implements Runnable {
     public static String title1;
     public static int trajanjeSekunde;
     public static int maksimumSekunde;
+    public static AudioInputStream inp;
+    public static long currentTime;
 
     public static void main(String[] args) {
         final AudioFilePlayer player = new AudioFilePlayer();
@@ -69,8 +71,8 @@ public class AudioFilePlayer implements Runnable {
                     //STREAM
                     int n = 0;
                     final byte[] buffer = new byte[4096];
-                    AudioInputStream inp = getAudioInputStream(outFormat, in);
-
+                    inp = getAudioInputStream(outFormat, in);
+                    
                     while (n != -1) {
                         if (pauza == true) {
                             break;
@@ -85,17 +87,21 @@ public class AudioFilePlayer implements Runnable {
                         if (n != -1) {
                             line.write(buffer, 0, n);
                         }
+                        inp.mark(mili);
+                        System.out.println(inp.markSupported());
+                        currentTime=line.getMicrosecondPosition();
                         millis = TimeUnit.MICROSECONDS.toMillis(line.getMicrosecondPosition());
                         trajanjeSekunde = (int) TimeUnit.MICROSECONDS.toSeconds(line.getMicrosecondPosition());
                         minutes = (millis / 1000) / 60;
                         seconds = ((millis / 1000) % 60);
-
+                        
                         //System.out.println(minutes + ":" + seconds + " " + "time = " + min + ":" + sec + " " + title1);
                     }
                     //STREAM
                     line.drain();
                     line.stop();
                     Finished();
+                    
                 }
             } catch (InterruptedException ex) {
 

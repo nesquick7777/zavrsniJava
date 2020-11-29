@@ -7,6 +7,7 @@ package hr.edunova.jp22.view;
 
 import hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.LOCK;
+import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.currentTime;
 import hr.edunova.jp22.AudioFilePlayer.Pause;
 import hr.edunova.jp22.AudioFilePlayer.Tuna;
 import hr.edunova.jp22.AudioFilePlayer.Unpaused;
@@ -24,6 +25,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.getPut;
+import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.inp;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.lineMain;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.maksimumSekunde;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.min;
@@ -33,6 +35,7 @@ import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.seconds;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.setVolumeDown;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.title1;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.trajanjeSekunde;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -50,6 +53,7 @@ public class Pjesme extends javax.swing.JFrame {
     private Pjesma entitet;
     private Album entitetA;
     public static boolean isPlaying = false;
+    public static boolean yo=true;
     AudioFilePlayer player = new AudioFilePlayer();
     Thread t1;
 
@@ -637,7 +641,18 @@ public class Pjesme extends javax.swing.JFrame {
         class jump extends Thread {
 
             public void run() {
-               // lineMain.setMicrosecondPosition(1500);
+                
+                try {
+                    if(yo){
+                    inp.mark((int) currentTime);
+                    yo = false;
+                    }else{
+                        inp.reset();
+                    }
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(Pjesme.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
         }
