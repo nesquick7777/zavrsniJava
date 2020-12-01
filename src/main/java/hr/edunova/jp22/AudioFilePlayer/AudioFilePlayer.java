@@ -20,7 +20,6 @@ import javax.sound.sampled.FloatControl;
 import org.tritonus.share.sampled.file.TAudioFileFormat;
 
 public class AudioFilePlayer implements Runnable {
-
     public static boolean pauza = false;
     public static boolean stop = false;
     public static final Object LOCK = new Object();
@@ -66,7 +65,6 @@ public class AudioFilePlayer implements Runnable {
                     int mili = (int) (microseconds / 1000);
                     sec = (mili / 1000) % 60;
                     min = (mili / 1000) / 60;
-
                     setVolumeDown(sliderGlasnoca.getValue());
                     //STREAM
                     int n = 0;
@@ -88,7 +86,6 @@ public class AudioFilePlayer implements Runnable {
                             line.write(buffer, 0, n);
                         }
                         inp.mark(mili);
-                        System.out.println(inp.markSupported());
                         currentTime=line.getMicrosecondPosition();
                         millis = TimeUnit.MICROSECONDS.toMillis(line.getMicrosecondPosition());
                         trajanjeSekunde = (int) TimeUnit.MICROSECONDS.toSeconds(line.getMicrosecondPosition());

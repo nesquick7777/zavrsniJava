@@ -36,6 +36,7 @@ import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.setVolumeDown;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.title1;
 import static hr.edunova.jp22.AudioFilePlayer.AudioFilePlayer.trajanjeSekunde;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -643,20 +644,30 @@ public class Pjesme extends javax.swing.JFrame {
             public void run() {
                 
                 try {
-                    if(yo){
-                    inp.mark((int) currentTime);
-                    yo = false;
-                    }else{
-                        inp.reset();
-                    }
-                    
+                   inp.skip(30000);
                 } catch (IOException ex) {
-                    Logger.getLogger(Pjesme.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
         }
+Thread t = new Thread(new Tuna());
+        t.start();
+        isPlaying = false;
+        
+        
+        Thread unpause = new Thread(new Unpaused());
+        unpause.start();
 
+        if (!isPlaying) {
+            t1 = new Thread(new AudioFilePlayer());
+            getPut(txtDodajPath.getText());
+            t1.start();
+            isPlaying = true;
+        }
+        timer1 = new trajanjePjesme();
+        timer1.start();
+        
+        Thread t2 = new Thread(new jump());
+           t2.start();
     }//GEN-LAST:event_lblJumpMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
