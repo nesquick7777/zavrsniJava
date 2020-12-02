@@ -55,6 +55,7 @@ public class Pjesme extends javax.swing.JFrame {
     private Album entitetA;
     public static boolean isPlaying = false;
     public static boolean yo=true;
+    public static int bruh=0;
     AudioFilePlayer player = new AudioFilePlayer();
     Thread t1;
 
@@ -644,27 +645,13 @@ public class Pjesme extends javax.swing.JFrame {
             public void run() {
                 
                 try {
-                   inp.skip(30000);
+                   inp.skip(500000);
+                  bruh+=15;
                 } catch (IOException ex) {
                 }
             }
         }
-Thread t = new Thread(new Tuna());
-        t.start();
-        isPlaying = false;
         
-        
-        Thread unpause = new Thread(new Unpaused());
-        unpause.start();
-
-        if (!isPlaying) {
-            t1 = new Thread(new AudioFilePlayer());
-            getPut(txtDodajPath.getText());
-            t1.start();
-            isPlaying = true;
-        }
-        timer1 = new trajanjePjesme();
-        timer1.start();
         
         Thread t2 = new Thread(new jump());
            t2.start();
@@ -716,8 +703,8 @@ Thread t = new Thread(new Tuna());
             }
             for (int i = trajanjeSekunde; i < maksimumSekunde;) {
                 lblUkupnoVrijeme.setText(min + ":" + sec);
+                pBarTrajanjePjesme.setValue((trajanjeSekunde+bruh));
                 lblImePjesme.setText(title1);
-                pBarTrajanjePjesme.setValue(trajanjeSekunde);
                 lblVrijemeProgresa.setText(minutes + ":" + seconds);
 
             }

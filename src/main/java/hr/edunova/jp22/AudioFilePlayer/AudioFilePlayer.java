@@ -85,14 +85,13 @@ public class AudioFilePlayer implements Runnable {
                         if (n != -1) {
                             line.write(buffer, 0, n);
                         }
-                        inp.mark(mili);
                         currentTime=line.getMicrosecondPosition();
                         millis = TimeUnit.MICROSECONDS.toMillis(line.getMicrosecondPosition());
                         trajanjeSekunde = (int) TimeUnit.MICROSECONDS.toSeconds(line.getMicrosecondPosition());
                         minutes = (millis / 1000) / 60;
                         seconds = ((millis / 1000) % 60);
                         
-                        //System.out.println(minutes + ":" + seconds + " " + "time = " + min + ":" + sec + " " + title1);
+                       // System.out.println(minutes + ":" + seconds + " " + "time = " + min + ":" + sec + " " + title1);
                     }
                     //STREAM
                     line.drain();
