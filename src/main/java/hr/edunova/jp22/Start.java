@@ -5,18 +5,11 @@
  */
 package hr.edunova.jp22;
 
-import com.github.javafaker.File;
-import hr.edunova.jp22.utility.HibernateUtil;
-import hr.edunova.jp22.utility.PocetniInsert;
-import hr.edunova.jp22.utility.StarRater;
-import hr.edunova.jp22.view.Autorizacija;
 import hr.edunova.jp22.view.Izbornik;
 import hr.edunova.jp22.view.SplashScreen;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
@@ -53,6 +46,7 @@ public class Start {
         SplashScreen sC = new SplashScreen();
         sC.setLocationRelativeTo(null);
         sC.setVisible(true);
+        
         
         
          Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {

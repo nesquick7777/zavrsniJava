@@ -644,7 +644,7 @@ public class Pjesme extends javax.swing.JFrame {
                 
                 try {
                    inp.skip(509500);
-                  bruh+=13;
+                 //bruh+=13;  //Progress bar u optimizaciji
                 } catch (IOException ex) {
                 }
             }
